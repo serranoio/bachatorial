@@ -1,7 +1,7 @@
 [
   {
-    "text": "Hello world",
-    "link": "/proven/",
-    "activeMatch": "/proven/"
+    "text": "Your First Lesson",
+    "link": "/guide/lesson",
+    "activeMatch": "/guide/lesson"
   }
 ]
