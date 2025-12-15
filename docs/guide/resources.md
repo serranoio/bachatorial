@@ -32,10 +32,11 @@ Every single event has a class that comes before it, lol.
 
 #### Monthly [Bachatamor](https://www.instagram.com/bachatamor.sf/)
 * Beginner - advanced
-* This is at a church. It is a huge venue.
+* This is at a church. It is a huge venue. You can make your dances large.
 
 #### Monthly [Hello Bachata](https://www.instagram.com/hellobachata/)
 * Beginner - advanced
+* Event is usually packed. Must adapt dancing game to small & sensual.
 
 
 ### Penninsula
