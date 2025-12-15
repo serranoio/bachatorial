@@ -1,6 +1,6 @@
 # Bachata Resources
 
-Find out where to dance in the bay area! Events are mainly posted on Eventbrite by organizers with instagram pages. Facebook is for losers.
+Find out where to dance **bachata** in the bay area! Events are mainly posted on Eventbrite by organizers with instagram pages. Facebook is for losers.
 
 ## Weekly Classes
 ### [Baychata Sensual Academy](https://www.baychatasensual.com/bachata-academy/)
@@ -14,10 +14,29 @@ Every single event has a class that comes before it, lol.
 ### San Francisco
 
 #### Friday nights at [Bachata Lab](https://www.instagram.com/bachata_lab/)
-* Beginner - advanced bachata moderna/sensual event.
+* Beginner - advanced bachata moderna/sensual event. A lot of serious dancers go here.
 * This is at a dance studio
+* Crowd is young af
 
-#### Friday nights at Space550
+#### Friday nights at [Space550](https://www.salsavida.com/event/sf-bay-area/san-francisco/dance-fridays-at-space-550/)
+* Very Beginner - some advanced
+* This is at a bar. You will find those who aren't really into dancing.
+* They play quite a bit of traditional music.
+* Crowd is 28-45
+
+#### Tuesday Nights at [Sensual Soiree](https://www.instagram.com/sensual_soiree_sf/)
+* Beginner - Advanced. A lot of serious dancers go here.
+* This is at an intimate place. 
+* They play extremely sensual music. I love it. Sometimes with no bachata beat.
+* Crowd is young af
+
+#### Monthly [Bachatamor](https://www.instagram.com/bachatamor.sf/)
+* Beginner - advanced
+* This is at a church. It is a huge venue.
+
+#### Monthly [Hello Bachata](https://www.instagram.com/hellobachata/)
+* Beginner - advanced
+
 
 ### Penninsula
 
