@@ -2,6 +2,8 @@ import Theme, { Search } from 'rspress/theme';
 import { HeroVideo } from './HeroVideo';
 import { Roadmap } from './RoadmapResponsive';
 import { Hero } from './CustomHero';
+import { YouTubeEmbed } from './YouTubeEmbed';
+import { VideoPlayer } from './VideoPlayer';
 
 const roadmapSteps = [
   {
@@ -128,5 +130,8 @@ const MySearch = () => (
   </div>
 );
 export { MySearch as Search };
+// Export YouTubeEmbed and VideoPlayer for use in markdown
+export { YouTubeEmbed };
+export { VideoPlayer };
 // re-export
 export * from 'rspress/theme';
