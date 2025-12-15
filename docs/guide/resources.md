@@ -27,7 +27,7 @@ Every single event has a class that comes before it, lol.
 #### Tuesday Nights at [Sensual Soiree](https://www.instagram.com/sensual_soiree_sf/)
 * Beginner - Advanced. A lot of serious dancers go here.
 * This is at an intimate place. 
-* They play extremely sensual music. I love it. Sometimes with no bachata beat.
+* They play extremely sensual music. I love it. But sometimes with no bachata beat so it is difficult.
 * Crowd is young af
 
 #### Monthly [Bachatamor](https://www.instagram.com/bachatamor.sf/)
