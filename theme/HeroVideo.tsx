@@ -72,12 +72,13 @@ export const HeroVideo: React.FC<HeroVideoProps> = ({
           cursor: 'pointer',
           transition: 'all 0.3s ease',
           zIndex: 10,
-          whiteSpace: 'nowrap',
           fontFamily: 'system-ui, -apple-system, sans-serif',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '12px'
+          gap: '12px',
+          maxWidth: '600px',
+          textAlign: 'center'
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
