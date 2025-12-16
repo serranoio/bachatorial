@@ -1,6 +1,7 @@
 # Bachata Resources
 
 Find out where to dance **bachata** in the bay area! Events are mainly posted on Eventbrite by organizers with instagram pages. Facebook is for losers.
+* This is only for dancing bachata, not for other dance styles.
 
 ## Weekly Classes
 ### [Baychata Sensual Academy](https://www.baychatasensual.com/bachata-academy/)
@@ -23,6 +24,7 @@ Every single event has a class that comes before it, lol.
 * This is at a bar. You will find those who aren't really into dancing.
 * They play quite a bit of traditional music.
 * Crowd is 28-45
+* Also has a salsa & a cumbia room.
 
 #### Tuesday Nights at [Sensual Soiree](https://www.instagram.com/sensual_soiree_sf/)
 * Beginner - Advanced. A lot of serious dancers go here.
@@ -47,6 +49,9 @@ Every single event has a class that comes before it, lol.
 
 ### Biweekly [Studio M Bachata heat](https://www.instagram.com/studiomballroom/)
 * They post these events on their Instagram story
+
+### Monthly [Bachata Knockout](https://www.instagram.com/p/DSQS-0KEvyx/)
+* Nice.
 
 ### East Bay
 
