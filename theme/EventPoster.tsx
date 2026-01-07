@@ -518,7 +518,7 @@ export const EventPoster: React.FC<EventPosterProps> = ({
             color: '#C5A87A',
             textAlign: 'center',
             letterSpacing: '0.5px',
-            margin: "12px 0 0 0"
+            margin: "20px 0 0 0"
           }}>
             {date} • {time} • {location}
           </div>
