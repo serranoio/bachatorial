@@ -499,7 +499,7 @@ export const EventPoster: React.FC<EventPosterProps> = ({
               transform: 'rotate(-2deg)',
               textTransform: 'none'
             }}>
-              Casual attire, wear shoes that allow you to slide. Socks work too
+              Wear shoes that slide. Socks work too!
             </div>
           )}
         </div>
