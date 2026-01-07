@@ -1,12 +1,19 @@
 # Bachata Resources
 
-Find out where to dance **bachata** in the bay area! Events are mainly posted on Eventbrite by organizers with instagram pages. Facebook is for losers.
-* This is only for dancing bachata, not for other dance styles.
+Find out where to dance **bachata** in the bay area! Events are mainly posted on Eventbrite by organizers with instagram pages. Facebook is for losers. Let me know if I forgot about an event!
+
+:::note
+This is only for dancing bachata, not for other dance styles. Some events have other dance styles too.
+:::
 
 ## Weekly Classes
 ### [Baychata Sensual Academy](https://www.baychatasensual.com/bachata-academy/)
 * They have Polish instructors on visa living here to teach bachata sensual
 * Really really good
+* SF & SJ locations
+
+### [Emily & Tonnam](https://holabachata.punchpass.com/passes)
+* They are such incredible & sweet people
 
 
 ## Events (with classes)
@@ -23,14 +30,22 @@ Every single event has a class that comes before it, lol.
 * Very Beginner - some advanced
 * This is at a bar. You will find those who aren't really into dancing.
 * They play quite a bit of traditional music.
-* Crowd is 28-45
+* Crowd is 28-50
 * Also has a salsa & a cumbia room.
+
+#### Thursday nights at [Cigar Bar](https://www.cigarbarandgrill.com/index.php/entertainment)
+* Very beginner - some advanced
+* This is at a bar. You will find those who aren't really into dancing.
+* They play quite a bit of traditional music.
+* Crowd is 28-50
+* They allow cigars, so you will smell like smoke (I've never been, but this is what i've heard)
 
 #### Tuesday Nights at [Sensual Soiree](https://www.instagram.com/sensual_soiree_sf/)
 * Beginner - Advanced. A lot of serious dancers go here.
 * This is at an intimate place. 
-* They play extremely sensual music. I love it. But sometimes with no bachata beat so it is difficult.
+* They play very sensual music. Sometimes it has no bachata beat so it is difficult for beginners. But because this place is intimate, you shouldn't feel left out.
 * Crowd is young af
+
 
 #### Monthly [Bachatamor](https://www.instagram.com/bachatamor.sf/)
 * Beginner - advanced
@@ -41,9 +56,11 @@ Every single event has a class that comes before it, lol.
 * Event is usually packed. Must adapt dancing game to small & sensual.
 
 
+
 ### Penninsula
 
-(TODO)
+#### Bachata Wednesday at [Alberto's](https://www.albertos.com/) In Mountain View
+* Never been. I heard it's good.
 
 ### South Bay
 
@@ -51,7 +68,8 @@ Every single event has a class that comes before it, lol.
 * They post these events on their Instagram story
 
 ### Monthly [Bachata Knockout](https://www.instagram.com/p/DSQS-0KEvyx/)
-* Nice.
+* Pretty Nice.
+* Beginner - advanced
 
 ### East Bay
 
@@ -61,3 +79,12 @@ Every single event has a class that comes before it, lol.
 
 ### North Bay
 * Everyone travels to San Francisco or East Bay to dance. I know someone from Santa Rosa who makes the commute A LOT.
+
+
+### Festivals
+
+There are dance festivals that happen once per year.
+
+- Hello Bachata Festival
+- Baychata Sensual Festival
+- SBK Festival
