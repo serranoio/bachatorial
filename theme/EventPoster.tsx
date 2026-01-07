@@ -80,49 +80,49 @@ export const EventPoster: React.FC<EventPosterProps> = ({
         @keyframes moveGlow1 {
           0%, 100% {
             transform: translate(0%, 0%) scale(1);
-            opacity: 0.2;
+            opacity: 0.31;
           }
           25% {
             transform: translate(30%, -20%) scale(1.3);
-            opacity: 0.3;
+            opacity: 0.44;
           }
           50% {
             transform: translate(-20%, 40%) scale(0.9);
-            opacity: 0.25;
+            opacity: 0.38;
           }
           75% {
             transform: translate(40%, 30%) scale(1.15);
-            opacity: 0.22;
+            opacity: 0.35;
           }
         }
 
         @keyframes moveGlow2 {
           0%, 100% {
             transform: translate(0%, 0%) scale(1);
-            opacity: 0.18;
+            opacity: 0.29;
           }
           33% {
             transform: translate(-40%, 30%) scale(1.25);
-            opacity: 0.28;
+            opacity: 0.41;
           }
           66% {
             transform: translate(20%, -30%) scale(0.85);
-            opacity: 0.2;
+            opacity: 0.31;
           }
         }
 
         @keyframes moveGlow3 {
           0%, 100% {
             transform: translate(0%, 0%) scale(1);
-            opacity: 0.15;
+            opacity: 0.25;
           }
           40% {
             transform: translate(25%, 35%) scale(1.4);
-            opacity: 0.25;
+            opacity: 0.38;
           }
           80% {
             transform: translate(-30%, -20%) scale(0.95);
-            opacity: 0.18;
+            opacity: 0.29;
           }
         }
 
@@ -149,7 +149,7 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           max-width: 800px;
           margin: 0 auto;
           padding: 60px 40px;
-          background: linear-gradient(135deg, #1F1F1F 0%, #2A2A2A 25%, #252525 50%, #2A2A2A 75%, #1F1F1F 100%);
+          background: linear-gradient(135deg, #151515 0%, #1A1A1A 25%, #181818 50%, #1A1A1A 75%, #151515 100%);
           background-size: 400% 400%;
           animation: gradientShift 15s ease infinite;
           border-radius: 24px;
@@ -463,9 +463,9 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           position: 'absolute',
           top: '20%',
           left: '10%',
-          width: '400px',
-          height: '400px',
-          background: 'radial-gradient(circle, rgba(255, 155, 127, 0.25) 0%, rgba(255, 155, 127, 0.15) 40%, transparent 70%)',
+          width: '500px',
+          height: '500px',
+          background: 'radial-gradient(circle, rgba(255, 155, 127, 0.38) 0%, rgba(255, 155, 127, 0.23) 30%, rgba(255, 155, 127, 0.13) 50%, transparent 70%)',
           borderRadius: '50%',
           filter: 'blur(60px)',
           pointerEvents: 'none',
@@ -478,9 +478,9 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           position: 'absolute',
           top: '50%',
           right: '15%',
-          width: '350px',
-          height: '350px',
-          background: 'radial-gradient(circle, rgba(232, 212, 168, 0.22) 0%, rgba(232, 212, 168, 0.12) 40%, transparent 70%)',
+          width: '450px',
+          height: '450px',
+          background: 'radial-gradient(circle, rgba(232, 212, 168, 0.35) 0%, rgba(232, 212, 168, 0.19) 30%, rgba(232, 212, 168, 0.1) 50%, transparent 70%)',
           borderRadius: '50%',
           filter: 'blur(50px)',
           pointerEvents: 'none',
@@ -493,9 +493,9 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           position: 'absolute',
           bottom: '20%',
           left: '25%',
-          width: '450px',
-          height: '450px',
-          background: 'radial-gradient(circle, rgba(212, 165, 116, 0.2) 0%, rgba(212, 165, 116, 0.1) 40%, transparent 70%)',
+          width: '550px',
+          height: '550px',
+          background: 'radial-gradient(circle, rgba(212, 165, 116, 0.31) 0%, rgba(212, 165, 116, 0.18) 30%, rgba(212, 165, 116, 0.08) 50%, transparent 70%)',
           borderRadius: '50%',
           filter: 'blur(70px)',
           pointerEvents: 'none',
@@ -508,9 +508,9 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           position: 'absolute',
           top: '60%',
           left: '5%',
-          width: '250px',
-          height: '250px',
-          background: 'radial-gradient(circle, rgba(255, 180, 150, 0.18) 0%, transparent 60%)',
+          width: '350px',
+          height: '350px',
+          background: 'radial-gradient(circle, rgba(255, 180, 150, 0.29) 0%, rgba(255, 180, 150, 0.16) 40%, transparent 60%)',
           borderRadius: '50%',
           filter: 'blur(45px)',
           pointerEvents: 'none',
@@ -522,9 +522,9 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           position: 'absolute',
           top: '10%',
           right: '8%',
-          width: '300px',
-          height: '300px',
-          background: 'radial-gradient(circle, rgba(220, 190, 140, 0.16) 0%, transparent 60%)',
+          width: '400px',
+          height: '400px',
+          background: 'radial-gradient(circle, rgba(220, 190, 140, 0.25) 0%, rgba(220, 190, 140, 0.14) 40%, transparent 60%)',
           borderRadius: '50%',
           filter: 'blur(55px)',
           pointerEvents: 'none',
