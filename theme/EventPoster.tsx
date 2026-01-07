@@ -479,23 +479,6 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           )}
         </div>
 
-        {/* QR Code with Caption */}
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '12px',
-          marginTop: '30px'
-        }}>
-          <img
-            src="/events-qr-code.png"
-            alt="Event QR Code"
-            className="event-qr-code"
-          />
-          <div className="event-qr-caption">
-            Share with others!
-          </div>
-        </div>
 
         {/* Buttons */}
         <div style={{
@@ -562,6 +545,23 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           </div>
         </div>
 
+        {/* QR Code with Caption */}
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '12px',
+          marginTop: '30px'
+        }}>
+          <img
+            src="/events-qr-code.png"
+            alt="Event QR Code"
+            className="event-qr-code"
+          />
+          <div className="event-qr-caption">
+            Share with others!
+          </div>
+        </div>
         {/* Date, Time & Location - At the bottom */}
         <div style={{
           display: 'flex',
