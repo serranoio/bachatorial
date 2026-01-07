@@ -18,7 +18,7 @@ export const EventPoster: React.FC<EventPosterProps> = ({
   title = "Bachata Dance Lesson",
   date = "June 22nd",
   time = "2:00 PM",
-  location = "The 4th floor Kitchen",
+  location = "SFO12, The 4th floor Kitchen",
   tagline = "Break limiting beliefs. You can dance.",
   noPartnerRequired = true,
   learnTheBasics = true,
@@ -510,7 +510,6 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           flexDirection: 'column',
           gap: '8px',
           alignItems: 'center',
-          marginTop: '20px',
           opacity: 0.8
         }}>
           <div style={{
