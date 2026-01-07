@@ -209,6 +209,12 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           z-index: 10;
         }
 
+        .event-badge-right {
+          top: 30%;
+          right: -5%;
+          transform: rotate(2deg);
+        }
+
         .event-content-container {
           position: relative;
           z-index: 1;
@@ -248,6 +254,14 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           font-style: italic;
         }
 
+        .event-buttons-container {
+          display: flex;
+          gap: 32px;
+          margin-top: 20px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
         /* Mobile responsive styles */
         @media (max-width: 768px) {
           .event-poster-container {
@@ -271,7 +285,7 @@ export const EventPoster: React.FC<EventPosterProps> = ({
 
           .event-title {
             font-size: 32px;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
           }
 
           .event-details-panel {
@@ -296,6 +310,10 @@ export const EventPoster: React.FC<EventPosterProps> = ({
             letter-spacing: 1px;
           }
 
+          .event-buttons-container {
+            gap: 16px;
+          }
+
           .event-button-subtitle {
             font-size: 13px;
             max-width: 240px;
@@ -305,6 +323,13 @@ export const EventPoster: React.FC<EventPosterProps> = ({
             padding: 5px 12px;
             font-size: 10px;
             letter-spacing: 1px;
+          }
+
+          .event-badge-right {
+            top: auto;
+            bottom: '-15px';
+            right: '5%';
+            transform: rotate(-2deg);
           }
         }
 
@@ -328,7 +353,7 @@ export const EventPoster: React.FC<EventPosterProps> = ({
 
           .event-title {
             font-size: 24px;
-            letter-spacing: 0.5px;
+            letter-spacing: 1.5px;
           }
 
           .event-details-panel {
@@ -349,6 +374,10 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           .event-button-secondary {
             padding: 12px 24px;
             font-size: 14px;
+          }
+
+          .event-buttons-container {
+            gap: 12px;
           }
 
           .event-button-subtitle {
@@ -458,11 +487,7 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           )}
 
           {learnTheBasics && (
-            <div className="event-badge" style={{
-              top: '30%',
-              right: '-5%',
-              transform: 'rotate(2deg)'
-            }}>
+            <div className="event-badge event-badge-right">
               Learn the Basics
             </div>
           )}
@@ -474,20 +499,14 @@ export const EventPoster: React.FC<EventPosterProps> = ({
               transform: 'rotate(-2deg)',
               textTransform: 'none'
             }}>
-              Casual attire, wear shoes for spinning. Socks work too
+              Casual attire, wear shoes that allow you to slide. Socks work too
             </div>
           )}
         </div>
 
 
         {/* Buttons */}
-        <div style={{
-          display: 'flex',
-          gap: '32px',
-          marginTop: '20px',
-          flexWrap: 'wrap',
-          justifyContent: 'center'
-        }}>
+        <div className="event-buttons-container">
           {/* Learn Now Button with Subtitle */}
           <div style={{
             display: 'flex',
@@ -545,23 +564,6 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           </div>
         </div>
 
-        {/* QR Code with Caption */}
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '12px',
-          marginTop: '30px'
-        }}>
-          <img
-            src="/events-qr-code.png"
-            alt="Event QR Code"
-            className="event-qr-code"
-          />
-          <div className="event-qr-caption">
-            Share with others!
-          </div>
-        </div>
         {/* Date, Time & Location - At the bottom */}
         <div style={{
           display: 'flex',
@@ -579,6 +581,23 @@ export const EventPoster: React.FC<EventPosterProps> = ({
             letterSpacing: '0.5px'
           }}>
             {date} • {time} • {location}
+          </div>
+        </div>
+        
+        {/* QR Code with Caption */}
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '12px',
+        }}>
+          <img
+            src="/events-qr-code.png"
+            alt="Event QR Code"
+            className="event-qr-code"
+          />
+          <div className="event-qr-caption">
+            Share with others!
           </div>
         </div>
       </div>
