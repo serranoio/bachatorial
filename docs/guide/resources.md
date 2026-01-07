@@ -1,4 +1,4 @@
-# Bachata Resources
+# Bachata Events
 
 Find out where to dance **bachata** in the bay area! Events are mainly posted on Eventbrite by organizers with instagram pages. Facebook is for losers. Let me know if I forgot about an event!
 

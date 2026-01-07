@@ -77,6 +77,64 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           }
         }
 
+        @keyframes moveGlow1 {
+          0%, 100% {
+            transform: translate(0%, 0%) scale(1);
+            opacity: 0.2;
+          }
+          25% {
+            transform: translate(30%, -20%) scale(1.3);
+            opacity: 0.3;
+          }
+          50% {
+            transform: translate(-20%, 40%) scale(0.9);
+            opacity: 0.25;
+          }
+          75% {
+            transform: translate(40%, 30%) scale(1.15);
+            opacity: 0.22;
+          }
+        }
+
+        @keyframes moveGlow2 {
+          0%, 100% {
+            transform: translate(0%, 0%) scale(1);
+            opacity: 0.18;
+          }
+          33% {
+            transform: translate(-40%, 30%) scale(1.25);
+            opacity: 0.28;
+          }
+          66% {
+            transform: translate(20%, -30%) scale(0.85);
+            opacity: 0.2;
+          }
+        }
+
+        @keyframes moveGlow3 {
+          0%, 100% {
+            transform: translate(0%, 0%) scale(1);
+            opacity: 0.15;
+          }
+          40% {
+            transform: translate(25%, 35%) scale(1.4);
+            opacity: 0.25;
+          }
+          80% {
+            transform: translate(-30%, -20%) scale(0.95);
+            opacity: 0.18;
+          }
+        }
+
+        @keyframes gradientShift {
+          0%, 100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
+
         .animated-particle {
           position: absolute;
           border-radius: 50%;
@@ -91,7 +149,9 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           max-width: 800px;
           margin: 0 auto;
           padding: 60px 40px;
-          background: linear-gradient(135deg, #1F1F1F 0%, #2A2A2A 50%, #1F1F1F 100%);
+          background: linear-gradient(135deg, #1F1F1F 0%, #2A2A2A 25%, #252525 50%, #2A2A2A 75%, #1F1F1F 100%);
+          background-size: 400% 400%;
+          animation: gradientShift 15s ease infinite;
           border-radius: 24px;
           overflow: hidden;
           box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 80px rgba(255, 155, 127, 0.1);
@@ -398,52 +458,78 @@ export const EventPoster: React.FC<EventPosterProps> = ({
       `}</style>
 
       <div className="event-poster-container">
-        {/* Animated floating particles */}
-        <div className="animated-particle" style={{
-          width: '120px',
-          height: '120px',
-          background: 'radial-gradient(circle, rgba(255, 155, 127, 0.15), transparent)',
-          top: '10%',
-          left: '15%',
-          animationDuration: '8s',
-          animationDelay: '0s',
-          filter: 'blur(30px)',
-          zIndex: 0
-        }} />
-        <div className="animated-particle" style={{
-          width: '80px',
-          height: '80px',
-          background: 'radial-gradient(circle, rgba(232, 212, 168, 0.12), transparent)',
-          top: '60%',
-          right: '10%',
-          animationDuration: '10s',
-          animationDelay: '2s',
-          filter: 'blur(25px)',
-          zIndex: 0
-        }} />
-        <div className="animated-particle" style={{
-          width: '100px',
-          height: '100px',
-          background: 'radial-gradient(circle, rgba(212, 165, 116, 0.1), transparent)',
-          bottom: '15%',
-          left: '20%',
-          animationDuration: '12s',
-          animationDelay: '4s',
-          filter: 'blur(28px)',
-          zIndex: 0
-        }} />
-
-        {/* Ambient glow overlay with pulse animation */}
+        {/* Moving glow orbs - Layer 1 (Peachy glow) */}
         <div style={{
           position: 'absolute',
-          top: '0',
-          left: '50%',
-          width: '600px',
-          height: '600px',
-          background: 'radial-gradient(circle, rgba(255, 155, 127, 0.08) 0%, transparent 70%)',
+          top: '20%',
+          left: '10%',
+          width: '400px',
+          height: '400px',
+          background: 'radial-gradient(circle, rgba(255, 155, 127, 0.25) 0%, rgba(255, 155, 127, 0.15) 40%, transparent 70%)',
+          borderRadius: '50%',
+          filter: 'blur(60px)',
           pointerEvents: 'none',
           zIndex: 0,
-          animation: 'pulseGlow 4s ease-in-out infinite'
+          animation: 'moveGlow1 20s ease-in-out infinite'
+        }} />
+
+        {/* Moving glow orbs - Layer 2 (Golden glow) */}
+        <div style={{
+          position: 'absolute',
+          top: '50%',
+          right: '15%',
+          width: '350px',
+          height: '350px',
+          background: 'radial-gradient(circle, rgba(232, 212, 168, 0.22) 0%, rgba(232, 212, 168, 0.12) 40%, transparent 70%)',
+          borderRadius: '50%',
+          filter: 'blur(50px)',
+          pointerEvents: 'none',
+          zIndex: 0,
+          animation: 'moveGlow2 18s ease-in-out infinite'
+        }} />
+
+        {/* Moving glow orbs - Layer 3 (Bronze glow) */}
+        <div style={{
+          position: 'absolute',
+          bottom: '20%',
+          left: '25%',
+          width: '450px',
+          height: '450px',
+          background: 'radial-gradient(circle, rgba(212, 165, 116, 0.2) 0%, rgba(212, 165, 116, 0.1) 40%, transparent 70%)',
+          borderRadius: '50%',
+          filter: 'blur(70px)',
+          pointerEvents: 'none',
+          zIndex: 0,
+          animation: 'moveGlow3 22s ease-in-out infinite'
+        }} />
+
+        {/* Additional smaller moving glows for depth */}
+        <div style={{
+          position: 'absolute',
+          top: '60%',
+          left: '5%',
+          width: '250px',
+          height: '250px',
+          background: 'radial-gradient(circle, rgba(255, 180, 150, 0.18) 0%, transparent 60%)',
+          borderRadius: '50%',
+          filter: 'blur(45px)',
+          pointerEvents: 'none',
+          zIndex: 0,
+          animation: 'moveGlow1 16s ease-in-out infinite reverse'
+        }} />
+
+        <div style={{
+          position: 'absolute',
+          top: '10%',
+          right: '8%',
+          width: '300px',
+          height: '300px',
+          background: 'radial-gradient(circle, rgba(220, 190, 140, 0.16) 0%, transparent 60%)',
+          borderRadius: '50%',
+          filter: 'blur(55px)',
+          pointerEvents: 'none',
+          zIndex: 0,
+          animation: 'moveGlow2 24s ease-in-out infinite reverse'
         }} />
 
       {/* Content container */}
