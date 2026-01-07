@@ -12,6 +12,8 @@ export default defineConfig({
   //   dark: '/rspress-dark-logo.png',
   // },
   head: [
+    // Design System CSS
+    ['link', { rel: 'stylesheet', href: '/design-system.css' }],
     // OpenGraph meta tags for social media sharing
     ['meta', { property: 'og:title', content: 'Bachatorial' }],
     [

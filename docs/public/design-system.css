@@ -1,0 +1,524 @@
+/**
+ * Bachatorial Design System
+ * Premium luxury event design with gold and coral accents
+ * Mobile-first responsive design system
+ * All sizes use rem units (16px = 1rem)
+ */
+
+:root {
+  /* ========================================
+     COLOR PALETTE
+     ======================================== */
+
+  /* Primary Brand Colors - Gold Family */
+  --color-gold-light: #E8D4A8;
+  --color-gold-lighter: #FFE4B8;
+  --color-gold-medium: #C19A6B;
+  --color-gold-dark: #D4A574;
+  --color-gold-muted: #C5A87A;
+  --color-gold-warm: #E5C8A0;
+  --color-gold-peachy: #DCBE8C;
+
+  /* Accent Colors */
+  --color-coral: #FF9B7F;
+  --color-coral-light: #FFB89D;
+  --color-peach: #FFB496;
+  --color-bronze: #D4A574;
+
+  /* Dark Background Colors */
+  --color-dark-primary: #151515;
+  --color-dark-secondary: #1A1A1A;
+  --color-dark-tertiary: #181818;
+  --color-dark-legacy: #1F1F1F;
+
+  /* Base Colors */
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+
+  /* ========================================
+     OPACITY VALUES - White
+     ======================================== */
+  --white-003: rgba(255, 255, 255, 0.03);
+  --white-005: rgba(255, 255, 255, 0.05);
+  --white-008: rgba(255, 255, 255, 0.08);
+  --white-01: rgba(255, 255, 255, 0.1);
+  --white-03: rgba(255, 255, 255, 0.3);
+  --white-04: rgba(255, 255, 255, 0.4);
+
+  /* ========================================
+     OPACITY VALUES - Gold
+     ======================================== */
+  --gold-01: rgba(232, 212, 168, 0.1);
+  --gold-012: rgba(232, 212, 168, 0.12);
+  --gold-014: rgba(232, 212, 168, 0.14);
+  --gold-015: rgba(232, 212, 168, 0.15);
+  --gold-019: rgba(232, 212, 168, 0.19);
+  --gold-02: rgba(232, 212, 168, 0.2);
+  --gold-03: rgba(232, 212, 168, 0.3);
+  --gold-035: rgba(232, 212, 168, 0.35);
+  --gold-04: rgba(232, 212, 168, 0.4);
+  --gold-05: rgba(232, 212, 168, 0.5);
+  --gold-06: rgba(232, 212, 168, 0.6);
+  --gold-peachy-014: rgba(220, 190, 140, 0.14);
+  --gold-peachy-025: rgba(220, 190, 140, 0.25);
+
+  /* ========================================
+     OPACITY VALUES - Coral
+     ======================================== */
+  --coral-008: rgba(255, 155, 127, 0.08);
+  --coral-01: rgba(255, 155, 127, 0.1);
+  --coral-013: rgba(255, 155, 127, 0.13);
+  --coral-015: rgba(255, 155, 127, 0.15);
+  --coral-02: rgba(255, 155, 127, 0.2);
+  --coral-023: rgba(255, 155, 127, 0.23);
+  --coral-03: rgba(255, 155, 127, 0.3);
+  --coral-038: rgba(255, 155, 127, 0.38);
+
+  /* ========================================
+     OPACITY VALUES - Peach
+     ======================================== */
+  --peach-016: rgba(255, 180, 150, 0.16);
+  --peach-029: rgba(255, 180, 150, 0.29);
+
+  /* ========================================
+     OPACITY VALUES - Bronze
+     ======================================== */
+  --bronze-008: rgba(212, 165, 116, 0.08);
+  --bronze-01: rgba(212, 165, 116, 0.1);
+  --bronze-015: rgba(212, 165, 116, 0.15);
+  --bronze-018: rgba(212, 165, 116, 0.18);
+  --bronze-031: rgba(212, 165, 116, 0.31);
+
+  /* ========================================
+     OPACITY VALUES - Black
+     ======================================== */
+  --black-03: rgba(0, 0, 0, 0.3);
+  --black-05: rgba(0, 0, 0, 0.5);
+
+  /* ========================================
+     GENERAL OPACITY
+     ======================================== */
+  --opacity-025: 0.25;
+  --opacity-029: 0.29;
+  --opacity-031: 0.31;
+  --opacity-035: 0.35;
+  --opacity-038: 0.38;
+  --opacity-041: 0.41;
+  --opacity-044: 0.44;
+  --opacity-08: 0.08;
+  --opacity-015: 0.15;
+  --opacity-high: 0.8;
+  --opacity-higher: 0.9;
+
+  /* ========================================
+     TYPOGRAPHY
+     ======================================== */
+
+  /* Font Families */
+  --font-family-serif: Georgia, "Times New Roman", serif;
+  --font-family-sans: system-ui, -apple-system, sans-serif;
+
+  /* Font Sizes - Desktop (16px = 1rem) */
+  --font-size-2xs: 0.5625rem;  /* 9px */
+  --font-size-xs: 0.625rem;    /* 10px */
+  --font-size-sm: 0.75rem;     /* 12px */
+  --font-size-base: 0.8125rem; /* 13px */
+  --font-size-md: 0.875rem;    /* 14px */
+  --font-size-lg: 1rem;        /* 16px */
+  --font-size-xl: 1.25rem;     /* 20px */
+  --font-size-2xl: 1.5rem;     /* 24px */
+  --font-size-3xl: 2rem;       /* 32px */
+  --font-size-4xl: 3.5rem;     /* 56px */
+
+  /* Font Weights */
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Letter Spacing (converted to rem) */
+  --letter-spacing-xs: 0.01875rem;  /* 0.3px */
+  --letter-spacing-sm: 0.03125rem;  /* 0.5px */
+  --letter-spacing-base: 0.0625rem; /* 1px */
+  --letter-spacing-md: 0.09375rem;  /* 1.5px */
+  --letter-spacing-lg: 0.125rem;    /* 2px */
+
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-base: 1.4;
+
+  /* ========================================
+     SPACING (16px = 1rem)
+     ======================================== */
+  --spacing-2xs: 0.25rem;    /* 4px */
+  --spacing-xs: 0.3125rem;   /* 5px */
+  --spacing-sm: 0.375rem;    /* 6px */
+  --spacing-md: 0.5rem;      /* 8px */
+  --spacing-lg: 0.625rem;    /* 10px */
+  --spacing-xl: 0.75rem;     /* 12px */
+  --spacing-2xl: 1rem;       /* 16px */
+  --spacing-3xl: 1.25rem;    /* 20px */
+  --spacing-4xl: 1.5rem;     /* 24px */
+  --spacing-5xl: 1.875rem;   /* 30px */
+  --spacing-6xl: 2rem;       /* 32px */
+  --spacing-7xl: 2.5rem;     /* 40px */
+  --spacing-8xl: 3rem;       /* 48px */
+  --spacing-9xl: 3.125rem;   /* 50px */
+  --spacing-10xl: 3.75rem;   /* 60px */
+
+  /* Gaps */
+  --gap-xs: 0.5rem;     /* 8px */
+  --gap-sm: 0.75rem;    /* 12px */
+  --gap-md: 1rem;       /* 16px */
+  --gap-lg: 1.5rem;     /* 24px */
+  --gap-xl: 2rem;       /* 32px */
+  --gap-2xl: 2.5rem;    /* 40px */
+
+  /* Margins */
+  --margin-sm: 1.25rem; /* 20px */
+
+  /* ========================================
+     BORDER RADIUS (16px = 1rem)
+     ======================================== */
+  --radius-sm: 0.75rem;  /* 12px */
+  --radius-md: 1rem;     /* 16px */
+  --radius-lg: 1.25rem;  /* 20px */
+  --radius-xl: 1.5rem;   /* 24px */
+  --radius-full: 3.125rem; /* 50px */
+  --radius-circle: 50%;
+
+  /* ========================================
+     BORDERS (keeping px for borders is standard)
+     ======================================== */
+  --border-thin: 1px;
+  --border-medium: 2px;
+
+  /* ========================================
+     SHADOWS
+     ======================================== */
+
+  /* Box Shadows */
+  --shadow-badge: 0 0.25rem 1rem var(--coral-02), inset 0 0.0625rem 0 var(--white-01);
+  --shadow-qr: 0 0.5rem 1.5rem var(--black-03);
+  --shadow-logo: 0 0.5rem 2rem var(--black-03), inset 0 0.0625rem 0 var(--white-01);
+  --shadow-container: 0 1.25rem 3.75rem var(--black-05), 0 0 5rem var(--coral-01);
+  --shadow-button-primary: 0 0.5rem 1.5rem var(--gold-03), inset 0 0.0625rem 0 var(--white-03);
+  --shadow-button-primary-hover: 0 0.75rem 2rem var(--gold-04), inset 0 0.0625rem 0 var(--white-04);
+  --shadow-button-secondary: 0 0.5rem 1.5rem var(--black-03), inset 0 0.0625rem 0 var(--white-005);
+  --shadow-button-secondary-hover: 0 0.75rem 2rem var(--gold-02), inset 0 0.0625rem 0 var(--white-01);
+  --shadow-glass-inset: inset 0 0.0625rem 0 var(--white-005);
+
+  /* Text Shadows */
+  --text-shadow-sm: 0 0.125rem 0.25rem var(--black-03);
+  --text-shadow-md: 0 0.125rem 0.375rem var(--gold-03);
+  --text-shadow-lg: 0 0.125rem 0.5rem var(--coral-03), 0 0 1.25rem var(--coral-02);
+
+  /* Drop Shadows (filter) */
+  --drop-shadow-logo: drop-shadow(0 0.25rem 0.75rem var(--coral-03));
+  --drop-shadow-title: drop-shadow(0 0 1.25rem var(--gold-04)) drop-shadow(0 0.25rem 0.5rem var(--black-05));
+
+  /* ========================================
+     GRADIENTS
+     ======================================== */
+
+  /* Background Gradients */
+  --gradient-main-bg: linear-gradient(135deg, var(--color-dark-primary) 0%, var(--color-dark-secondary) 25%, var(--color-dark-tertiary) 50%, var(--color-dark-secondary) 75%, var(--color-dark-primary) 100%);
+  --gradient-bg-size: 400% 400%;
+  --gradient-badge: linear-gradient(135deg, var(--coral-015), var(--bronze-015));
+  --gradient-button-primary: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold-medium) 100%);
+  --gradient-title: linear-gradient(90deg, var(--color-gold-light) 0%, var(--color-gold-lighter) 25%, var(--color-gold-light) 50%, var(--color-gold-medium) 75%, var(--color-gold-dark) 100%);
+
+  /* Radial Gradients - Glow Orbs */
+  --gradient-glow-coral-lg: radial-gradient(circle, var(--coral-038) 0%, var(--coral-023) 30%, var(--coral-013) 50%, transparent 70%);
+  --gradient-glow-gold-lg: radial-gradient(circle, var(--gold-035) 0%, var(--gold-019) 30%, var(--gold-01) 50%, transparent 70%);
+  --gradient-glow-bronze-lg: radial-gradient(circle, var(--bronze-031) 0%, var(--bronze-018) 30%, var(--bronze-008) 50%, transparent 70%);
+  --gradient-glow-peach-sm: radial-gradient(circle, var(--peach-029) 0%, var(--peach-016) 40%, transparent 60%);
+  --gradient-glow-gold-peachy-sm: radial-gradient(circle, var(--gold-peachy-025) 0%, var(--gold-peachy-014) 40%, transparent 60%);
+
+  /* ========================================
+     BLUR EFFECTS (keeping px for blur is standard)
+     ======================================== */
+  --blur-sm: blur(20px);
+  --blur-md: blur(45px);
+  --blur-lg: blur(50px);
+  --blur-xl: blur(55px);
+  --blur-2xl: blur(60px);
+  --blur-3xl: blur(70px);
+
+  /* ========================================
+     BACKDROP FILTERS
+     ======================================== */
+  --backdrop-blur-glass: blur(20px);
+
+  /* ========================================
+     SIZES (16px = 1rem)
+     ======================================== */
+
+  /* Container */
+  --container-max-width: 50rem; /* 800px */
+
+  /* Logo Sizes */
+  --logo-size-desktop: 11.25rem; /* 180px */
+  --logo-size-tablet: 6.25rem;   /* 100px */
+  --logo-size-mobile: 5rem;      /* 80px */
+
+  /* QR Code Sizes */
+  --qr-code-size-desktop: 11.25rem; /* 180px */
+  --qr-code-size-tablet: 7.5rem;    /* 120px */
+  --qr-code-size-mobile: 6.25rem;   /* 100px */
+
+  /* Glow Orb Sizes */
+  --glow-orb-sm: 21.875rem;  /* 350px */
+  --glow-orb-md: 25rem;      /* 400px */
+  --glow-orb-lg: 28.125rem;  /* 450px */
+  --glow-orb-xl: 31.25rem;   /* 500px */
+  --glow-orb-2xl: 34.375rem; /* 550px */
+
+  /* Button Subtitle Max Widths */
+  --button-subtitle-max-width-desktop: 17.5rem; /* 280px */
+  --button-subtitle-max-width-tablet: 15rem;    /* 240px */
+  --button-subtitle-max-width-mobile: 12.5rem;  /* 200px */
+
+  /* ========================================
+     Z-INDEX LAYERS
+     ======================================== */
+  --z-index-base: 0;
+  --z-index-content: 1;
+  --z-index-badges: 10;
+
+  /* ========================================
+     TRANSITIONS
+     ======================================== */
+  --transition-base: all 0.3s ease;
+
+  /* ========================================
+     TRANSFORMS
+     ======================================== */
+  --transform-rotate-negative-sm: rotate(-2deg);
+  --transform-rotate-negative-md: rotate(-3deg);
+  --transform-rotate-positive-sm: rotate(1deg);
+  --transform-rotate-positive-md: rotate(2deg);
+  --transform-hover-lift: translateY(-0.125rem); /* -2px */
+  --transform-hover-reset: translateY(0);
+
+  /* Scale values for animations */
+  --scale-sm: 0.85;
+  --scale-md: 0.9;
+  --scale-base: 0.95;
+  --scale-lg: 1;
+  --scale-xl: 1.15;
+  --scale-2xl: 1.25;
+  --scale-3xl: 1.3;
+  --scale-4xl: 1.4;
+
+  /* ========================================
+     ANIMATIONS
+     ======================================== */
+
+  /* Animation Durations */
+  --animation-duration-shimmer: 3s;
+  --animation-duration-pulse: 4s;
+  --animation-duration-float-logo: 6s;
+  --animation-duration-gradient: 15s;
+  --animation-duration-glow-sm: 16s;
+  --animation-duration-glow-md: 18s;
+  --animation-duration-glow-lg: 20s;
+  --animation-duration-glow-xl: 22s;
+  --animation-duration-glow-2xl: 24s;
+
+  /* Animation Delays */
+  --animation-delay-none: 0s;
+  --animation-delay-sm: 2s;
+  --animation-delay-md: 4s;
+
+  /* Animation Timing Functions */
+  --animation-timing-linear: linear;
+  --animation-timing-ease: ease;
+  --animation-timing-ease-in-out: ease-in-out;
+
+  /* Animation Iterations */
+  --animation-iteration-infinite: infinite;
+
+  /* Animation Directions */
+  --animation-direction-normal: normal;
+  --animation-direction-reverse: reverse;
+
+  /* ========================================
+     GLASS MORPHISM
+     ======================================== */
+  --glass-bg-light: var(--white-005);
+  --glass-bg-lighter: var(--white-003);
+  --glass-bg-hover: var(--white-008);
+  --glass-border: 1px solid var(--gold-02);
+  --glass-border-subtle: 1px solid var(--gold-015);
+  --glass-backdrop-blur: blur(20px);
+
+  /* ========================================
+     RESPONSIVE BREAKPOINTS
+     ======================================== */
+  --breakpoint-mobile: 480px;
+  --breakpoint-tablet: 768px;
+}
+
+/* ========================================
+   GLOBAL KEYFRAME ANIMATIONS
+   ======================================== */
+
+@keyframes floatDance {
+  0%, 100% {
+    transform: translate(-50%, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-45%, -1.25rem) rotate(5deg); /* -20px */
+  }
+  50% {
+    transform: translate(-55%, -0.625rem) rotate(-5deg); /* -10px */
+  }
+  75% {
+    transform: translate(-50%, -1.5625rem) rotate(3deg); /* -25px */
+  }
+}
+
+@keyframes shimmerMove {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: var(--opacity-08);
+    transform: translateX(-50%) scale(var(--scale-lg));
+  }
+  50% {
+    opacity: var(--opacity-015);
+    transform: translateX(-50%) scale(1.1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  33% {
+    transform: translateY(-0.9375rem) translateX(0.625rem); /* -15px, 10px */
+  }
+  66% {
+    transform: translateY(-0.3125rem) translateX(-0.625rem); /* -5px, -10px */
+  }
+}
+
+@keyframes moveGlow1 {
+  0%, 100% {
+    transform: translate(0%, 0%) scale(var(--scale-lg));
+    opacity: var(--opacity-031);
+  }
+  25% {
+    transform: translate(30%, -20%) scale(var(--scale-3xl));
+    opacity: var(--opacity-044);
+  }
+  50% {
+    transform: translate(-20%, 40%) scale(var(--scale-md));
+    opacity: var(--opacity-038);
+  }
+  75% {
+    transform: translate(40%, 30%) scale(var(--scale-xl));
+    opacity: var(--opacity-035);
+  }
+}
+
+@keyframes moveGlow2 {
+  0%, 100% {
+    transform: translate(0%, 0%) scale(var(--scale-lg));
+    opacity: var(--opacity-029);
+  }
+  33% {
+    transform: translate(-40%, 30%) scale(var(--scale-2xl));
+    opacity: var(--opacity-041);
+  }
+  66% {
+    transform: translate(20%, -30%) scale(var(--scale-sm));
+    opacity: var(--opacity-031);
+  }
+}
+
+@keyframes moveGlow3 {
+  0%, 100% {
+    transform: translate(0%, 0%) scale(var(--scale-lg));
+    opacity: var(--opacity-025);
+  }
+  40% {
+    transform: translate(25%, 35%) scale(var(--scale-4xl));
+    opacity: var(--opacity-038);
+  }
+  80% {
+    transform: translate(-30%, -20%) scale(var(--scale-base));
+    opacity: var(--opacity-029);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ========================================
+   GLOBAL BASE STYLES
+   ======================================== */
+
+body {
+  background: var(--gradient-main-bg);
+  background-size: var(--gradient-bg-size);
+  animation: gradientShift var(--animation-duration-gradient) var(--animation-timing-ease) var(--animation-iteration-infinite);
+  color: var(--color-gold-light);
+  font-family: var(--font-family-sans);
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+.text-gold-light {
+  color: var(--color-gold-light);
+}
+
+.text-gold-warm {
+  color: var(--color-gold-warm);
+}
+
+.text-gold-muted {
+  color: var(--color-gold-muted);
+}
+
+.bg-glass-light {
+  background: var(--glass-bg-light);
+  backdrop-filter: var(--glass-backdrop-blur);
+}
+
+.bg-glass-lighter {
+  background: var(--glass-bg-lighter);
+  backdrop-filter: var(--glass-backdrop-blur);
+}
+
+.shadow-container {
+  box-shadow: var(--shadow-container);
+}
+
+.shadow-glass {
+  box-shadow: var(--shadow-logo);
+}
+
+.gradient-text-gold {
+  background-image: var(--gradient-title);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerMove var(--animation-duration-shimmer) var(--animation-timing-linear) var(--animation-iteration-infinite);
+}
