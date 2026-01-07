@@ -16,7 +16,7 @@ interface EventPosterProps {
 
 export const EventPoster: React.FC<EventPosterProps> = ({
   title = "Bachata Dance Lesson",
-  date = "June 22nd",
+  date = "Jan 22nd",
   time = "2:00 PM",
   location = "SFO12, The 4th floor Kitchen",
   tagline = "Break limiting beliefs. You can dance.",
