@@ -1,0 +1,302 @@
+import { StoriesHub } from '../theme/StoriesHub';
+import { YouTubeEmbed } from '../theme/YouTubeEmbed';
+
+export const storyData = [
+  {
+    id: 'dance-videos',
+    title: 'Dance Videos',
+    subtitle: 'Watch my favorite bachata performances and tutorials',
+    accentColor: 'coral',
+    frames: [
+      {
+        id: 'intro',
+        content: (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', textAlign: 'center', padding: '20px' }}>
+            <h2 style={{ color: 'var(--color-gold-light)', fontSize: '42px', marginBottom: '20px', textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
+              Dance Videos 💃
+            </h2>
+            <p style={{ color: 'var(--color-gold-warm)', fontSize: '18px', lineHeight: '1.8', maxWidth: '400px' }}>
+              Here are some of my favorite bachata performances that inspire my teaching style and movement philosophy.
+            </p>
+            <p style={{ color: 'var(--color-coral)', fontSize: '14px', marginTop: '30px', opacity: 0.9 }}>
+              Tap right to watch →
+            </p>
+          </div>
+        ),
+      },
+      {
+        id: 'video-1',
+        content: (
+          <div>
+            <h3 style={{ color: 'var(--color-gold-light)', fontSize: '24px', marginBottom: '16px', textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
+              Sensual Bachata Performance
+            </h3>
+            <YouTubeEmbed url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" title="Bachata Performance 1" />
+            <p style={{ color: 'var(--color-gold-warm)', fontSize: '14px', lineHeight: '1.6', marginTop: '16px', opacity: 0.9 }}>
+              This performance showcases the smooth, flowing movements that define sensual bachata style.
+            </p>
+          </div>
+        ),
+      },
+      {
+        id: 'video-2',
+        content: (
+          <div>
+            <h3 style={{ color: 'var(--color-gold-light)', fontSize: '24px', marginBottom: '16px', textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
+              Dominican Bachata Basics
+            </h3>
+            <YouTubeEmbed url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" title="Dominican Bachata Tutorial" />
+            <p style={{ color: 'var(--color-gold-warm)', fontSize: '14px', lineHeight: '1.6', marginTop: '16px', opacity: 0.9 }}>
+              Learn the authentic Dominican bachata footwork and rhythm that started it all.
+            </p>
+          </div>
+        ),
+      },
+      {
+        id: 'video-3',
+        content: (
+          <div>
+            <h3 style={{ color: 'var(--color-gold-light)', fontSize: '24px', marginBottom: '16px', textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
+              Body Isolations Tutorial
+            </h3>
+            <YouTubeEmbed url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" title="Body Isolations" />
+            <p style={{ color: 'var(--color-gold-warm)', fontSize: '14px', lineHeight: '1.6', marginTop: '16px', opacity: 0.9 }}>
+              Master the hip and chest isolations that give bachata its characteristic sensual quality.
+            </p>
+          </div>
+        ),
+      },
+    ],
+  },
+  {
+    id: 'welcome',
+    title: 'Welcome',
+    subtitle: 'Start your bachata journey with me',
+    accentColor: 'gold',
+    frames: [
+      {
+        id: 'intro',
+        content: (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', textAlign: 'center', padding: '20px' }}>
+            <h2 style={{ color: 'var(--color-gold-light)', fontSize: '48px', marginBottom: '20px', textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
+              Welcome! 🎉
+            </h2>
+            <p style={{ color: 'var(--color-gold-warm)', fontSize: '20px', lineHeight: '1.8', maxWidth: '400px', marginBottom: '30px' }}>
+              I'm so excited you're here! Let me show you what bachata is all about.
+            </p>
+          </div>
+        ),
+      },
+      {
+        id: 'what-is-bachata',
+        content: (
+          <div>
+            <h3 style={{ color: 'var(--color-gold-light)', fontSize: '28px', marginBottom: '20px', textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
+              What is Bachata?
+            </h3>
+            <p style={{ color: 'var(--color-gold-warm)', fontSize: '16px', lineHeight: '1.8', marginBottom: '20px' }}>
+              Bachata is more than just a dance—it's a way to express yourself, connect with others, and break through limiting beliefs.
+            </p>
+            <p style={{ color: 'var(--color-gold-warm)', fontSize: '16px', lineHeight: '1.8' }}>
+              Originating in the Dominican Republic, bachata is characterized by romantic music, sensual movements, and a unique 4-beat pattern with a signature hip motion on the fourth count.
+            </p>
+          </div>
+        ),
+      },
+      {
+        id: 'what-youll-learn',
+        content: (
+          <div>
+            <h3 style={{ color: 'var(--color-gold-lighter)', fontSize: '24px', marginBottom: '20px', textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
+              What You'll Learn
+            </h3>
+            <div style={{
+              background: 'rgba(255, 255, 255, 0.05)',
+              padding: '24px',
+              borderRadius: '16px',
+              border: '1px solid rgba(232, 212, 168, 0.2)',
+            }}>
+              <ul style={{ color: 'var(--color-gold-warm)', fontSize: '16px', lineHeight: '2', paddingLeft: '20px', margin: 0 }}>
+                <li>Basic bachata steps and rhythm</li>
+                <li>Body isolations and movement quality</li>
+                <li>How to feel the music</li>
+                <li>Building confidence on the dance floor</li>
+              </ul>
+            </div>
+          </div>
+        ),
+      },
+      {
+        id: 'quote',
+        content: (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', textAlign: 'center', padding: '40px' }}>
+            <p style={{ color: 'var(--color-gold-light)', fontSize: '24px', lineHeight: '1.6', fontStyle: 'italic', marginBottom: '30px' }}>
+              "The language of dance is universal. It defies age and gender boundaries."
+            </p>
+            <p style={{ color: 'var(--color-gold-warm)', fontSize: '20px', lineHeight: '1.8' }}>
+              Anyone can dance—including you!
+            </p>
+          </div>
+        ),
+      },
+    ],
+  },
+  {
+    id: 'about-me',
+    title: 'About Me',
+    subtitle: 'My journey into bachata and dance',
+    accentColor: 'peach',
+    frames: [
+      {
+        id: 'frame-1',
+        content: (
+          <div>
+            <h2 style={{ color: 'var(--color-gold-light)', fontSize: '32px', marginBottom: '20px', textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
+              Hi, I'm David! 👋
+            </h2>
+            <p style={{ color: 'var(--color-gold-warm)', fontSize: '16px', lineHeight: '1.8', marginBottom: '20px' }}>
+              My bachata journey started with a simple belief: if others can dance, so can I. I didn't come from a dance background—I had to learn everything from scratch, just like you.
+            </p>
+            <div style={{
+              background: 'rgba(255, 255, 255, 0.05)',
+              padding: '24px',
+              borderRadius: '16px',
+              border: '1px solid rgba(255, 180, 150, 0.2)',
+              marginBottom: '24px'
+            }}>
+              <h3 style={{ color: 'var(--color-peach)', fontSize: '20px', marginBottom: '16px' }}>
+                My Story
+              </h3>
+              <p style={{ color: 'var(--color-gold-warm)', fontSize: '16px', lineHeight: '1.8', marginBottom: '16px' }}>
+                I started dancing because I wanted to challenge myself and step out of my comfort zone. What I discovered was so much more than just steps and patterns.
+              </p>
+              <p style={{ color: 'var(--color-gold-warm)', fontSize: '16px', lineHeight: '1.8' }}>
+                Dance taught me about expression, connection, and the power of movement to transform how we see ourselves and others.
+              </p>
+            </div>
+            <p style={{ color: 'var(--color-gold-warm)', fontSize: '16px', lineHeight: '1.8', fontStyle: 'italic' }}>
+              Now I'm here to share that journey with you, breaking down the barriers that might be holding you back from experiencing the joy of bachata.
+            </p>
+          </div>
+        ),
+      },
+    ],
+  },
+  {
+    id: 'philosophy',
+    title: 'Philosophy (Critique Me)',
+    subtitle: 'My teaching approach and beliefs about dance',
+    accentColor: 'bronze',
+    frames: [
+      {
+        id: 'frame-1',
+        content: (
+          <div>
+            <h2 style={{ color: 'var(--color-gold-light)', fontSize: '32px', marginBottom: '20px', textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
+              My Teaching Philosophy
+            </h2>
+            <div style={{
+              background: 'rgba(255, 255, 255, 0.05)',
+              padding: '24px',
+              borderRadius: '16px',
+              border: '1px solid rgba(212, 165, 116, 0.2)',
+              marginBottom: '24px'
+            }}>
+              <h3 style={{ color: 'var(--color-bronze)', fontSize: '24px', marginBottom: '16px' }}>
+                Core Beliefs
+              </h3>
+              <div style={{ marginBottom: '20px' }}>
+                <h4 style={{ color: 'var(--color-gold-light)', fontSize: '18px', marginBottom: '8px' }}>
+                  1. Everyone Can Dance
+                </h4>
+                <p style={{ color: 'var(--color-gold-warm)', fontSize: '16px', lineHeight: '1.8' }}>
+                  Dance isn't reserved for the "naturally talented." It's a skill anyone can learn with practice and patience.
+                </p>
+              </div>
+              <div style={{ marginBottom: '20px' }}>
+                <h4 style={{ color: 'var(--color-gold-light)', fontSize: '18px', marginBottom: '8px' }}>
+                  2. Break Limiting Beliefs
+                </h4>
+                <p style={{ color: 'var(--color-gold-warm)', fontSize: '16px', lineHeight: '1.8' }}>
+                  The biggest barrier to dancing isn't physical—it's mental. Let's work through those beliefs together.
+                </p>
+              </div>
+              <div>
+                <h4 style={{ color: 'var(--color-gold-light)', fontSize: '18px', marginBottom: '8px' }}>
+                  3. Focus on Fundamentals
+                </h4>
+                <p style={{ color: 'var(--color-gold-warm)', fontSize: '16px', lineHeight: '1.8' }}>
+                  Master the basics first. Fancy moves come later—solid fundamentals are what make you a great dancer.
+                </p>
+              </div>
+            </div>
+            <div style={{
+              background: 'rgba(212, 165, 116, 0.1)',
+              padding: '20px',
+              borderRadius: '12px',
+              borderLeft: '4px solid var(--color-bronze)'
+            }}>
+              <p style={{ color: 'var(--color-gold-warm)', fontSize: '16px', lineHeight: '1.8', margin: 0, fontStyle: 'italic' }}>
+                "I'm always learning and evolving. If you have feedback or critiques of my teaching approach, I welcome them! Let's grow together."
+              </p>
+            </div>
+          </div>
+        ),
+      },
+    ],
+  },
+  {
+    id: 'reps',
+    title: 'Reps',
+    subtitle: 'Practice makes progress—not perfection',
+    accentColor: 'gold-peachy',
+    frames: [
+      {
+        id: 'frame-1',
+        content: (
+          <div>
+            <h2 style={{ color: 'var(--color-gold-light)', fontSize: '32px', marginBottom: '20px', textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>
+              The Power of Repetition
+            </h2>
+            <p style={{ color: 'var(--color-gold-warm)', fontSize: '18px', lineHeight: '1.8', marginBottom: '24px' }}>
+              There's no magic shortcut to becoming a great dancer. It's all about consistent practice and repetition—what I call "reps."
+            </p>
+            <div style={{
+              background: 'rgba(255, 255, 255, 0.05)',
+              padding: '24px',
+              borderRadius: '16px',
+              border: '1px solid rgba(220, 190, 140, 0.2)',
+              marginBottom: '24px'
+            }}>
+              <h3 style={{ color: 'var(--color-gold-peachy)', fontSize: '20px', marginBottom: '16px' }}>
+                How to Practice Effectively
+              </h3>
+              <ul style={{ color: 'var(--color-gold-warm)', fontSize: '16px', lineHeight: '2', paddingLeft: '20px' }}>
+                <li><strong>Start slow:</strong> Master the movement at a comfortable pace first</li>
+                <li><strong>Focus on form:</strong> Quality over quantity—one good rep beats ten sloppy ones</li>
+                <li><strong>Be consistent:</strong> 10 minutes daily beats 2 hours once a week</li>
+                <li><strong>Celebrate progress:</strong> Notice improvements, even small ones</li>
+                <li><strong>Stay patient:</strong> Your body needs time to develop muscle memory</li>
+              </ul>
+            </div>
+            <div style={{
+              background: 'rgba(220, 190, 140, 0.1)',
+              padding: '20px',
+              borderRadius: '12px',
+              marginBottom: '24px'
+            }}>
+              <p style={{ color: 'var(--color-gold-warm)', fontSize: '16px', lineHeight: '1.8', margin: 0 }}>
+                💡 <strong>Pro Tip:</strong> Film yourself practicing! You'll spot issues you can't feel and track your progress over time.
+              </p>
+            </div>
+            <p style={{ color: 'var(--color-gold-warm)', fontSize: '16px', lineHeight: '1.8', fontStyle: 'italic' }}>
+              "Every professional dancer was once a beginner who refused to give up. Your reps today are building the dancer you'll become tomorrow."
+            </p>
+          </div>
+        ),
+      },
+    ],
+  },
+];
+
+<StoriesHub stories={storyData} />
