@@ -33,23 +33,6 @@ export const StoriesHub: React.FC<StoriesHubProps> = ({ stories }) => {
     setActiveStoryIndex(null);
   };
 
-  const handleNextStory = () => {
-    if (activeStoryIndex !== null) {
-      if (activeStoryIndex < stories.length - 1) {
-        setActiveStoryIndex(activeStoryIndex + 1);
-      } else {
-        // On last story, close the viewer
-        setActiveStoryIndex(null);
-      }
-    }
-  };
-
-  const handlePreviousStory = () => {
-    if (activeStoryIndex !== null && activeStoryIndex > 0) {
-      setActiveStoryIndex(activeStoryIndex - 1);
-    }
-  };
-
   return (
     <>
       <style>{`
@@ -251,8 +234,6 @@ export const StoriesHub: React.FC<StoriesHubProps> = ({ stories }) => {
         <Story
           story={stories[activeStoryIndex]}
           onClose={handleCloseStory}
-          onNext={handleNextStory}
-          onPrevious={handlePreviousStory}
         />
       )}
     </>

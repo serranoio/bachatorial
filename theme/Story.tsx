@@ -17,11 +17,9 @@ export interface StoryData {
 interface StoryProps {
   story: StoryData;
   onClose: () => void;
-  onNext?: () => void;
-  onPrevious?: () => void;
 }
 
-export const Story: React.FC<StoryProps> = ({ story, onClose, onNext, onPrevious }) => {
+export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
   const [currentFrameIndex, setCurrentFrameIndex] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -42,12 +40,8 @@ export const Story: React.FC<StoryProps> = ({ story, onClose, onNext, onPrevious
 
   const handleNextFrame = () => {
     if (isLastFrame) {
-      // On last frame, advance to next story
-      if (onNext) {
-        onNext();
-      } else {
-        onClose();
-      }
+      // On last frame, close the story
+      onClose();
     } else {
       setCurrentFrameIndex((prev) => prev + 1);
       if (contentRef.current) {
@@ -58,7 +52,8 @@ export const Story: React.FC<StoryProps> = ({ story, onClose, onNext, onPrevious
 
   const handlePreviousFrame = () => {
     if (isFirstFrame) {
-      onPrevious?.();
+      // On first frame, close the story
+      onClose();
     } else {
       setCurrentFrameIndex((prev) => prev - 1);
       if (contentRef.current) {
@@ -81,12 +76,8 @@ export const Story: React.FC<StoryProps> = ({ story, onClose, onNext, onPrevious
       if (e.key === 'ArrowRight' || e.key === ' ') {
         e.preventDefault();
         if (currentFrameIndex === story.frames.length - 1) {
-          // On last frame, advance to next story
-          if (onNext) {
-            onNext();
-          } else {
-            onClose();
-          }
+          // On last frame, close the story
+          onClose();
         } else {
           setCurrentFrameIndex((prev) => prev + 1);
           if (contentRef.current) {
@@ -96,7 +87,8 @@ export const Story: React.FC<StoryProps> = ({ story, onClose, onNext, onPrevious
       } else if (e.key === 'ArrowLeft') {
         e.preventDefault();
         if (currentFrameIndex === 0) {
-          onPrevious?.();
+          // On first frame, close the story
+          onClose();
         } else {
           setCurrentFrameIndex((prev) => prev - 1);
           if (contentRef.current) {
@@ -111,7 +103,7 @@ export const Story: React.FC<StoryProps> = ({ story, onClose, onNext, onPrevious
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentFrameIndex, story.frames.length, onNext, onPrevious, onClose]);
+  }, [currentFrameIndex, story.frames.length, onClose]);
 
   return (
     <>
