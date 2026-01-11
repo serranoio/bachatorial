@@ -1,0 +1,331 @@
+/**
+ * Global Theme Overrides for Rspress
+ * Applies coral and gold theme to navigation and all UI elements
+ */
+
+/* ========================================
+   NAVIGATION STYLES
+   ======================================== */
+
+/* Navigation container */
+.rspress-nav,
+nav.rspress-nav,
+.rspress-nav-container,
+[class*="nav"] {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(232, 212, 168, 0.2) !important;
+}
+
+/* Navigation links */
+.rspress-nav a,
+.rspress-nav-menu a,
+nav a {
+  color: var(--color-gold-light) !important;
+  transition: all 0.3s ease !important;
+}
+
+.rspress-nav a:hover,
+.rspress-nav-menu a:hover,
+nav a:hover {
+  color: var(--color-coral) !important;
+  text-shadow: 0 0 8px rgba(255, 155, 127, 0.3) !important;
+}
+
+/* Navigation title/logo */
+.rspress-nav-title,
+.rspress-logo-text {
+  background-image: linear-gradient(90deg, var(--color-gold-light) 0%, var(--color-gold-lighter) 50%, var(--color-gold-light) 100%) !important;
+  background-size: 200% auto !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-weight: 700 !important;
+}
+
+/* Active navigation item */
+.rspress-nav a.active,
+.rspress-nav-menu a.active {
+  color: var(--color-coral) !important;
+  border-bottom: 2px solid var(--color-coral) !important;
+}
+
+/* Mobile menu button */
+.rspress-nav-menu-button {
+  color: var(--color-gold-light) !important;
+}
+
+/* ========================================
+   SIDEBAR STYLES
+   ======================================== */
+
+.rspress-sidebar {
+  background: rgba(255, 255, 255, 0.03) !important;
+  backdrop-filter: blur(20px) !important;
+  border-right: 1px solid rgba(232, 212, 168, 0.15) !important;
+}
+
+.rspress-sidebar a {
+  color: var(--color-gold-warm) !important;
+  transition: all 0.3s ease !important;
+}
+
+.rspress-sidebar a:hover {
+  color: var(--color-coral) !important;
+  background: rgba(255, 155, 127, 0.1) !important;
+}
+
+.rspress-sidebar a.active {
+  color: var(--color-gold-light) !important;
+  background: rgba(232, 212, 168, 0.15) !important;
+  border-left: 3px solid var(--color-coral) !important;
+}
+
+/* ========================================
+   CONTENT AREA STYLES
+   ======================================== */
+
+/* Main content container */
+.rspress-doc-container,
+.rspress-content,
+main {
+  color: var(--color-gold-warm) !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-gold-light) !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+h1 {
+  background-image: linear-gradient(90deg, var(--color-gold-light) 0%, var(--color-gold-lighter) 25%, var(--color-gold-light) 50%, var(--color-gold-medium) 75%, var(--color-gold-dark) 100%) !important;
+  background-size: 200% auto !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Paragraphs */
+p {
+  color: var(--color-gold-warm) !important;
+  line-height: 1.8 !important;
+}
+
+/* Links */
+a {
+  color: var(--color-coral) !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+}
+
+a:hover {
+  color: var(--color-gold-lighter) !important;
+  text-shadow: 0 0 8px rgba(232, 212, 168, 0.3) !important;
+}
+
+/* Code blocks */
+code {
+  background: rgba(255, 155, 127, 0.1) !important;
+  border: 1px solid rgba(232, 212, 168, 0.2) !important;
+  color: var(--color-gold-light) !important;
+  border-radius: 4px !important;
+  padding: 2px 6px !important;
+}
+
+pre {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(232, 212, 168, 0.2) !important;
+  border-radius: 8px !important;
+}
+
+pre code {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 4px solid var(--color-coral) !important;
+  background: rgba(255, 155, 127, 0.05) !important;
+  color: var(--color-gold-warm) !important;
+  padding: 16px 20px !important;
+  margin: 20px 0 !important;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse !important;
+  width: 100% !important;
+}
+
+th {
+  background: rgba(232, 212, 168, 0.15) !important;
+  color: var(--color-gold-light) !important;
+  font-weight: 600 !important;
+  padding: 12px !important;
+  border: 1px solid rgba(232, 212, 168, 0.2) !important;
+}
+
+td {
+  color: var(--color-gold-warm) !important;
+  padding: 12px !important;
+  border: 1px solid rgba(232, 212, 168, 0.15) !important;
+}
+
+tr:hover {
+  background: rgba(255, 155, 127, 0.05) !important;
+}
+
+/* ========================================
+   BUTTONS & INTERACTIVE ELEMENTS
+   ======================================== */
+
+button,
+.rspress-button {
+  background: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold-medium) 100%) !important;
+  color: var(--color-dark-primary) !important;
+  border: 2px solid rgba(232, 212, 168, 0.5) !important;
+  border-radius: 50px !important;
+  padding: 12px 32px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  box-shadow: 0 8px 24px rgba(232, 212, 168, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+button:hover,
+.rspress-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 32px rgba(232, 212, 168, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+}
+
+/* ========================================
+   SEARCH BAR
+   ======================================== */
+
+.rspress-search-container input {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(232, 212, 168, 0.2) !important;
+  color: var(--color-gold-light) !important;
+  border-radius: 50px !important;
+  padding: 8px 16px !important;
+}
+
+.rspress-search-container input::placeholder {
+  color: var(--color-gold-muted) !important;
+  opacity: 0.6 !important;
+}
+
+.rspress-search-container input:focus {
+  border-color: var(--color-coral) !important;
+  box-shadow: 0 0 12px rgba(255, 155, 127, 0.3) !important;
+  outline: none !important;
+}
+
+/* ========================================
+   SCROLLBAR
+   ======================================== */
+
+::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-gold-light), var(--color-coral)) !important;
+  border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--color-gold-lighter), var(--color-coral-light)) !important;
+}
+
+/* ========================================
+   LISTS
+   ======================================== */
+
+ul, ol {
+  color: var(--color-gold-warm) !important;
+}
+
+li::marker {
+  color: var(--color-coral) !important;
+}
+
+/* ========================================
+   HORIZONTAL RULES
+   ======================================== */
+
+hr {
+  border: none !important;
+  border-top: 1px solid rgba(232, 212, 168, 0.2) !important;
+  margin: 32px 0 !important;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+footer {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-top: 1px solid rgba(232, 212, 168, 0.15) !important;
+  color: var(--color-gold-warm) !important;
+}
+
+footer a {
+  color: var(--color-coral) !important;
+}
+
+footer a:hover {
+  color: var(--color-gold-lighter) !important;
+}
+
+/* ========================================
+   TOC (Table of Contents)
+   ======================================== */
+
+.rspress-toc {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-left: 1px solid rgba(232, 212, 168, 0.15) !important;
+}
+
+.rspress-toc a {
+  color: var(--color-gold-warm) !important;
+}
+
+.rspress-toc a:hover {
+  color: var(--color-coral) !important;
+}
+
+.rspress-toc a.active {
+  color: var(--color-gold-light) !important;
+  border-left: 2px solid var(--color-coral) !important;
+}
+
+/* ========================================
+   CARDS & CONTAINERS
+   ======================================== */
+
+.rspress-card,
+.card {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(232, 212, 168, 0.2) !important;
+  border-radius: 16px !important;
+  padding: 24px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+.rspress-card:hover,
+.card:hover {
+  border-color: rgba(232, 212, 168, 0.4) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}

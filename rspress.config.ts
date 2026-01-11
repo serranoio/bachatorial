@@ -14,6 +14,8 @@ export default defineConfig({
   head: [
     // Design System CSS
     ['link', { rel: 'stylesheet', href: '/design-system.css' }],
+    // Global Theme CSS
+    ['link', { rel: 'stylesheet', href: '/global-theme.css' }],
     // OpenGraph meta tags for social media sharing
     ['meta', { property: 'og:title', content: 'Bachatorial' }],
     [

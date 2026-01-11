@@ -8,6 +8,9 @@ import { ParticleConstellationBackground } from './ParticleConstellationBackgrou
 import { BokehLightBackground } from './BokehLightBackground';
 import { GeometricDanceBackground } from './GeometricDanceBackground';
 import { HeartbeatPulseBackground } from './HeartbeatPulseBackground';
+import { OrganicGrowthBackground } from './OrganicGrowthBackground';
+import { FlowingSilkBackground } from './FlowingSilkBackground';
+import { FractalExpansionBackground } from './FractalExpansionBackground';
 
 export {
   FluidRibbonsBackground,
@@ -15,6 +18,9 @@ export {
   BokehLightBackground,
   GeometricDanceBackground,
   HeartbeatPulseBackground,
+  OrganicGrowthBackground,
+  FlowingSilkBackground,
+  FractalExpansionBackground,
 };
 
 export type { AnimatedBackgroundProps, AccentColor } from './shared/types';
@@ -26,8 +32,11 @@ export const STORY_BACKGROUNDS = {
   'dance-videos': FluidRibbonsBackground,
   'welcome': ParticleConstellationBackground,
   'about-me': BokehLightBackground,
-  'philosophy': GeometricDanceBackground,
+  'excellence': GeometricDanceBackground,
   'reps': HeartbeatPulseBackground,
+  'teaching-philosophy': OrganicGrowthBackground,
+  'life-is-a-dance': FlowingSilkBackground,
+  'my-why': FractalExpansionBackground,
 } as const;
 
 export type StoryId = keyof typeof STORY_BACKGROUNDS;

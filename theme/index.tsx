@@ -1,106 +1,104 @@
 import Theme, { Search } from "rspress/theme";
-import { HeroVideo } from "./HeroVideo";
-import { Roadmap } from "./RoadmapResponsive";
 import { Hero } from "./CustomHero";
 import { YouTubeEmbed } from "./YouTubeEmbed";
 import { VideoPlayer } from "./VideoPlayer";
-
-const roadmapSteps = [
-  {
-    step: 1,
-    title: "Break limiting beliefs. You can dance.",
-    description:
-      "What if you told a baby to do multiplication when they don't even know how to do addition? This is how everyone is with dancing. We see people do multiplication on the dance floor while we don't know how to do basic addition, causing us extreme anxiety. This problem ends today.",
-  },
-  {
-    step: 2,
-    title: "Learn body isolations",
-    description:
-      "There is no dancing yet! Embrace the spiritual act of connecting with your body. You're going to move parts of your body that you never knew you could <3",
-  },
-  {
-    step: 3,
-    title: "Apply the body isolations to the dance style, Bachata",
-    description:
-      "Understanding the isolated isolations makes you feel like any move is in reach :)",
-  },
-];
+import { StoriesHub } from "./StoriesHub";
+import { storyData } from "./storyData";
+import { GlobalAnimatedBackground } from "./GlobalAnimatedBackground";
 
 // Show all props below
 const Layout = () => (
   <Theme.Layout
+    /* Top of the entire page */
+    top={<GlobalAnimatedBackground />}
     /* Before home hero */
     afterHero={<div></div>}
     /* After home hero */
     beforeHero={
       <div>
-        <HeroVideo videoSrc="bachata.mp4" />
-        <Roadmap steps={roadmapSteps} />
         <div
           style={{
             display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
             justifyContent: "center",
-            margin: "40px 0 80px 0",
+            padding: "60px 20px 40px 20px",
+            textAlign: "center",
           }}
         >
-          <a href="/guide/lesson" style={{ textDecoration: "none" }}>
-            <button
-              type="button"
-              style={{
-                padding: "20px 48px",
-                fontSize: "24px",
-                fontWeight: "bold",
-                color: "#fff",
-                backgroundColor: "#ff4757",
-                border: "none",
-                borderRadius: "50px",
-                cursor: "pointer",
-                transition: "all 0.3s ease",
-                boxShadow: "0 4px 15px rgba(255, 71, 87, 0.4)",
-                fontFamily: "system-ui, -apple-system, sans-serif",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#ff6b7a";
-                e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.boxShadow =
-                  "0 6px 20px rgba(255, 71, 87, 0.6)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "#ff4757";
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow =
-                  "0 4px 15px rgba(255, 71, 87, 0.4)";
-              }}
-            >
-              Learn now!
-            </button>
-          </a>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "40px",
-            marginTop: "15rem",
-          }}
-        >
-          <div
+          <img
+            src="/logo.png"
+            alt="Bachatorial Logo"
             style={{
-              display: "flex",
-              justifyContent: "center",
-              flexDirection: "column",
+              width: "120px",
+              height: "120px",
+              marginBottom: "24px",
+            }}
+          />
+          <h1
+            style={{
+              fontSize: "64px",
+              fontWeight: "bold",
+              margin: "0 0 8px 0",
+              background: "linear-gradient(135deg, var(--color-gold-light, #E8D4A8) 0%, var(--color-coral, #FF8B94) 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              fontFamily: "Georgia, 'Times New Roman', serif",
             }}
           >
-            <p style={{ textAlign: "center" }}>
-              To share this site with others...
-            </p>
-            <img
-              src="shar.png"
-              alt="wow"
-              style={{ display: "block", margin: "0 auto", maxWidth: "300px" }}
-            />
-          </div>
+            Bachatorial
+          </h1>
+          <p
+            style={{
+              fontSize: "14px",
+              fontStyle: "italic",
+              color: "var(--color-gold-warm, #D4AF88)",
+              margin: "0 0 24px 0",
+              opacity: 0.8,
+              fontFamily: "Georgia, 'Times New Roman', serif",
+            }}
+          >
+            by David Serrano
+          </p>
+          <p
+            style={{
+              fontSize: "24px",
+              color: "var(--color-gold-warm, #D4AF88)",
+              margin: "0 0 48px 0",
+              maxWidth: "600px",
+              lineHeight: "1.6",
+              fontFamily: "Georgia, 'Times New Roman', serif",
+            }}
+          >
+            The biggest barrier to start dancing is mental, not physical.
+          </p>
+          <p
+            style={{
+              fontSize: "24px",
+              color: "var(--color-gold-warm, #D4AF88)",
+              margin: "0 0 48px 0",
+              maxWidth: "600px",
+              lineHeight: "1.6",
+              fontFamily: "Georgia, 'Times New Roman', serif",
+            }}
+          >
+            Life is a dance and we have lost touch with this fact.
+          </p>
+          <p
+            style={{
+              fontSize: "24px",
+              color: "var(--color-gold-warm, #D4AF88)",
+              margin: "0 0 48px 0",
+              maxWidth: "600px",
+              lineHeight: "1.6",
+              fontFamily: "Georgia, 'Times New Roman', serif",
+            }}
+          >
+            The language of dance is universal. It defies gender and age boundaries.
+          </p>
         </div>
+        <StoriesHub stories={storyData} />
       </div>
     }
     /* Before home features */

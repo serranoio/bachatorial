@@ -193,6 +193,7 @@ export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
           color: var(--color-gold-light);
           margin: 0;
           text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+          font-family: Georgia, "Times New Roman", serif;
         }
 
         .story-subtitle {
@@ -201,6 +202,7 @@ export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
           opacity: 0.9;
           margin: 4px 0 0 0;
           text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+          font-family: Georgia, "Times New Roman", serif;
         }
 
         .story-close-button {
@@ -235,6 +237,11 @@ export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
           padding: 20px;
           z-index: 1;
           -webkit-overflow-scrolling: touch;
+          font-family: Georgia, "Times New Roman", serif;
+        }
+
+        .story-content * {
+          font-family: inherit;
         }
 
         .story-content::-webkit-scrollbar {

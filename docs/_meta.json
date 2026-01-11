@@ -1,12 +1,7 @@
 [
   {
-    "text": "Stories",
-    "link": "/stories",
-    "activeMatch": "/stories"
-  },
-  {
-    "text": "Your First Lesson",
-    "link": "/guide/lesson",
-    "activeMatch": "/guide/lesson"
+    "text": "Resources",
+    "link": "/guide/index",
+    "activeMatch": "/guide"
   }
 ]

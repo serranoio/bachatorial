@@ -69,6 +69,7 @@ export const StoriesHub: React.FC<StoriesHubProps> = ({ stories }) => {
           max-width: 600px;
           margin: 0 auto;
           line-height: 1.6;
+          font-family: Georgia, "Times New Roman", serif;
         }
 
         .stories-grid {
@@ -127,6 +128,7 @@ export const StoriesHub: React.FC<StoriesHubProps> = ({ stories }) => {
           color: white;
           margin: 0 0 8px 0;
           text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+          font-family: Georgia, "Times New Roman", serif;
         }
 
         .story-card-subtitle {
@@ -135,6 +137,7 @@ export const StoriesHub: React.FC<StoriesHubProps> = ({ stories }) => {
           margin: 0;
           text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
           line-height: 1.4;
+          font-family: Georgia, "Times New Roman", serif;
         }
 
         .story-card-badge {

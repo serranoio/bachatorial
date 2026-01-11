@@ -221,7 +221,7 @@
      ======================================== */
 
   /* Background Gradients */
-  --gradient-main-bg: linear-gradient(135deg, var(--color-dark-primary) 0%, var(--color-dark-secondary) 25%, var(--color-dark-tertiary) 50%, var(--color-dark-secondary) 75%, var(--color-dark-primary) 100%);
+  --gradient-main-bg: linear-gradient(135deg, #1a1612 0%, #1f1a15 25%, #1c1713 50%, #1f1a15 75%, #1a1612 100%);
   --gradient-bg-size: 400% 400%;
   --gradient-badge: linear-gradient(135deg, var(--coral-015), var(--bronze-015));
   --gradient-button-primary: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold-medium) 100%);
@@ -477,7 +477,7 @@ body {
   background-size: var(--gradient-bg-size);
   animation: gradientShift var(--animation-duration-gradient) var(--animation-timing-ease) var(--animation-iteration-infinite);
   color: var(--color-gold-light);
-  font-family: var(--font-family-sans);
+  font-family: var(--font-family-serif);
 }
 
 /* ========================================
