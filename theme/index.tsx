@@ -18,84 +18,109 @@ const Layout = () => (
       <div>
         <div
           style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
+            position: "relative",
+            minHeight: "600px",
             padding: "60px 20px 40px 20px",
-            textAlign: "center",
           }}
         >
-          <img
-            src="/logo.png"
-            alt="Bachatorial Logo"
+          {/* Center content: Logo and Title */}
+          <div
             style={{
-              width: "120px",
-              height: "120px",
-              marginBottom: "24px",
-            }}
-          />
-          <h1
-            style={{
-              fontSize: "64px",
-              fontWeight: "bold",
-              margin: "0 0 8px 0",
-              background: "linear-gradient(135deg, var(--color-gold-light, #E8D4A8) 0%, var(--color-coral, #FF8B94) 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              fontFamily: "Georgia, 'Times New Roman', serif",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              textAlign: "center",
+              position: "relative",
+              zIndex: 2,
             }}
           >
-            Bachatorial
-          </h1>
+            <img
+              src="/logo.png"
+              alt="Bachatorial Logo"
+              style={{
+                width: "120px",
+                height: "120px",
+                marginBottom: "24px",
+              }}
+            />
+            <h1
+              style={{
+                fontSize: "64px",
+                fontWeight: "bold",
+                margin: "0 0 8px 0",
+                background: "linear-gradient(135deg, var(--color-gold-light, #E8D4A8) 0%, var(--color-coral, #FF8B94) 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                fontFamily: "Georgia, 'Times New Roman', serif",
+              }}
+            >
+              Bachatorial
+            </h1>
+            <p
+              style={{
+                fontSize: "14px",
+                fontStyle: "italic",
+                color: "var(--color-gold-warm, #D4AF88)",
+                margin: "0 0 24px 0",
+                opacity: 0.8,
+                fontFamily: "Georgia, 'Times New Roman', serif",
+              }}
+            >
+              by David Serrano
+            </p>
+          </div>
+
+          {/* Scattered Fact Statements */}
           <p
             style={{
-              fontSize: "14px",
-              fontStyle: "italic",
+              position: "absolute",
+              top: "180px",
+              left: "5%",
+              fontSize: "20px",
               color: "var(--color-gold-warm, #D4AF88)",
-              margin: "0 0 24px 0",
-              opacity: 0.8,
+              maxWidth: "400px",
+              lineHeight: "1.6",
               fontFamily: "Georgia, 'Times New Roman', serif",
+              transform: "rotate(-2deg)",
+              opacity: 0.9,
             }}
           >
-            by David Serrano
+            <strong style={{ color: "var(--color-gold-light, #E8D4A8)" }}>Fact:</strong> The biggest barrier to dancing is <strong>mental</strong>, not physical.
           </p>
           <p
             style={{
-              fontSize: "24px",
+              position: "absolute",
+              top: "320px",
+              right: "8%",
+              fontSize: "20px",
               color: "var(--color-gold-warm, #D4AF88)",
-              margin: "0 0 48px 0",
-              maxWidth: "600px",
+              maxWidth: "380px",
               lineHeight: "1.6",
               fontFamily: "Georgia, 'Times New Roman', serif",
+              transform: "rotate(1deg)",
+              opacity: 0.9,
             }}
           >
-            The biggest barrier to start dancing is mental, not physical.
+            <strong style={{ color: "var(--color-gold-light, #E8D4A8)" }}>Fact:</strong> Life is a dance—we've just forgotten.
           </p>
           <p
             style={{
-              fontSize: "24px",
+              position: "absolute",
+              top: "460px",
+              left: "10%",
+              fontSize: "20px",
               color: "var(--color-gold-warm, #D4AF88)",
-              margin: "0 0 48px 0",
-              maxWidth: "600px",
+              maxWidth: "420px",
               lineHeight: "1.6",
               fontFamily: "Georgia, 'Times New Roman', serif",
+              transform: "rotate(-1deg)",
+              opacity: 0.9,
             }}
           >
-            Life is a dance and we have lost touch with this fact.
-          </p>
-          <p
-            style={{
-              fontSize: "24px",
-              color: "var(--color-gold-warm, #D4AF88)",
-              margin: "0 0 48px 0",
-              maxWidth: "600px",
-              lineHeight: "1.6",
-              fontFamily: "Georgia, 'Times New Roman', serif",
-            }}
-          >
-            The language of dance is universal. It defies gender and age boundaries.
+            <strong style={{ color: "var(--color-gold-light, #E8D4A8)" }}>Fact:</strong>             The language of dance is universal. It defies gender and age boundaries.
+ 
           </p>
         </div>
         <StoriesHub stories={storyData} />
