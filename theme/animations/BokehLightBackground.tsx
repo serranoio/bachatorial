@@ -151,7 +151,7 @@ export const BokehLightBackground: React.FC<AnimatedBackgroundProps> = ({
               height: `${orb.size}px`,
               background: `radial-gradient(circle, ${colorVariant} 0%, ${colorVariant.replace('0.', '0.0')} 70%)`,
               filter: `blur(${orb.blur}px)`,
-              animation: `${floatAnimation} ${orb.duration}s ease-in-out ${orb.delay}s infinite, bokehPulse ${orb.duration * 0.6}s ease-in-out infinite`,
+              animation: `${floatAnimation} ${orb.duration}s ease-in-out ${orb.delay}s infinite alternate, bokehPulse ${orb.duration * 0.6}s ease-in-out infinite alternate`,
             }}
           />
         );
@@ -167,7 +167,7 @@ export const BokehLightBackground: React.FC<AnimatedBackgroundProps> = ({
           height: '150px',
           background: `radial-gradient(circle, ${colors.primary} 0%, transparent 60%)`,
           filter: 'blur(70px)',
-          animation: 'bokehTwinkle 4s ease-in-out infinite, bokehFloat1 18s ease-in-out infinite',
+          animation: 'bokehTwinkle 4s ease-in-out infinite alternate, bokehFloat1 18s ease-in-out infinite alternate',
         }}
       />
 
@@ -180,7 +180,7 @@ export const BokehLightBackground: React.FC<AnimatedBackgroundProps> = ({
           height: '180px',
           background: `radial-gradient(circle, ${colors.secondary} 0%, transparent 60%)`,
           filter: 'blur(80px)',
-          animation: 'bokehTwinkle 5s ease-in-out 1s infinite, bokehFloat2 22s ease-in-out infinite',
+          animation: 'bokehTwinkle 5s ease-in-out 1s infinite alternate, bokehFloat2 22s ease-in-out infinite alternate',
         }}
       />
 
@@ -193,7 +193,7 @@ export const BokehLightBackground: React.FC<AnimatedBackgroundProps> = ({
           height: '120px',
           background: `radial-gradient(circle, ${colors.tertiary} 0%, transparent 60%)`,
           filter: 'blur(65px)',
-          animation: 'bokehTwinkle 3.5s ease-in-out 2s infinite, bokehFloat3 20s ease-in-out infinite',
+          animation: 'bokehTwinkle 3.5s ease-in-out 2s infinite alternate, bokehFloat3 20s ease-in-out infinite alternate',
         }}
       />
     </div>

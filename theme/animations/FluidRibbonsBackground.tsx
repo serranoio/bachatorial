@@ -112,7 +112,7 @@ export const FluidRibbonsBackground: React.FC<AnimatedBackgroundProps> = ({
         }
 
         .ribbon-wave {
-          animation: ribbonWave 4s ease-in-out infinite;
+          animation: ribbonWave 4s ease-in-out infinite alternate;
         }
       `}</style>
 
@@ -123,7 +123,7 @@ export const FluidRibbonsBackground: React.FC<AnimatedBackgroundProps> = ({
           width: '120%',
           height: '40%',
           background: `linear-gradient(90deg, transparent 0%, ${colors.primary} 20%, ${colors.primary30} 50%, ${colors.primary} 80%, transparent 100%)`,
-          animation: 'ribbonFlow1 20s ease-in-out infinite',
+          animation: 'ribbonFlow1 20s ease-in-out infinite alternate',
         }}
       />
 
@@ -134,7 +134,7 @@ export const FluidRibbonsBackground: React.FC<AnimatedBackgroundProps> = ({
           width: '100%',
           height: '35%',
           background: `linear-gradient(90deg, transparent 0%, ${colors.secondary} 15%, ${colors.secondary30} 50%, ${colors.secondary} 85%, transparent 100%)`,
-          animation: 'ribbonFlow2 18s ease-in-out infinite',
+          animation: 'ribbonFlow2 18s ease-in-out infinite alternate',
         }}
       />
 
@@ -145,7 +145,7 @@ export const FluidRibbonsBackground: React.FC<AnimatedBackgroundProps> = ({
           width: '110%',
           height: '45%',
           background: `linear-gradient(90deg, transparent 0%, ${colors.tertiary} 25%, ${colors.tertiary30} 50%, ${colors.tertiary} 75%, transparent 100%)`,
-          animation: 'ribbonFlow3 22s ease-in-out infinite',
+          animation: 'ribbonFlow3 22s ease-in-out infinite alternate',
         }}
       />
 
@@ -157,7 +157,7 @@ export const FluidRibbonsBackground: React.FC<AnimatedBackgroundProps> = ({
           height: '25%',
           top: '30%',
           background: `radial-gradient(ellipse, ${colors.small1} 0%, ${colors.small1_40} 40%, transparent 70%)`,
-          animation: 'ribbonFlow1 16s ease-in-out infinite reverse, ribbonWave 4s ease-in-out infinite',
+          animation: 'ribbonFlow1 16s ease-in-out infinite alternate reverse, ribbonWave 4s ease-in-out infinite alternate',
           filter: 'blur(60px)',
         }}
       />
@@ -169,7 +169,7 @@ export const FluidRibbonsBackground: React.FC<AnimatedBackgroundProps> = ({
           height: '30%',
           top: '60%',
           background: `radial-gradient(ellipse, ${colors.small2} 0%, ${colors.small2_40} 40%, transparent 70%)`,
-          animation: 'ribbonFlow2 24s ease-in-out infinite reverse, ribbonWave 5s ease-in-out infinite',
+          animation: 'ribbonFlow2 24s ease-in-out infinite alternate reverse, ribbonWave 5s ease-in-out infinite alternate',
           filter: 'blur(70px)',
         }}
       />

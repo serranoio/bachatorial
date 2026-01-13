@@ -119,7 +119,7 @@ export const ParticleConstellationBackground: React.FC<AnimatedBackgroundProps> 
           opacity: 0.15;
           transform-origin: left center;
           pointer-events: none;
-          animation: constellationGlow 4s ease-in-out infinite;
+          animation: constellationGlow 4s ease-in-out infinite alternate;
         }
 
         .central-glow {
@@ -160,7 +160,7 @@ export const ParticleConstellationBackground: React.FC<AnimatedBackgroundProps> 
               height: `${particle.size}px`,
               backgroundColor: color,
               color: color,
-              animation: `${orbitAnimation} ${particle.duration}s ease-in-out ${particle.delay}s infinite, particlePulse 3s ease-in-out infinite`,
+              animation: `${orbitAnimation} ${particle.duration}s ease-in-out ${particle.delay}s infinite alternate, particlePulse 3s ease-in-out infinite alternate`,
             }}
           />
         );

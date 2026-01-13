@@ -175,7 +175,7 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
           pointer-events: none;
           filter: blur(80px);
           opacity: 0.25;
-          animation: undulate 8s ease-in-out infinite;
+          animation: undulate 8s ease-in-out infinite alternate;
         }
       `}</style>
 
@@ -211,7 +211,7 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           top: '20%',
           background: `linear-gradient(90deg, transparent, ${colors.primary30}, transparent)`,
-          animation: 'waveFlow 12s ease-in-out infinite',
+          animation: 'waveFlow 12s ease-in-out infinite alternate',
           filter: 'blur(20px)',
         }}
       />
@@ -220,7 +220,7 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           top: '45%',
           background: `linear-gradient(90deg, transparent, ${colors.secondary30}, transparent)`,
-          animation: 'waveFlow 14s ease-in-out infinite 2s',
+          animation: 'waveFlow 14s ease-in-out infinite 2s alternate',
           filter: 'blur(25px)',
         }}
       />
@@ -229,7 +229,7 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           top: '70%',
           background: `linear-gradient(90deg, transparent, ${colors.tertiary30}, transparent)`,
-          animation: 'waveFlow 16s ease-in-out infinite 4s',
+          animation: 'waveFlow 16s ease-in-out infinite 4s alternate',
           filter: 'blur(30px)',
         }}
       />
@@ -264,7 +264,7 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
           width: '150px',
           height: '150px',
           background: colors.primary,
-          animation: 'silkShimmer 6s ease-in-out infinite',
+          animation: 'silkShimmer 6s ease-in-out infinite alternate',
         }}
       />
       <div
@@ -275,7 +275,7 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
           width: '120px',
           height: '120px',
           background: colors.secondary,
-          animation: 'silkShimmer 7s ease-in-out infinite 2s',
+          animation: 'silkShimmer 7s ease-in-out infinite 2s alternate',
         }}
       />
       <div
@@ -286,7 +286,7 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
           width: '180px',
           height: '180px',
           background: colors.tertiary,
-          animation: 'silkShimmer 8s ease-in-out infinite 4s',
+          animation: 'silkShimmer 8s ease-in-out infinite 4s alternate',
         }}
       />
     </div>

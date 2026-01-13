@@ -132,7 +132,7 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
           pointer-events: none;
           filter: blur(60px);
           opacity: 0.2;
-          animation: rootPulse 8s ease-in-out infinite;
+          animation: rootPulse 8s ease-in-out infinite alternate;
         }
 
         .growth-ring {
@@ -150,7 +150,7 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
           opacity: 0.2;
           transform-origin: left center;
           pointer-events: none;
-          animation: organicFlow 6s ease-in-out infinite;
+          animation: organicFlow 6s ease-in-out infinite alternate;
         }
       `}</style>
 
@@ -172,7 +172,7 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
           width: '200px',
           height: '200px',
           color: colors.primary,
-          animation: 'rootPulse 10s ease-in-out infinite',
+          animation: 'rootPulse 10s ease-in-out infinite alternate',
         }}
       />
       <div
@@ -184,7 +184,7 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
           width: '300px',
           height: '300px',
           color: colors.secondary,
-          animation: 'rootPulse 12s ease-in-out infinite 1s',
+          animation: 'rootPulse 12s ease-in-out infinite 1s alternate',
         }}
       />
       <div
@@ -196,7 +196,7 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
           width: '400px',
           height: '400px',
           color: colors.tertiary,
-          animation: 'rootPulse 14s ease-in-out infinite 2s',
+          animation: 'rootPulse 14s ease-in-out infinite 2s alternate',
         }}
       />
 
@@ -213,7 +213,7 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
               top: `${branch.startY}%`,
               height: `${40 + branch.scale * 40}px`,
               color: color,
-              animation: `branchGrow ${branch.duration}s ease-out ${branch.delay}s infinite, branchSway 4s ease-in-out infinite`,
+              animation: `branchGrow ${branch.duration}s ease-out ${branch.delay}s infinite alternate, branchSway 4s ease-in-out infinite alternate`,
               transform: `rotate(${branch.rotation}deg)`,
             }}
           />
@@ -235,7 +235,7 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
               height: `${bloom.size}px`,
               backgroundColor: color,
               color: color,
-              animation: `bloomUnfurl ${bloom.duration}s ease-in-out ${bloom.delay}s infinite`,
+              animation: `bloomUnfurl ${bloom.duration}s ease-in-out ${bloom.delay}s infinite alternate`,
             }}
           />
         );

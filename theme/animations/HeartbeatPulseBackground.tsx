@@ -149,7 +149,7 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           background: `radial-gradient(circle, ${colors.primary} 0%, ${colors.primary30} 50%, transparent 70%)`,
           filter: 'blur(30px)',
-          animation: 'rhythmBeat 4s ease-in-out infinite',
+          animation: 'rhythmBeat 4s ease-in-out infinite alternate',
         }}
       />
 

@@ -185,7 +185,7 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
           border-radius: 50%;
           pointer-events: none;
           filter: blur(60px);
-          animation: centerGlow 12s ease-in-out infinite;
+          animation: centerGlow 12s ease-in-out infinite alternate;
         }
 
         .geometric-layer {

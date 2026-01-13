@@ -165,7 +165,7 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
           height: '120px',
           color: colors.tertiary,
           filter: 'blur(2px)',
-          animation: 'geometricFloat 16s ease-in-out infinite',
+          animation: 'geometricFloat 16s ease-in-out infinite alternate',
         }}
       />
 
@@ -178,7 +178,7 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
           height: '100px',
           color: colors.small1,
           filter: 'blur(2.5px)',
-          animation: 'geometricFloat 14s ease-in-out 2s infinite',
+          animation: 'geometricFloat 14s ease-in-out 2s infinite alternate',
         }}
       />
 
@@ -216,7 +216,7 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
           width: '250px',
           color: colors.tertiary30,
           transformOrigin: 'center',
-          animation: 'lineStretch 8s ease-in-out infinite',
+          animation: 'lineStretch 8s ease-in-out infinite alternate',
         }}
       />
 
@@ -228,7 +228,7 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
           width: '200px',
           color: colors.small2,
           transformOrigin: 'center',
-          animation: 'lineStretch 10s ease-in-out 2s infinite',
+          animation: 'lineStretch 10s ease-in-out 2s infinite alternate',
         }}
       />
 
@@ -241,7 +241,7 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
           color: colors.primary50,
           transformOrigin: 'center',
           transform: 'rotate(45deg)',
-          animation: 'lineStretch 12s ease-in-out 4s infinite',
+          animation: 'lineStretch 12s ease-in-out 4s infinite alternate',
         }}
       />
 
@@ -255,7 +255,7 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
           height: '400px',
           color: colors.tertiary50,
           filter: 'blur(60px)',
-          animation: 'geometricPulse 18s ease-in-out infinite',
+          animation: 'geometricPulse 18s ease-in-out infinite alternate',
         }}
       />
 
@@ -268,7 +268,7 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
           height: '300px',
           color: colors.secondary50,
           filter: 'blur(70px)',
-          animation: 'geometricPulse 22s ease-in-out 3s infinite',
+          animation: 'geometricPulse 22s ease-in-out 3s infinite alternate',
         }}
       />
     </div>
