@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Story, StoryData } from './Story';
 import { AccentColor } from './animations';
 import { STORY_BACKGROUNDS, StoryId } from './animations';
+import { ProportionalSizingProvider } from './contexts/ProportionalSizingContext';
 
 interface StoriesHubProps {
   stories: StoryData[];
@@ -217,12 +218,14 @@ export const StoriesHub: React.FC<StoriesHubProps> = ({ stories }) => {
                   className="story-card-badge"
                   style={{ color: getAccentColorValue(story.accentColor) }}
                 />
-                {BackgroundComponent && (
-                  <BackgroundComponent
-                    accentColor={story.accentColor}
-                    className="story-card-background"
-                  />
-                )}
+                <ProportionalSizingProvider>
+                  {BackgroundComponent && (
+                    <BackgroundComponent
+                      accentColor={story.accentColor}
+                      className="story-card-background"
+                    />
+                  )}
+                </ProportionalSizingProvider>
                 <div className="story-card-content">
                   <h3 className="story-card-title">{story.title}</h3>
                   <p className="story-card-subtitle">{story.subtitle}</p>

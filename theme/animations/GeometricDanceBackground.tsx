@@ -1,6 +1,7 @@
 import React from 'react';
 import { AnimatedBackgroundProps } from './shared/types';
 import { getColorPalette, baseGradient } from './shared/animationUtils';
+import { useProportionalSizing } from '../contexts/ProportionalSizingContext';
 
 /**
  * Geometric Dance Background - For Philosophy story
@@ -12,9 +13,19 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
   className = '',
 }) => {
   const colors = getColorPalette(accentColor);
+  const { scale } = useProportionalSizing();
 
   return (
-    <div className={`geometric-dance-background ${className}`}>
+    <div
+      className={`geometric-dance-background ${className}`}
+      style={{
+        // @ts-ignore - CSS custom properties
+        '--float-y': `${scale(-30)}px`,
+        '--triangle-left': `${scale(50)}px`,
+        '--triangle-right': `${scale(50)}px`,
+        '--triangle-bottom': `${scale(86)}px`,
+      } as React.CSSProperties}
+    >
       <style>{`
         @keyframes geometricRotate1 {
           0% {
@@ -64,7 +75,7 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
             opacity: 0.3;
           }
           50% {
-            transform: translateY(-30px) rotate(180deg);
+            transform: translateY(var(--float-y)) rotate(180deg);
             opacity: 0.6;
           }
         }
@@ -114,9 +125,9 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
         .geometric-triangle {
           width: 0;
           height: 0;
-          border-left: 50px solid transparent;
-          border-right: 50px solid transparent;
-          border-bottom: 86px solid currentColor;
+          border-left: var(--triangle-left) solid transparent;
+          border-right: var(--triangle-right) solid transparent;
+          border-bottom: var(--triangle-bottom) solid currentColor;
           border-top: none;
           background: transparent;
         }
@@ -134,10 +145,10 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           top: '30%',
           left: '25%',
-          width: '200px',
-          height: '200px',
+          width: `${scale(200)}px`,
+          height: `${scale(200)}px`,
           color: colors.primary,
-          filter: 'blur(2px)',
+          filter: `blur(${scale(2)}px)`,
           animation: 'geometricRotate1 24s linear infinite',
         }}
       />
@@ -147,10 +158,10 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           top: '60%',
           right: '20%',
-          width: '180px',
-          height: '180px',
+          width: `${scale(180)}px`,
+          height: `${scale(180)}px`,
           color: colors.secondary,
-          filter: 'blur(3px)',
+          filter: `blur(${scale(3)}px)`,
           animation: 'geometricRotate2 20s linear infinite',
         }}
       />
@@ -161,10 +172,10 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           top: '45%',
           left: '60%',
-          width: '120px',
-          height: '120px',
+          width: `${scale(120)}px`,
+          height: `${scale(120)}px`,
           color: colors.tertiary,
-          filter: 'blur(2px)',
+          filter: `blur(${scale(2)}px)`,
           animation: 'geometricFloat 16s ease-in-out infinite alternate',
         }}
       />
@@ -174,10 +185,10 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           top: '20%',
           right: '30%',
-          width: '100px',
-          height: '100px',
+          width: `${scale(100)}px`,
+          height: `${scale(100)}px`,
           color: colors.small1,
-          filter: 'blur(2.5px)',
+          filter: `blur(${scale(2.5)}px)`,
           animation: 'geometricFloat 14s ease-in-out 2s infinite alternate',
         }}
       />
@@ -192,7 +203,7 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
           animation: 'geometricRotate1 28s linear infinite reverse',
         }}
       >
-        <div className="geometric-triangle" style={{ filter: 'blur(3px)' }} />
+        <div className="geometric-triangle" style={{ filter: `blur(${scale(3)}px)` }} />
       </div>
 
       <div
@@ -204,7 +215,7 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
           animation: 'geometricRotate2 22s linear infinite',
         }}
       >
-        <div className="geometric-triangle" style={{ filter: 'blur(2px)' }} />
+        <div className="geometric-triangle" style={{ filter: `blur(${scale(2)}px)` }} />
       </div>
 
       {/* Geometric lines */}
@@ -213,7 +224,7 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           top: '35%',
           left: '10%',
-          width: '250px',
+          width: `${scale(250)}px`,
           color: colors.tertiary30,
           transformOrigin: 'center',
           animation: 'lineStretch 8s ease-in-out infinite alternate',
@@ -225,7 +236,7 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           top: '65%',
           right: '10%',
-          width: '200px',
+          width: `${scale(200)}px`,
           color: colors.small2,
           transformOrigin: 'center',
           animation: 'lineStretch 10s ease-in-out 2s infinite alternate',
@@ -237,7 +248,7 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           top: '50%',
           left: '30%',
-          width: '180px',
+          width: `${scale(180)}px`,
           color: colors.primary50,
           transformOrigin: 'center',
           transform: 'rotate(45deg)',
@@ -251,10 +262,10 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           top: '50%',
           left: '50%',
-          width: '400px',
-          height: '400px',
+          width: `${scale(400)}px`,
+          height: `${scale(400)}px`,
           color: colors.tertiary50,
-          filter: 'blur(60px)',
+          filter: `blur(${scale(60)}px)`,
           animation: 'geometricPulse 18s ease-in-out infinite alternate',
         }}
       />
@@ -264,10 +275,10 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           top: '20%',
           left: '70%',
-          width: '300px',
-          height: '300px',
+          width: `${scale(300)}px`,
+          height: `${scale(300)}px`,
           color: colors.secondary50,
-          filter: 'blur(70px)',
+          filter: `blur(${scale(70)}px)`,
           animation: 'geometricPulse 22s ease-in-out 3s infinite alternate',
         }}
       />

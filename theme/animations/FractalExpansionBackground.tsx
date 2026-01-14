@@ -1,6 +1,7 @@
 import React from 'react';
 import { AnimatedBackgroundProps } from './shared/types';
 import { getColorPalette, baseGradient } from './shared/animationUtils';
+import { useProportionalSizing } from '../contexts/ProportionalSizingContext';
 
 /**
  * Fractal Expansion Background - For My Why story
@@ -12,21 +13,22 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
   className = '',
 }) => {
   const colors = getColorPalette(accentColor);
+  const { scale } = useProportionalSizing();
 
-  // Generate expanding geometric rings
+  // Generate expanding geometric rings (proportional sizing)
   const expansionRings = Array.from({ length: 6 }, (_, i) => ({
     id: i,
-    size: 150 + i * 80,
+    size: scale(288 + i * 154), // Based on 15vw-55vw at 1920px base
     delay: i * 1.5,
     duration: 20 + i * 2,
   }));
 
-  // Generate fractal particles
+  // Generate fractal particles (proportional sizing)
   const fractalPoints = Array.from({ length: 20 }, (_, i) => ({
     id: i,
     angle: (i * 360) / 20,
-    distance: 100 + (i % 3) * 50,
-    size: 3 + (i % 4),
+    distance: scale(192 + (i % 3) * 96), // 10vw-20vw at 1920px base
+    size: scale(5.8 + (i % 4) * 1.9), // 0.3vw-0.6vw at 1920px base
     delay: i * 0.5,
   }));
 
@@ -167,24 +169,18 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
           position: absolute;
           left: 50%;
           top: 50%;
-          width: 80px;
-          height: 20px;
           background: linear-gradient(90deg, transparent, currentColor, transparent);
           border-radius: 50%;
           transform-origin: 0% 50%;
           pointer-events: none;
-          filter: blur(2px);
         }
 
         .center-glow {
           position: absolute;
           left: 50%;
           top: 50%;
-          width: 250px;
-          height: 250px;
           border-radius: 50%;
           pointer-events: none;
-          filter: blur(60px);
           animation: centerGlow 12s ease-in-out infinite alternate;
         }
 
@@ -192,8 +188,6 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
           position: absolute;
           left: 50%;
           top: 50%;
-          width: 300px;
-          height: 300px;
           pointer-events: none;
         }
       `}</style>
@@ -202,6 +196,9 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
       <div
         className="center-glow"
         style={{
+          width: `${scale(250)}px`,
+          height: `${scale(250)}px`,
+          filter: `blur(${scale(60)}px)`,
           background: `radial-gradient(circle, ${colors.primary} 0%, ${colors.secondary} 50%, transparent 70%)`,
         }}
       />
@@ -228,30 +225,30 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
       <div
         className="expansion-ring-geometric"
         style={{
-          width: '200px',
-          height: '200px',
+          width: `${scale(500)}px`,
+          height: `${scale(500)}px`,
           background: colors.primary,
-          opacity: 0.15,
+          opacity: 0.2,
           animation: 'expandRotate 24s ease-out infinite',
         }}
       />
       <div
         className="expansion-ring-geometric"
         style={{
-          width: '280px',
-          height: '280px',
+          width: `${scale(700)}px`,
+          height: `${scale(700)}px`,
           background: colors.secondary,
-          opacity: 0.12,
+          opacity: 0.15,
           animation: 'expandRotate 28s ease-out 3s infinite',
         }}
       />
       <div
         className="expansion-ring-geometric"
         style={{
-          width: '360px',
-          height: '360px',
+          width: `${scale(900)}px`,
+          height: `${scale(900)}px`,
           background: colors.tertiary,
-          opacity: 0.1,
+          opacity: 0.12,
           animation: 'expandRotate 32s ease-out 6s infinite',
         }}
       />
@@ -288,6 +285,9 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
             key={petal.id}
             className="mandala-petal"
             style={{
+              width: `${scale(80)}px`,
+              height: `${scale(20)}px`,
+              filter: `blur(${scale(2)}px)`,
               color: color,
               transform: `translate(-50%, -50%) rotate(${petal.angle}deg)`,
               animation: `petalGrow 16s ease-out ${petal.delay}s infinite`,
@@ -300,6 +300,8 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
       <div
         className="geometric-layer"
         style={{
+          width: `${scale(300)}px`,
+          height: `${scale(300)}px`,
           border: `1px solid ${colors.primary}`,
           borderRadius: '50%',
           opacity: 0.15,
@@ -309,8 +311,8 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
       <div
         className="geometric-layer"
         style={{
-          width: '200px',
-          height: '200px',
+          width: `${scale(200)}px`,
+          height: `${scale(200)}px`,
           border: `1px solid ${colors.secondary}`,
           borderRadius: '50%',
           opacity: 0.12,
@@ -322,8 +324,8 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
       <div
         className="expansion-ring"
         style={{
-          width: '400px',
-          height: '400px',
+          width: `${scale(400)}px`,
+          height: `${scale(400)}px`,
           color: colors.small1,
           opacity: 0.1,
           animation: 'radialExpand 18s ease-out 8s infinite',
@@ -332,8 +334,8 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
       <div
         className="expansion-ring"
         style={{
-          width: '500px',
-          height: '500px',
+          width: `${scale(500)}px`,
+          height: `${scale(500)}px`,
           color: colors.small2,
           opacity: 0.08,
           animation: 'radialExpand 22s ease-out 12s infinite',

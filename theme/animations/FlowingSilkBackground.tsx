@@ -1,6 +1,7 @@
 import React from 'react';
 import { AnimatedBackgroundProps } from './shared/types';
 import { getColorPalette, baseGradient } from './shared/animationUtils';
+import { useProportionalSizing } from '../contexts/ProportionalSizingContext';
 
 /**
  * Flowing Silk Background - For Life is a Dance story
@@ -12,6 +13,7 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
   className = '',
 }) => {
   const colors = getColorPalette(accentColor);
+  const { scale } = useProportionalSizing();
 
   // Generate silk ribbon paths
   const ribbons = Array.from({ length: 8 }, (_, i) => ({
@@ -24,7 +26,7 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
   // Generate flowing particles
   const flowParticles = Array.from({ length: 16 }, (_, i) => ({
     id: i,
-    size: Math.random() * 4 + 2,
+    size: scale(Math.random() * 4 + 2),
     delay: Math.random() * 8,
     duration: Math.random() * 10 + 15,
     startX: Math.random() * 100,
@@ -63,7 +65,7 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
             opacity: 0.3;
           }
           50% {
-            transform: translateX(0%) translateY(-5px) scaleY(1.05);
+            transform: translateX(0%) translateY(var(--wave-translate-y)) scaleY(1.05);
             opacity: 0.45;
           }
           100% {
@@ -77,13 +79,13 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
             transform: translateY(0) scaleX(1);
           }
           25% {
-            transform: translateY(-8px) scaleX(0.98);
+            transform: translateY(var(--undulate-translate-y-neg)) scaleX(0.98);
           }
           50% {
             transform: translateY(0) scaleX(1);
           }
           75% {
-            transform: translateY(8px) scaleX(0.98);
+            transform: translateY(var(--undulate-translate-y-pos)) scaleX(0.98);
           }
         }
 
@@ -93,15 +95,15 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
             opacity: 0.3;
           }
           25% {
-            transform: translate(30px, -40px);
+            transform: translate(var(--float-x1), var(--float-y1));
             opacity: 0.6;
           }
           50% {
-            transform: translate(-10px, -80px);
+            transform: translate(var(--float-x2), var(--float-y2));
             opacity: 0.4;
           }
           75% {
-            transform: translate(-40px, -40px);
+            transform: translate(var(--float-x3), var(--float-y3));
             opacity: 0.5;
           }
           100% {
@@ -113,11 +115,9 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
         @keyframes silkShimmer {
           0%, 100% {
             opacity: 0.2;
-            filter: blur(20px);
           }
           50% {
             opacity: 0.35;
-            filter: blur(25px);
           }
         }
 
@@ -134,7 +134,6 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
         .silk-wave {
           position: absolute;
           width: 100%;
-          height: 150px;
           pointer-events: none;
           opacity: 0.3;
         }
@@ -142,26 +141,21 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
         .silk-ribbon {
           position: absolute;
           width: 100%;
-          height: 2px;
           background: linear-gradient(90deg, transparent, currentColor 20%, currentColor 80%, transparent);
           transform-origin: center;
           pointer-events: none;
-          filter: blur(1px);
         }
 
         .flow-particle {
           position: absolute;
           border-radius: 50%;
           pointer-events: none;
-          box-shadow: 0 0 6px currentColor;
-          filter: blur(1px);
         }
 
         .silk-shimmer {
           position: absolute;
           border-radius: 50%;
           pointer-events: none;
-          filter: blur(40px);
         }
 
         .central-flow {
@@ -169,11 +163,8 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          width: 500px;
-          height: 300px;
           border-radius: 50%;
           pointer-events: none;
-          filter: blur(80px);
           opacity: 0.25;
           animation: undulate 8s ease-in-out infinite alternate;
         }
@@ -183,8 +174,13 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
       <div
         className="central-flow"
         style={{
+          width: `${scale(500)}px`,
+          height: `${scale(300)}px`,
+          filter: `blur(${scale(80)}px)`,
           background: `radial-gradient(ellipse, ${colors.primary} 0%, ${colors.secondary} 40%, transparent 70%)`,
-        }}
+          '--undulate-translate-y-neg': `${scale(-8)}px`,
+          '--undulate-translate-y-pos': `${scale(8)}px`,
+        } as React.CSSProperties}
       />
 
       {/* Silk ribbons - horizontal flowing lines */}
@@ -198,9 +194,12 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
             className="silk-ribbon"
             style={{
               top: `${yPosition}%`,
+              height: `${scale(2)}px`,
+              filter: `blur(${scale(1)}px)`,
               color: color,
               animation: `waveFlow ${ribbon.duration}s ease-in-out ${ribbon.delay}s infinite`,
-            }}
+              '--wave-translate-y': `${scale(-5)}px`,
+            } as React.CSSProperties}
           />
         );
       })}
@@ -210,28 +209,34 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
         className="silk-wave"
         style={{
           top: '20%',
+          height: `${scale(150)}px`,
           background: `linear-gradient(90deg, transparent, ${colors.primary30}, transparent)`,
           animation: 'waveFlow 12s ease-in-out infinite alternate',
-          filter: 'blur(20px)',
-        }}
+          filter: `blur(${scale(20)}px)`,
+          '--wave-translate-y': `${scale(-5)}px`,
+        } as React.CSSProperties}
       />
       <div
         className="silk-wave"
         style={{
           top: '45%',
+          height: `${scale(150)}px`,
           background: `linear-gradient(90deg, transparent, ${colors.secondary30}, transparent)`,
           animation: 'waveFlow 14s ease-in-out infinite 2s alternate',
-          filter: 'blur(25px)',
-        }}
+          filter: `blur(${scale(25)}px)`,
+          '--wave-translate-y': `${scale(-5)}px`,
+        } as React.CSSProperties}
       />
       <div
         className="silk-wave"
         style={{
           top: '70%',
+          height: `${scale(150)}px`,
           background: `linear-gradient(90deg, transparent, ${colors.tertiary30}, transparent)`,
           animation: 'waveFlow 16s ease-in-out infinite 4s alternate',
-          filter: 'blur(30px)',
-        }}
+          filter: `blur(${scale(30)}px)`,
+          '--wave-translate-y': `${scale(-5)}px`,
+        } as React.CSSProperties}
       />
 
       {/* Flowing particles */}
@@ -249,8 +254,16 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
               height: `${particle.size}px`,
               backgroundColor: color,
               color: color,
+              boxShadow: `0 0 ${scale(6)}px currentColor`,
+              filter: `blur(${scale(1)}px)`,
               animation: `particleFloat ${particle.duration}s ease-in-out ${particle.delay}s infinite`,
-            }}
+              '--float-x1': `${scale(30)}px`,
+              '--float-y1': `${scale(-40)}px`,
+              '--float-x2': `${scale(-10)}px`,
+              '--float-y2': `${scale(-80)}px`,
+              '--float-x3': `${scale(-40)}px`,
+              '--float-y3': `${scale(-40)}px`,
+            } as React.CSSProperties}
           />
         );
       })}
@@ -261,8 +274,9 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           left: '20%',
           top: '30%',
-          width: '150px',
-          height: '150px',
+          width: `${scale(150)}px`,
+          height: `${scale(150)}px`,
+          filter: `blur(${scale(40)}px)`,
           background: colors.primary,
           animation: 'silkShimmer 6s ease-in-out infinite alternate',
         }}
@@ -272,8 +286,9 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           right: '25%',
           top: '55%',
-          width: '120px',
-          height: '120px',
+          width: `${scale(120)}px`,
+          height: `${scale(120)}px`,
+          filter: `blur(${scale(40)}px)`,
           background: colors.secondary,
           animation: 'silkShimmer 7s ease-in-out infinite 2s alternate',
         }}
@@ -283,8 +298,9 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           left: '50%',
           bottom: '20%',
-          width: '180px',
-          height: '180px',
+          width: `${scale(180)}px`,
+          height: `${scale(180)}px`,
+          filter: `blur(${scale(40)}px)`,
           background: colors.tertiary,
           animation: 'silkShimmer 8s ease-in-out infinite 4s alternate',
         }}

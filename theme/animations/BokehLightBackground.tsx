@@ -1,6 +1,7 @@
 import React from 'react';
 import { AnimatedBackgroundProps } from './shared/types';
 import { getColorPalette, baseGradient } from './shared/animationUtils';
+import { useProportionalSizing } from '../contexts/ProportionalSizingContext';
 
 /**
  * Bokeh Light Background - For About Me story
@@ -12,12 +13,13 @@ export const BokehLightBackground: React.FC<AnimatedBackgroundProps> = ({
   className = '',
 }) => {
   const colors = getColorPalette(accentColor);
+  const { scale } = useProportionalSizing();
 
   // Generate bokeh orbs with varying sizes and depths
   const bokehOrbs = Array.from({ length: 16 }, (_, i) => ({
     id: i,
-    size: Math.random() * 120 + 80,
-    blur: Math.random() * 40 + 60,
+    size: scale(Math.random() * 120 + 80),
+    blur: scale(Math.random() * 40 + 60),
     delay: Math.random() * 6,
     duration: Math.random() * 12 + 20,
     startX: Math.random() * 100,
@@ -26,7 +28,28 @@ export const BokehLightBackground: React.FC<AnimatedBackgroundProps> = ({
   }));
 
   return (
-    <div className={`bokeh-light-background ${className}`}>
+    <div
+      className={`bokeh-light-background ${className}`}
+      style={{
+        // @ts-ignore - CSS custom properties
+        '--float1-x1': `${scale(30)}px`,
+        '--float1-y1': `${scale(-40)}px`,
+        '--float1-x2': `${scale(-20)}px`,
+        '--float1-y2': `${scale(30)}px`,
+        '--float1-x3': `${scale(40)}px`,
+        '--float1-y3': `${scale(20)}px`,
+        '--float2-x1': `${scale(-35)}px`,
+        '--float2-y1': `${scale(45)}px`,
+        '--float2-x2': `${scale(25)}px`,
+        '--float2-y2': `${scale(-30)}px`,
+        '--float2-x3': `${scale(-15)}px`,
+        '--float2-y3': `${scale(-20)}px`,
+        '--float3-x1': `${scale(45)}px`,
+        '--float3-y1': `${scale(35)}px`,
+        '--float3-x2': `${scale(-30)}px`,
+        '--float3-y2': `${scale(-35)}px`,
+      } as React.CSSProperties}
+    >
       <style>{`
         @keyframes bokehFloat1 {
           0%, 100% {
@@ -34,15 +57,15 @@ export const BokehLightBackground: React.FC<AnimatedBackgroundProps> = ({
             opacity: 0.4;
           }
           25% {
-            transform: translate(30px, -40px) scale(1.2);
+            transform: translate(var(--float1-x1), var(--float1-y1)) scale(1.2);
             opacity: 0.65;
           }
           50% {
-            transform: translate(-20px, 30px) scale(0.9);
+            transform: translate(var(--float1-x2), var(--float1-y2)) scale(0.9);
             opacity: 0.5;
           }
           75% {
-            transform: translate(40px, 20px) scale(1.1);
+            transform: translate(var(--float1-x3), var(--float1-y3)) scale(1.1);
             opacity: 0.6;
           }
         }
@@ -53,15 +76,15 @@ export const BokehLightBackground: React.FC<AnimatedBackgroundProps> = ({
             opacity: 0.35;
           }
           30% {
-            transform: translate(-35px, 45px) scale(1.15);
+            transform: translate(var(--float2-x1), var(--float2-y1)) scale(1.15);
             opacity: 0.6;
           }
           60% {
-            transform: translate(25px, -30px) scale(0.85);
+            transform: translate(var(--float2-x2), var(--float2-y2)) scale(0.85);
             opacity: 0.45;
           }
           90% {
-            transform: translate(-15px, -20px) scale(1.05);
+            transform: translate(var(--float2-x3), var(--float2-y3)) scale(1.05);
             opacity: 0.55;
           }
         }
@@ -72,11 +95,11 @@ export const BokehLightBackground: React.FC<AnimatedBackgroundProps> = ({
             opacity: 0.3;
           }
           35% {
-            transform: translate(45px, 35px) scale(1.25);
+            transform: translate(var(--float3-x1), var(--float3-y1)) scale(1.25);
             opacity: 0.7;
           }
           70% {
-            transform: translate(-30px, -35px) scale(0.95);
+            transform: translate(var(--float3-x2), var(--float3-y2)) scale(0.95);
             opacity: 0.5;
           }
         }
@@ -163,10 +186,10 @@ export const BokehLightBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           left: '15%',
           top: '20%',
-          width: '150px',
-          height: '150px',
+          width: `${scale(150)}px`,
+          height: `${scale(150)}px`,
           background: `radial-gradient(circle, ${colors.primary} 0%, transparent 60%)`,
-          filter: 'blur(70px)',
+          filter: `blur(${scale(70)}px)`,
           animation: 'bokehTwinkle 4s ease-in-out infinite alternate, bokehFloat1 18s ease-in-out infinite alternate',
         }}
       />
@@ -176,10 +199,10 @@ export const BokehLightBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           right: '20%',
           bottom: '25%',
-          width: '180px',
-          height: '180px',
+          width: `${scale(180)}px`,
+          height: `${scale(180)}px`,
           background: `radial-gradient(circle, ${colors.secondary} 0%, transparent 60%)`,
-          filter: 'blur(80px)',
+          filter: `blur(${scale(80)}px)`,
           animation: 'bokehTwinkle 5s ease-in-out 1s infinite alternate, bokehFloat2 22s ease-in-out infinite alternate',
         }}
       />
@@ -189,10 +212,10 @@ export const BokehLightBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           left: '60%',
           top: '50%',
-          width: '120px',
-          height: '120px',
+          width: `${scale(120)}px`,
+          height: `${scale(120)}px`,
           background: `radial-gradient(circle, ${colors.tertiary} 0%, transparent 60%)`,
-          filter: 'blur(65px)',
+          filter: `blur(${scale(65)}px)`,
           animation: 'bokehTwinkle 3.5s ease-in-out 2s infinite alternate, bokehFloat3 20s ease-in-out infinite alternate',
         }}
       />

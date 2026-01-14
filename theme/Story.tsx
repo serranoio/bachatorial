@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AccentColor, STORY_BACKGROUNDS, StoryId } from './animations';
+import { ProportionalSizingProvider } from './contexts/ProportionalSizingContext';
 
 export interface StoryFrame {
   id: string;
@@ -285,7 +286,11 @@ export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
 
       <div className="story-container" onClick={onClose}>
         <div className="story-viewer" onClick={(e) => e.stopPropagation()}>
-          {BackgroundComponent && <BackgroundComponent accentColor={story.accentColor} />}
+          {BackgroundComponent && (
+            <ProportionalSizingProvider>
+              <BackgroundComponent accentColor={story.accentColor} />
+            </ProportionalSizingProvider>
+          )}
 
           {/* Progress Bar */}
           <div className="story-progress-bar">

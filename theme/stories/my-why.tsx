@@ -41,7 +41,7 @@ export const myWhyStory = {
                 color: 'var(--color-coral)',
                 fontSize: '42px',
                 marginBottom: '12px',
-                textShadow: '0 3px 15px rgba(255, 127, 80, 0.4)',
+                textShadow: '0 0 30px rgba(255, 127, 80, 0.8), 0 0 60px rgba(255, 127, 80, 0.5), 0 3px 15px rgba(255, 127, 80, 0.4)',
                 fontWeight: '600',
                 lineHeight: '1.1',
                 letterSpacing: '-0.5px'
@@ -125,7 +125,7 @@ export const myWhyStory = {
                 color: 'var(--color-coral)',
                 fontSize: '42px',
                 marginBottom: '12px',
-                textShadow: '0 3px 15px rgba(255, 127, 80, 0.4)',
+                textShadow: '0 0 30px rgba(255, 127, 80, 0.8), 0 0 60px rgba(255, 127, 80, 0.5), 0 3px 15px rgba(255, 127, 80, 0.4)',
                 fontWeight: '600',
                 lineHeight: '1.1',
                 letterSpacing: '-0.5px'
@@ -209,7 +209,7 @@ export const myWhyStory = {
                 color: 'var(--color-coral)',
                 fontSize: '42px',
                 marginBottom: '12px',
-                textShadow: '0 3px 15px rgba(255, 127, 80, 0.4)',
+                textShadow: '0 0 30px rgba(255, 127, 80, 0.8), 0 0 60px rgba(255, 127, 80, 0.5), 0 3px 15px rgba(255, 127, 80, 0.4)',
                 fontWeight: '600',
                 lineHeight: '1.1',
                 letterSpacing: '-0.5px'
@@ -293,7 +293,7 @@ export const myWhyStory = {
                 color: 'var(--color-coral)',
                 fontSize: '42px',
                 marginBottom: '12px',
-                textShadow: '0 3px 15px rgba(255, 127, 80, 0.4)',
+                textShadow: '0 0 30px rgba(255, 127, 80, 0.8), 0 0 60px rgba(255, 127, 80, 0.5), 0 3px 15px rgba(255, 127, 80, 0.4)',
                 fontWeight: '600',
                 lineHeight: '1.1',
                 letterSpacing: '-0.5px'

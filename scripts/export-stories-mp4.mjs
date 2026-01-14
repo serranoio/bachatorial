@@ -1,8 +1,14 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 
 import { chromium } from 'playwright';
 import { mkdirSync, existsSync, renameSync, statSync, readdirSync, rmSync } from 'fs';
 import { join } from 'path';
+import { spawnSync } from 'child_process';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const EXPORT_CONFIG = {
   width: 1080,
@@ -11,24 +17,15 @@ const EXPORT_CONFIG = {
   fps: 30,
 };
 
-interface CaptureOptions {
-  storyId: string;
-  frameIndex: number | null;
-  outputPath: string;
-}
-
-async function captureAsVideo(url: string, options: CaptureOptions): Promise<void> {
+async function captureAsVideo(url, options, browser) {
   console.log(`📸 ${options.outputPath.split('/').pop()}`);
 
-  // Ensure output path has .mp4 extension
   const mp4OutputPath = options.outputPath.replace(/\.(mp4|webm)$/, '.mp4');
   const webmTempPath = mp4OutputPath.replace('.mp4', '.temp.webm');
 
-  // Use shared temp directory for all video exports
   const tempDir = join(process.cwd(), '.temp-videos', `export-${Date.now()}`);
   mkdirSync(tempDir, { recursive: true });
 
-  const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({
     viewport: { width: EXPORT_CONFIG.width, height: EXPORT_CONFIG.height },
     recordVideo: {
@@ -48,67 +45,50 @@ async function captureAsVideo(url: string, options: CaptureOptions): Promise<voi
     });
 
     await page.waitForTimeout(1000);
-
     await page.waitForTimeout(EXPORT_CONFIG.duration);
 
     await page.close();
     await context.close();
-    await browser.close();
 
-    // Force kill any lingering Chromium processes
-    const { spawnSync: killSpawn } = await import('child_process');
-    killSpawn('pkill', ['-9', '-f', 'chromium']);
+    // Wait for video file to be written (Node.js handles this cleanly)
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
-    // Synchronous busy-wait for video file (Playwright writes asynchronously)
-    // We can't use setTimeout or Bun.sleep due to Bun+Playwright event loop issues
-    const maxWait = 10000;
-    const startTime = Date.now();
-    let webmFile: string | undefined;
+    const files = readdirSync(tempDir);
+    const webmFile = files.find(f => f.endsWith('.webm'));
 
-    while (!webmFile && Date.now() - startTime < maxWait) {
-      try {
-        const files = readdirSync(tempDir);
-        webmFile = files.find((f: string) => f.endsWith('.webm'));
-      } catch {
-        // Directory might not be ready yet
-      }
+    if (!webmFile) {
+      throw new Error(`Video file was not created in ${tempDir}`);
     }
 
-    if (webmFile) {
-      const sourcePath = join(tempDir, webmFile);
-      renameSync(sourcePath, webmTempPath);
+    const sourcePath = join(tempDir, webmFile);
+    renameSync(sourcePath, webmTempPath);
 
-      // Convert WebM to MP4 using ffmpeg
-      const { spawnSync } = await import('child_process');
-      const result = spawnSync('ffmpeg', [
-        '-i', webmTempPath,
-        '-c:v', 'libx264',
-        '-preset', 'fast',
-        '-crf', '23',
-        '-pix_fmt', 'yuv420p',
-        '-movflags', '+faststart',
-        '-an', // no audio
-        '-y',
-        mp4OutputPath
-      ]);
+    // Convert WebM to MP4 using ffmpeg
+    console.log('  🎞️  Converting to MP4...');
+    const result = spawnSync('ffmpeg', [
+      '-i', webmTempPath,
+      '-c:v', 'libx264',
+      '-preset', 'fast',
+      '-crf', '23',
+      '-pix_fmt', 'yuv420p',
+      '-movflags', '+faststart',
+      '-an',
+      '-y',
+      mp4OutputPath
+    ], { stdio: 'pipe' });
 
-      if (result.status !== 0) {
-        throw new Error(`FFmpeg conversion failed: ${result.stderr?.toString()}`);
-      }
-
-      // Remove the WebM temp file after conversion
-      rmSync(webmTempPath, { force: true });
-
-      const stats = statSync(mp4OutputPath);
-      const sizeMB = (stats.size / 1024 / 1024).toFixed(2);
-      console.log(`  ✓ ${sizeMB} MB`);
-
-      rmSync(tempDir, { recursive: true, force: true });
-    } else {
-      throw new Error('Video file was not created');
+    if (result.status !== 0) {
+      throw new Error(`FFmpeg conversion failed: ${result.stderr?.toString()}`);
     }
+
+    rmSync(webmTempPath, { force: true });
+
+    const stats = statSync(mp4OutputPath);
+    const sizeMB = (stats.size / 1024 / 1024).toFixed(2);
+    console.log(`  ✓ ${sizeMB} MB`);
+
+    rmSync(tempDir, { recursive: true, force: true });
   } catch (error) {
-    await browser.close().catch(() => {});
     try {
       rmSync(tempDir, { recursive: true, force: true });
     } catch {}
@@ -121,17 +101,28 @@ async function captureAsVideo(url: string, options: CaptureOptions): Promise<voi
 }
 
 async function getStoryData() {
-  const { storyData } = await import('../theme/stories/index.js');
-  return storyData;
+  // Load story metadata directly (TypeScript files can't be imported by Node.js)
+  return [
+    { id: 'welcome', title: 'Welcome', frames: [{}] },
+    { id: 'about-me', title: 'About Me', frames: [{}, {}] },
+    { id: 'my-why', title: 'My Why', frames: [{}, {}] },
+    { id: 'teaching-philosophy', title: 'Teaching Philosophy', frames: [{}, {}, {}] },
+    { id: 'philosophy', title: 'Philosophy', frames: [{}] },
+    { id: 'dance-videos', title: 'Dance Videos', frames: [{}] },
+    { id: 'life-is-a-dance', title: 'Life is a Dance', frames: [{}] },
+  ];
 }
 
 async function main() {
-  console.log('🎬 Instagram Story MP4 Export');
+  console.log('🎬 Instagram Story MP4 Export (Node.js)');
   console.log(`📐 ${EXPORT_CONFIG.width}x${EXPORT_CONFIG.height} @ ${EXPORT_CONFIG.fps}fps`);
   console.log(`⏱️  ${EXPORT_CONFIG.duration / 1000}s duration per video\n`);
 
   const stories = await getStoryData();
   const exportHTMLPath = join(process.cwd(), 'export-real.html');
+
+  // Launch browser ONCE and reuse for all videos
+  const browser = await chromium.launch({ headless: true });
 
   try {
     for (const story of stories) {
@@ -145,7 +136,7 @@ async function main() {
         storyId: story.id,
         frameIndex: null,
         outputPath: join(storyDir, 'cover.mp4'),
-      });
+      }, browser);
 
       // Export frames
       const frameCount = story.frames?.length || 0;
@@ -154,7 +145,7 @@ async function main() {
           storyId: story.id,
           frameIndex: i,
           outputPath: join(storyDir, `frame-${i + 1}.mp4`),
-        });
+        }, browser);
       }
 
       console.log(`  ✅ Complete`);
@@ -164,6 +155,12 @@ async function main() {
     console.log(`📁 exports/`);
   } catch (error) {
     console.error('\n❌ Error:', error);
+  } finally {
+    await browser.close();
+
+    // NUCLEAR CLEANUP: Kill any leftover processes
+    spawnSync('pkill', ['-9', '-f', 'chromium'], { stdio: 'ignore' });
+    spawnSync('pkill', ['-9', '-f', 'playwright'], { stdio: 'ignore' });
   }
 }
 

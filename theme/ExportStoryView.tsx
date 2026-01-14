@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StoryData } from './Story';
 import { STORY_BACKGROUNDS, StoryId } from './animations';
+import { ProportionalSizingProvider } from './contexts/ProportionalSizingContext';
 
 interface ExportStoryViewProps {
   story: StoryData;
@@ -134,26 +135,28 @@ export const ExportStoryView: React.FC<ExportStoryViewProps> = ({
       `}</style>
 
       <div className="export-container">
-        {/* Animated Background */}
-        {BackgroundComponent && (
-          <div className="export-background">
-            <BackgroundComponent accentColor={story.accentColor} />
-          </div>
-        )}
+        <ProportionalSizingProvider baseWidth={1080} baseHeight={1920}>
+          {/* Animated Background */}
+          {BackgroundComponent && (
+            <div className="export-background">
+              <BackgroundComponent accentColor={story.accentColor} />
+            </div>
+          )}
 
-        {/* Content (only show if not cover) */}
-        {!showCover && currentFrame && (
-          <div className="export-content">{currentFrame.content}</div>
-        )}
+          {/* Content (only show if not cover) */}
+          {!showCover && currentFrame && (
+            <div className="export-content">{currentFrame.content}</div>
+          )}
 
-        {/* Ready indicator for debugging */}
-        {isReady && (
-          <div
-            id="export-ready-indicator"
-            style={{ display: 'none' }}
-            data-ready="true"
-          />
-        )}
+          {/* Ready indicator for debugging */}
+          {isReady && (
+            <div
+              id="export-ready-indicator"
+              style={{ display: 'none' }}
+              data-ready="true"
+            />
+          )}
+        </ProportionalSizingProvider>
       </div>
     </>
   );

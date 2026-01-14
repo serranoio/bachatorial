@@ -1,6 +1,7 @@
 import React from 'react';
 import { AnimatedBackgroundProps } from './shared/types';
 import { getColorPalette, baseGradient } from './shared/animationUtils';
+import { useProportionalSizing } from '../contexts/ProportionalSizingContext';
 
 /**
  * Particle Constellation Background - For Welcome story
@@ -12,11 +13,12 @@ export const ParticleConstellationBackground: React.FC<AnimatedBackgroundProps> 
   className = '',
 }) => {
   const colors = getColorPalette(accentColor);
+  const { scale } = useProportionalSizing();
 
   // Generate particle positions and animations
   const particles = Array.from({ length: 24 }, (_, i) => ({
     id: i,
-    size: Math.random() * 8 + 4,
+    size: scale(Math.random() * 8 + 4),
     delay: Math.random() * 5,
     duration: Math.random() * 10 + 15,
     startX: Math.random() * 100,
@@ -24,7 +26,26 @@ export const ParticleConstellationBackground: React.FC<AnimatedBackgroundProps> 
   }));
 
   return (
-    <div className={`particle-constellation-background ${className}`}>
+    <div
+      className={`particle-constellation-background ${className}`}
+      style={{
+        // @ts-ignore - CSS custom properties
+        '--orbit1-x1': `${scale(40)}px`,
+        '--orbit1-y1': `${scale(-30)}px`,
+        '--orbit1-x2': `${scale(20)}px`,
+        '--orbit1-y2': `${scale(50)}px`,
+        '--orbit1-x3': `${scale(-30)}px`,
+        '--orbit1-y3': `${scale(20)}px`,
+        '--orbit2-x1': `${scale(-35)}px`,
+        '--orbit2-y1': `${scale(40)}px`,
+        '--orbit2-x2': `${scale(25)}px`,
+        '--orbit2-y2': `${scale(-25)}px`,
+        '--orbit3-x1': `${scale(45)}px`,
+        '--orbit3-y1': `${scale(35)}px`,
+        '--orbit3-x2': `${scale(-20)}px`,
+        '--orbit3-y2': `${scale(-40)}px`,
+      } as React.CSSProperties}
+    >
       <style>{`
         @keyframes particleOrbit1 {
           0%, 100% {
@@ -32,15 +53,15 @@ export const ParticleConstellationBackground: React.FC<AnimatedBackgroundProps> 
             opacity: 0.3;
           }
           25% {
-            transform: translate(40px, -30px);
+            transform: translate(var(--orbit1-x1), var(--orbit1-y1));
             opacity: 0.8;
           }
           50% {
-            transform: translate(20px, 50px);
+            transform: translate(var(--orbit1-x2), var(--orbit1-y2));
             opacity: 0.6;
           }
           75% {
-            transform: translate(-30px, 20px);
+            transform: translate(var(--orbit1-x3), var(--orbit1-y3));
             opacity: 0.7;
           }
         }
@@ -51,11 +72,11 @@ export const ParticleConstellationBackground: React.FC<AnimatedBackgroundProps> 
             opacity: 0.4;
           }
           33% {
-            transform: translate(-35px, 40px);
+            transform: translate(var(--orbit2-x1), var(--orbit2-y1));
             opacity: 0.75;
           }
           66% {
-            transform: translate(25px, -25px);
+            transform: translate(var(--orbit2-x2), var(--orbit2-y2));
             opacity: 0.65;
           }
         }
@@ -66,11 +87,11 @@ export const ParticleConstellationBackground: React.FC<AnimatedBackgroundProps> 
             opacity: 0.35;
           }
           40% {
-            transform: translate(45px, 35px);
+            transform: translate(var(--orbit3-x1), var(--orbit3-y1));
             opacity: 0.8;
           }
           80% {
-            transform: translate(-20px, -40px);
+            transform: translate(var(--orbit3-x2), var(--orbit3-y2));
             opacity: 0.7;
           }
         }
@@ -127,11 +148,8 @@ export const ParticleConstellationBackground: React.FC<AnimatedBackgroundProps> 
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          width: 300px;
-          height: 300px;
           border-radius: 50%;
           pointer-events: none;
-          filter: blur(80px);
           opacity: 0.3;
         }
       `}</style>
@@ -140,6 +158,9 @@ export const ParticleConstellationBackground: React.FC<AnimatedBackgroundProps> 
       <div
         className="central-glow"
         style={{
+          width: `${scale(300)}px`,
+          height: `${scale(300)}px`,
+          filter: `blur(${scale(80)}px)`,
           background: `radial-gradient(circle, ${colors.primary} 0%, ${colors.primary30} 50%, transparent 70%)`,
         }}
       />
@@ -172,7 +193,7 @@ export const ParticleConstellationBackground: React.FC<AnimatedBackgroundProps> 
         style={{
           left: '20%',
           top: '30%',
-          width: '150px',
+          width: `${scale(150)}px`,
           transform: 'rotate(25deg)',
           color: colors.primary,
         }}
@@ -182,7 +203,7 @@ export const ParticleConstellationBackground: React.FC<AnimatedBackgroundProps> 
         style={{
           left: '50%',
           top: '45%',
-          width: '120px',
+          width: `${scale(120)}px`,
           transform: 'rotate(-45deg)',
           color: colors.secondary,
         }}
@@ -192,7 +213,7 @@ export const ParticleConstellationBackground: React.FC<AnimatedBackgroundProps> 
         style={{
           left: '65%',
           top: '25%',
-          width: '100px',
+          width: `${scale(100)}px`,
           transform: 'rotate(60deg)',
           color: colors.tertiary,
         }}
@@ -202,7 +223,7 @@ export const ParticleConstellationBackground: React.FC<AnimatedBackgroundProps> 
         style={{
           left: '30%',
           top: '60%',
-          width: '140px',
+          width: `${scale(140)}px`,
           transform: 'rotate(-15deg)',
           color: colors.small1,
         }}
@@ -212,7 +233,7 @@ export const ParticleConstellationBackground: React.FC<AnimatedBackgroundProps> 
         style={{
           left: '70%',
           top: '70%',
-          width: '90px',
+          width: `${scale(90)}px`,
           transform: 'rotate(35deg)',
           color: colors.small2,
         }}

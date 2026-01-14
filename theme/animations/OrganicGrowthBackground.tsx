@@ -1,6 +1,7 @@
 import React from 'react';
 import { AnimatedBackgroundProps } from './shared/types';
 import { getColorPalette, baseGradient } from './shared/animationUtils';
+import { useProportionalSizing } from '../contexts/ProportionalSizingContext';
 
 /**
  * Organic Growth Background - For Teaching Philosophy story
@@ -12,6 +13,7 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
   className = '',
 }) => {
   const colors = getColorPalette(accentColor);
+  const { scale } = useProportionalSizing();
 
   // Generate organic branch segments
   const branches = Array.from({ length: 18 }, (_, i) => ({
@@ -27,7 +29,7 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
   // Generate leaf/bloom particles
   const blooms = Array.from({ length: 12 }, (_, i) => ({
     id: i,
-    size: Math.random() * 6 + 3,
+    size: scale(Math.random() * 6 + 3),
     delay: Math.random() * 5,
     duration: Math.random() * 6 + 8,
     startX: Math.random() * 100,
@@ -56,7 +58,7 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
             transform: rotate(-2deg) translateY(0);
           }
           50% {
-            transform: rotate(2deg) translateY(-5px);
+            transform: rotate(2deg) translateY(var(--sway-translate-y));
           }
         }
 
@@ -88,7 +90,7 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
             opacity: 0.2;
           }
           50% {
-            transform: translateY(-20px) scaleY(1.1);
+            transform: translateY(var(--flow-translate-y)) scaleY(1.1);
             opacity: 0.35;
           }
         }
@@ -105,10 +107,9 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
 
         .branch {
           position: absolute;
-          width: 2px;
-          height: 60px;
+          width: ${scale(2)}px;
           background: linear-gradient(180deg, currentColor, transparent);
-          border-radius: 2px;
+          border-radius: ${scale(2)}px;
           transform-origin: bottom center;
           pointer-events: none;
           opacity: 0.3;
@@ -118,7 +119,7 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
           position: absolute;
           border-radius: 50%;
           pointer-events: none;
-          box-shadow: 0 0 8px currentColor;
+          box-shadow: 0 0 ${scale(8)}px currentColor;
         }
 
         .root-system {
@@ -126,11 +127,8 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
           bottom: 0;
           left: 50%;
           transform: translateX(-50%);
-          width: 400px;
-          height: 400px;
           border-radius: 50%;
           pointer-events: none;
-          filter: blur(60px);
           opacity: 0.2;
           animation: rootPulse 8s ease-in-out infinite alternate;
         }
@@ -158,6 +156,9 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
       <div
         className="root-system"
         style={{
+          width: `${scale(400)}px`,
+          height: `${scale(400)}px`,
+          filter: `blur(${scale(60)}px)`,
           background: `radial-gradient(circle, ${colors.primary} 0%, ${colors.primary30} 40%, transparent 70%)`,
         }}
       />
@@ -169,8 +170,8 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
           left: '50%',
           top: '50%',
           transform: 'translate(-50%, -50%)',
-          width: '200px',
-          height: '200px',
+          width: `${scale(200)}px`,
+          height: `${scale(200)}px`,
           color: colors.primary,
           animation: 'rootPulse 10s ease-in-out infinite alternate',
         }}
@@ -181,8 +182,8 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
           left: '50%',
           top: '50%',
           transform: 'translate(-50%, -50%)',
-          width: '300px',
-          height: '300px',
+          width: `${scale(300)}px`,
+          height: `${scale(300)}px`,
           color: colors.secondary,
           animation: 'rootPulse 12s ease-in-out infinite 1s alternate',
         }}
@@ -193,8 +194,8 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
           left: '50%',
           top: '50%',
           transform: 'translate(-50%, -50%)',
-          width: '400px',
-          height: '400px',
+          width: `${scale(400)}px`,
+          height: `${scale(400)}px`,
           color: colors.tertiary,
           animation: 'rootPulse 14s ease-in-out infinite 2s alternate',
         }}
@@ -211,11 +212,12 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
             style={{
               left: `${branch.startX}%`,
               top: `${branch.startY}%`,
-              height: `${40 + branch.scale * 40}px`,
+              height: `${scale(40 + branch.scale * 40)}px`,
               color: color,
               animation: `branchGrow ${branch.duration}s ease-out ${branch.delay}s infinite alternate, branchSway 4s ease-in-out infinite alternate`,
               transform: `rotate(${branch.rotation}deg)`,
-            }}
+              '--sway-translate-y': `${scale(-5)}px`,
+            } as React.CSSProperties}
           />
         );
       })}
@@ -247,44 +249,48 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           left: '15%',
           top: '25%',
-          width: '120px',
+          width: `${scale(120)}px`,
           transform: 'rotate(35deg)',
           color: colors.primary,
           animationDelay: '0s',
-        }}
+          '--flow-translate-y': `${scale(-20)}px`,
+        } as React.CSSProperties}
       />
       <div
         className="organic-vein"
         style={{
           left: '60%',
           top: '40%',
-          width: '100px',
+          width: `${scale(100)}px`,
           transform: 'rotate(-25deg)',
           color: colors.secondary,
           animationDelay: '2s',
-        }}
+          '--flow-translate-y': `${scale(-20)}px`,
+        } as React.CSSProperties}
       />
       <div
         className="organic-vein"
         style={{
           left: '30%',
           top: '65%',
-          width: '140px',
+          width: `${scale(140)}px`,
           transform: 'rotate(15deg)',
           color: colors.tertiary,
           animationDelay: '4s',
-        }}
+          '--flow-translate-y': `${scale(-20)}px`,
+        } as React.CSSProperties}
       />
       <div
         className="organic-vein"
         style={{
           left: '70%',
           top: '55%',
-          width: '90px',
+          width: `${scale(90)}px`,
           transform: 'rotate(-45deg)',
           color: colors.small1,
           animationDelay: '1s',
-        }}
+          '--flow-translate-y': `${scale(-20)}px`,
+        } as React.CSSProperties}
       />
     </div>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import { AnimatedBackgroundProps } from './shared/types';
 import { getColorPalette, baseGradient } from './shared/animationUtils';
+import { useProportionalSizing } from '../contexts/ProportionalSizingContext';
 
 /**
  * Heartbeat Pulse Background - For Reps story
@@ -12,6 +13,7 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
   className = '',
 }) => {
   const colors = getColorPalette(accentColor);
+  const { scale } = useProportionalSizing();
 
   // Create multiple wave rings with staggered delays
   const waveRings = Array.from({ length: 6 }, (_, i) => ({
@@ -111,8 +113,6 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
           position: absolute;
           top: 50%;
           left: 50%;
-          width: 100px;
-          height: 100px;
           border-radius: 50%;
           transform: translate(-50%, -50%);
           pointer-events: none;
@@ -124,7 +124,6 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
           left: 50%;
           border-radius: 50%;
           pointer-events: none;
-          border: 3px solid currentColor;
         }
 
         .wave-ring {
@@ -139,7 +138,6 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
           position: absolute;
           border-radius: 50%;
           pointer-events: none;
-          filter: blur(40px);
         }
       `}</style>
 
@@ -147,8 +145,10 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
       <div
         className="pulse-center"
         style={{
+          width: `${scale(100)}px`,
+          height: `${scale(100)}px`,
           background: `radial-gradient(circle, ${colors.primary} 0%, ${colors.primary30} 50%, transparent 70%)`,
-          filter: 'blur(30px)',
+          filter: `blur(${scale(30)}px)`,
           animation: 'rhythmBeat 4s ease-in-out infinite alternate',
         }}
       />
@@ -159,8 +159,9 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
           key={ring.id}
           className="pulse-ring"
           style={{
-            width: '100px',
-            height: '100px',
+            width: `${scale(100)}px`,
+            height: `${scale(100)}px`,
+            border: `${scale(3)}px solid currentColor`,
             color: ring.id % 2 === 0 ? colors.primary : colors.secondary,
             animation: `heartbeatPulse 3.6s ease-out ${ring.delay}s infinite`,
           }}
@@ -171,8 +172,8 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
       <div
         className="wave-ring"
         style={{
-          width: '200px',
-          height: '200px',
+          width: `${scale(200)}px`,
+          height: `${scale(200)}px`,
           background: `radial-gradient(circle, transparent 40%, ${colors.tertiary} 50%, transparent 60%)`,
           animation: 'waveRipple 4s ease-out infinite',
         }}
@@ -181,8 +182,8 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
       <div
         className="wave-ring"
         style={{
-          width: '200px',
-          height: '200px',
+          width: `${scale(200)}px`,
+          height: `${scale(200)}px`,
           background: `radial-gradient(circle, transparent 40%, ${colors.small1} 50%, transparent 60%)`,
           animation: 'waveRipple 4s ease-out 1s infinite',
         }}
@@ -191,8 +192,8 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
       <div
         className="wave-ring"
         style={{
-          width: '200px',
-          height: '200px',
+          width: `${scale(200)}px`,
+          height: `${scale(200)}px`,
           background: `radial-gradient(circle, transparent 40%, ${colors.small2} 50%, transparent 60%)`,
           animation: 'waveRipple 4s ease-out 2s infinite',
         }}
@@ -204,8 +205,9 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           top: '50%',
           left: '50%',
-          width: '300px',
-          height: '300px',
+          width: `${scale(300)}px`,
+          height: `${scale(300)}px`,
+          filter: `blur(${scale(40)}px)`,
           background: `radial-gradient(circle, ${colors.primary50} 0%, transparent 60%)`,
           animation: 'energyFlow 20s linear infinite',
         }}
@@ -216,8 +218,9 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           top: '50%',
           left: '50%',
-          width: '350px',
-          height: '350px',
+          width: `${scale(350)}px`,
+          height: `${scale(350)}px`,
+          filter: `blur(${scale(40)}px)`,
           background: `radial-gradient(circle, ${colors.secondary50} 0%, transparent 60%)`,
           animation: 'energyFlow 16s linear infinite reverse',
         }}
@@ -228,8 +231,9 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           top: '50%',
           left: '50%',
-          width: '280px',
-          height: '280px',
+          width: `${scale(280)}px`,
+          height: `${scale(280)}px`,
+          filter: `blur(${scale(40)}px)`,
           background: `radial-gradient(circle, ${colors.tertiary50} 0%, transparent 60%)`,
           animation: 'energyFlow 18s linear 2s infinite',
         }}
@@ -241,11 +245,11 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
           position: 'absolute',
           top: '25%',
           left: '20%',
-          width: '150px',
-          height: '150px',
+          width: `${scale(150)}px`,
+          height: `${scale(150)}px`,
           borderRadius: '50%',
           background: `radial-gradient(circle, ${colors.primary30} 0%, transparent 70%)`,
-          filter: 'blur(50px)',
+          filter: `blur(${scale(50)}px)`,
           opacity: 0.4,
           animation: 'rhythmBeat 4s ease-in-out 0.5s infinite',
           pointerEvents: 'none',
@@ -257,11 +261,11 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
           position: 'absolute',
           bottom: '20%',
           right: '25%',
-          width: '180px',
-          height: '180px',
+          width: `${scale(180)}px`,
+          height: `${scale(180)}px`,
           borderRadius: '50%',
           background: `radial-gradient(circle, ${colors.secondary30} 0%, transparent 70%)`,
-          filter: 'blur(60px)',
+          filter: `blur(${scale(60)}px)`,
           opacity: 0.4,
           animation: 'rhythmBeat 4s ease-in-out 1.5s infinite',
           pointerEvents: 'none',

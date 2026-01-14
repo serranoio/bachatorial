@@ -1,6 +1,7 @@
 import React from 'react';
 import { AnimatedBackgroundProps } from './shared/types';
 import { getColorPalette, baseGradient } from './shared/animationUtils';
+import { useProportionalSizing } from '../contexts/ProportionalSizingContext';
 
 /**
  * Fluid Dance Ribbons Background - For Dance Videos story
@@ -12,6 +13,7 @@ export const FluidRibbonsBackground: React.FC<AnimatedBackgroundProps> = ({
   className = '',
 }) => {
   const colors = getColorPalette(accentColor);
+  const { scale } = useProportionalSizing();
 
   return (
     <div className={`fluid-ribbons-background ${className}`}>
@@ -107,7 +109,6 @@ export const FluidRibbonsBackground: React.FC<AnimatedBackgroundProps> = ({
           left: 50%;
           border-radius: 50%;
           pointer-events: none;
-          filter: blur(80px);
           mix-blend-mode: screen;
         }
 
@@ -122,6 +123,7 @@ export const FluidRibbonsBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           width: '120%',
           height: '40%',
+          filter: `blur(${scale(80)}px)`,
           background: `linear-gradient(90deg, transparent 0%, ${colors.primary} 20%, ${colors.primary30} 50%, ${colors.primary} 80%, transparent 100%)`,
           animation: 'ribbonFlow1 20s ease-in-out infinite alternate',
         }}
@@ -133,6 +135,7 @@ export const FluidRibbonsBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           width: '100%',
           height: '35%',
+          filter: `blur(${scale(80)}px)`,
           background: `linear-gradient(90deg, transparent 0%, ${colors.secondary} 15%, ${colors.secondary30} 50%, ${colors.secondary} 85%, transparent 100%)`,
           animation: 'ribbonFlow2 18s ease-in-out infinite alternate',
         }}
@@ -144,6 +147,7 @@ export const FluidRibbonsBackground: React.FC<AnimatedBackgroundProps> = ({
         style={{
           width: '110%',
           height: '45%',
+          filter: `blur(${scale(80)}px)`,
           background: `linear-gradient(90deg, transparent 0%, ${colors.tertiary} 25%, ${colors.tertiary30} 50%, ${colors.tertiary} 75%, transparent 100%)`,
           animation: 'ribbonFlow3 22s ease-in-out infinite alternate',
         }}
@@ -158,7 +162,7 @@ export const FluidRibbonsBackground: React.FC<AnimatedBackgroundProps> = ({
           top: '30%',
           background: `radial-gradient(ellipse, ${colors.small1} 0%, ${colors.small1_40} 40%, transparent 70%)`,
           animation: 'ribbonFlow1 16s ease-in-out infinite alternate reverse, ribbonWave 4s ease-in-out infinite alternate',
-          filter: 'blur(60px)',
+          filter: `blur(${scale(60)}px)`,
         }}
       />
 
@@ -170,7 +174,7 @@ export const FluidRibbonsBackground: React.FC<AnimatedBackgroundProps> = ({
           top: '60%',
           background: `radial-gradient(ellipse, ${colors.small2} 0%, ${colors.small2_40} 40%, transparent 70%)`,
           animation: 'ribbonFlow2 24s ease-in-out infinite alternate reverse, ribbonWave 5s ease-in-out infinite alternate',
-          filter: 'blur(70px)',
+          filter: `blur(${scale(70)}px)`,
         }}
       />
     </div>
