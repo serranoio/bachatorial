@@ -7,6 +7,7 @@
     "build:export": "bun run scripts/build-export-html.ts",
     "dev": "rspress dev",
     "preview": "rspress preview",
+    "preview:stories": "bun run scripts/serve-stories.ts",
     "export:stories": "bun run scripts/export-stories-mp4.ts",
     "retest": "rm -rf exports && mkdir exports && bun run scripts/export-stories-mp4.ts",
     "test:export": "bun run scripts/test-single-mp4.ts"
