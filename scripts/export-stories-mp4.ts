@@ -1,14 +1,14 @@
 #!/usr/bin/env bun
 
 import { chromium } from 'playwright';
-import { mkdirSync, existsSync, renameSync, statSync } from 'fs';
+import { mkdirSync, existsSync, renameSync, statSync, readdirSync, rmSync } from 'fs';
 import { join } from 'path';
 
 const EXPORT_CONFIG = {
-  width: 1080,      // Instagram Story width
-  height: 1920,     // Instagram Story height
-  duration: 15000,  // 15 seconds in milliseconds
-  fps: 30,          // 30fps for smooth video
+  width: 1080,
+  height: 1920,
+  duration: 15000,
+  fps: 30,
 };
 
 interface CaptureOptions {
@@ -17,20 +17,17 @@ interface CaptureOptions {
   outputPath: string;
 }
 
-/**
- * Capture story as MP4 video using Playwright's video recording
- */
-async function captureAsVideo(
-  url: string,
-  options: CaptureOptions
-): Promise<void> {
-  console.log(`🎬 ${options.outputPath.split('/').pop()}`);
+async function captureAsVideo(url: string, options: CaptureOptions): Promise<void> {
+  console.log(`📸 ${options.outputPath.split('/').pop()}`);
 
-  // Create a temporary directory for video recording
-  const tempDir = join(process.cwd(), 'exports-temp');
-  if (!existsSync(tempDir)) mkdirSync(tempDir, { recursive: true });
+  // Ensure output path has .mp4 extension
+  const mp4OutputPath = options.outputPath.replace(/\.(mp4|webm)$/, '.mp4');
+  const webmTempPath = mp4OutputPath.replace('.mp4', '.temp.webm');
 
-  // Launch browser with video recording enabled
+  // Use unique temp directory for each video
+  const tempDir = join(process.cwd(), `exports-temp-${Date.now()}`);
+  mkdirSync(tempDir, { recursive: true });
+
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({
     viewport: { width: EXPORT_CONFIG.width, height: EXPORT_CONFIG.height },
@@ -43,58 +40,77 @@ async function captureAsVideo(
   const page = await context.newPage();
 
   try {
-    // Navigate to the story
     await page.goto(url, { waitUntil: 'load', timeout: 30000 });
 
-    // Remove the CSS scale transform
     await page.evaluate(() => {
       const root = document.getElementById('root');
       if (root) root.style.transform = 'none';
     });
 
-    // Wait a moment for animations to start
     await page.waitForTimeout(1000);
 
-    // Record for the full duration
     await page.waitForTimeout(EXPORT_CONFIG.duration);
 
-    // Close the page to finalize the video
     await page.close();
+    await context.close();
+    await browser.close();
 
-    // Get the video file path
-    const videoPath = await page.video()?.path();
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
-    if (videoPath) {
-      // Move the video to the final destination
-      renameSync(videoPath, options.outputPath);
+    const files = readdirSync(tempDir);
+    const webmFile = files.find((f: string) => f.endsWith('.webm'));
 
-      // Get file size
-      const stats = statSync(options.outputPath);
+    if (webmFile) {
+      const sourcePath = join(tempDir, webmFile);
+      renameSync(sourcePath, webmTempPath);
+
+      // Convert WebM to MP4 using ffmpeg
+      const { spawnSync } = await import('child_process');
+      const result = spawnSync('ffmpeg', [
+        '-i', webmTempPath,
+        '-c:v', 'libx264',
+        '-preset', 'medium',
+        '-crf', '23',
+        '-pix_fmt', 'yuv420p',
+        '-movflags', '+faststart',
+        '-an', // no audio
+        '-y',
+        mp4OutputPath
+      ], { stdio: 'pipe' });
+
+      if (result.status !== 0) {
+        throw new Error(`FFmpeg conversion failed: ${result.stderr?.toString()}`);
+      }
+
+      // Remove the WebM temp file after conversion
+      rmSync(webmTempPath, { force: true });
+
+      const stats = statSync(mp4OutputPath);
       const sizeMB = (stats.size / 1024 / 1024).toFixed(2);
       console.log(`  ✓ ${sizeMB} MB`);
+
+      rmSync(tempDir, { recursive: true, force: true });
     } else {
       throw new Error('Video file was not created');
     }
   } catch (error) {
-    console.error(`  ✗ Error recording video: ${error}`);
+    await browser.close().catch(() => {});
+    try {
+      rmSync(tempDir, { recursive: true, force: true });
+    } catch {}
+    try {
+      rmSync(webmTempPath, { force: true });
+    } catch {}
+    console.error(`  ✗ Error: ${error}`);
     throw error;
-  } finally {
-    await context.close();
-    await browser.close();
   }
 }
 
-/**
- * Import story data
- */
 async function getStoryData() {
   const { storyData } = await import('../theme/stories/index.js');
   return storyData;
 }
 
-/**
- * Main export
- */
 async function main() {
   console.log('🎬 Instagram Story MP4 Export');
   console.log(`📐 ${EXPORT_CONFIG.width}x${EXPORT_CONFIG.height} @ ${EXPORT_CONFIG.fps}fps`);
@@ -110,14 +126,14 @@ async function main() {
       const storyDir = join(process.cwd(), 'exports', story.id);
       if (!existsSync(storyDir)) mkdirSync(storyDir, { recursive: true });
 
-      // Export cover video (background only)
+      // Export cover
       await captureAsVideo(`file://${exportHTMLPath}?story=${story.id}&cover=true`, {
         storyId: story.id,
         frameIndex: null,
         outputPath: join(storyDir, 'cover.mp4'),
       });
 
-      // Export frame videos
+      // Export frames
       const frameCount = story.frames?.length || 0;
       for (let i = 0; i < frameCount; i++) {
         await captureAsVideo(`file://${exportHTMLPath}?story=${story.id}&frame=${i}`, {
@@ -130,9 +146,8 @@ async function main() {
       console.log(`  ✅ Complete`);
     }
 
-    console.log('\n✅ All stories exported as MP4!');
+    console.log('\n✅ All stories exported!');
     console.log(`📁 exports/`);
-    console.log('\n💡 Upload these videos to Instagram Stories!');
   } catch (error) {
     console.error('\n❌ Error:', error);
   }

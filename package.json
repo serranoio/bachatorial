@@ -7,20 +7,14 @@
     "dev": "rspress dev",
     "preview": "rspress preview",
     "export:stories": "bun run scripts/export-stories-mp4.ts",
-    "export:stories:gif": "bun run scripts/export-stories-v2.ts",
     "retest": "rm -rf exports && mkdir exports && bun run scripts/export-stories-mp4.ts",
     "test:export": "bun run scripts/test-single-mp4.ts"
   },
   "dependencies": {
-    "glob": "^13.0.0",
-    "rspress": "^1.40.2",
-    "sharp": "^0.34.5"
+    "rspress": "^1.40.2"
   },
   "devDependencies": {
     "@types/node": "^18.11.17",
-    "gif.js": "^0.2.0",
-    "modern-gif": "^2.0.4",
-    "playwright": "^1.57.0",
-    "pngjs": "^7.0.0"
+    "playwright": "^1.57.0"
   }
 }

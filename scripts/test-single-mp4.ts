@@ -1,21 +1,26 @@
 #!/usr/bin/env bun
 
 import { chromium } from 'playwright';
-import { mkdirSync, existsSync, renameSync, statSync } from 'fs';
+import { mkdirSync, existsSync, renameSync, statSync, readdirSync, rmSync } from 'fs';
 import { join } from 'path';
 
 const EXPORT_CONFIG = {
   width: 1080,
   height: 1920,
-  duration: 15000, // 15 seconds
+  duration: 15000,
   fps: 30,
 };
 
 async function captureAsVideo(url: string, outputPath: string): Promise<void> {
   console.log(`🎬 Recording: ${outputPath.split('/').pop()}`);
 
-  const tempDir = join(process.cwd(), 'test-video-temp');
-  if (!existsSync(tempDir)) mkdirSync(tempDir, { recursive: true });
+  // Ensure output path has .mp4 extension
+  const mp4OutputPath = outputPath.replace(/\.(mp4|webm)$/, '.mp4');
+  const webmTempPath = mp4OutputPath.replace('.mp4', '.temp.webm');
+
+  // Use unique temp directory for each video
+  const tempDir = join(process.cwd(), `test-video-temp-${Date.now()}`);
+  mkdirSync(tempDir, { recursive: true });
 
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({
@@ -31,7 +36,6 @@ async function captureAsVideo(url: string, outputPath: string): Promise<void> {
   try {
     await page.goto(url, { waitUntil: 'load', timeout: 30000 });
 
-    // Remove scale transform
     await page.evaluate(() => {
       const root = document.getElementById('root');
       if (root) root.style.transform = 'none';
@@ -39,27 +43,62 @@ async function captureAsVideo(url: string, outputPath: string): Promise<void> {
 
     await page.waitForTimeout(1000);
 
-    // Record for 15 seconds
     console.log('  ⏱️  Recording for 15 seconds...');
     await page.waitForTimeout(EXPORT_CONFIG.duration);
 
     await page.close();
-
-    const videoPath = await page.video()?.path();
-
-    if (videoPath) {
-      renameSync(videoPath, outputPath);
-
-      const stats = statSync(outputPath);
-      const sizeMB = (stats.size / 1024 / 1024).toFixed(2);
-      console.log(`  ✓ ${sizeMB} MB - ${outputPath}`);
-    }
-  } catch (error) {
-    console.error(`  ✗ Error: ${error}`);
-    throw error;
-  } finally {
     await context.close();
     await browser.close();
+
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    const files = readdirSync(tempDir);
+    const webmFile = files.find((f: string) => f.endsWith('.webm'));
+
+    if (webmFile) {
+      const sourcePath = join(tempDir, webmFile);
+      renameSync(sourcePath, webmTempPath);
+
+      // Convert WebM to MP4 using ffmpeg
+      const { spawnSync } = await import('child_process');
+      const result = spawnSync('ffmpeg', [
+        '-i', webmTempPath,
+        '-c:v', 'libx264',
+        '-preset', 'medium',
+        '-crf', '23',
+        '-pix_fmt', 'yuv420p',
+        '-movflags', '+faststart',
+        '-an', // no audio
+        '-y',
+        mp4OutputPath
+      ], { stdio: 'pipe' });
+
+      if (result.status !== 0) {
+        throw new Error(`FFmpeg conversion failed: ${result.stderr?.toString()}`);
+      }
+
+      // Remove the WebM temp file after conversion
+      rmSync(webmTempPath, { force: true });
+
+      const stats = statSync(mp4OutputPath);
+      const sizeMB = (stats.size / 1024 / 1024).toFixed(2);
+      console.log(`  ✓ ${sizeMB} MB`);
+
+      // Clean up temp directory
+      rmSync(tempDir, { recursive: true, force: true });
+    } else {
+      throw new Error('Video file was not created');
+    }
+  } catch (error) {
+    await browser.close().catch(() => {});
+    try {
+      rmSync(tempDir, { recursive: true, force: true });
+    } catch {}
+    try {
+      rmSync(webmTempPath, { force: true });
+    } catch {}
+    console.error(`  ✗ Error: ${error}`);
+    throw error;
   }
 }
 
@@ -73,13 +112,11 @@ async function main() {
 
   console.log('📚 Testing Welcome Story\n');
 
-  // Test cover
   await captureAsVideo(
     `file://${exportHTMLPath}?story=welcome&cover=true`,
     join(testDir, 'welcome-cover.mp4')
   );
 
-  // Test first frame
   await captureAsVideo(
     `file://${exportHTMLPath}?story=welcome&frame=0`,
     join(testDir, 'welcome-frame-1.mp4')
