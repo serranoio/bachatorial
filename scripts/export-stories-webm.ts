@@ -20,12 +20,11 @@ interface CaptureOptions {
 async function captureAsVideo(url: string, options: CaptureOptions): Promise<void> {
   console.log(`📸 ${options.outputPath.split('/').pop()}`);
 
-  // Ensure output path has .mp4 extension
-  const mp4OutputPath = options.outputPath.replace(/\.(mp4|webm)$/, '.mp4');
-  const webmTempPath = mp4OutputPath.replace('.mp4', '.temp.webm');
+  // Output as WebM
+  const webmOutputPath = options.outputPath.replace(/\.(mp4|webm)$/, '.webm');
 
-  // Use shared temp directory for all video exports
-  const tempDir = join(process.cwd(), '.temp-videos', `export-${Date.now()}`);
+  // Use unique temp directory for each video
+  const tempDir = join(process.cwd(), `exports-temp-${Date.now()}`);
   mkdirSync(tempDir, { recursive: true });
 
   const browser = await chromium.launch({ headless: true });
@@ -48,7 +47,6 @@ async function captureAsVideo(url: string, options: CaptureOptions): Promise<voi
     });
 
     await page.waitForTimeout(1000);
-
     await page.waitForTimeout(EXPORT_CONFIG.duration);
 
     await page.close();
@@ -60,7 +58,6 @@ async function captureAsVideo(url: string, options: CaptureOptions): Promise<voi
     killSpawn('pkill', ['-9', '-f', 'chromium']);
 
     // Synchronous busy-wait for video file (Playwright writes asynchronously)
-    // We can't use setTimeout or Bun.sleep due to Bun+Playwright event loop issues
     const maxWait = 10000;
     const startTime = Date.now();
     let webmFile: string | undefined;
@@ -76,30 +73,9 @@ async function captureAsVideo(url: string, options: CaptureOptions): Promise<voi
 
     if (webmFile) {
       const sourcePath = join(tempDir, webmFile);
-      renameSync(sourcePath, webmTempPath);
+      renameSync(sourcePath, webmOutputPath);
 
-      // Convert WebM to MP4 using ffmpeg
-      const { spawnSync } = await import('child_process');
-      const result = spawnSync('ffmpeg', [
-        '-i', webmTempPath,
-        '-c:v', 'libx264',
-        '-preset', 'fast',
-        '-crf', '23',
-        '-pix_fmt', 'yuv420p',
-        '-movflags', '+faststart',
-        '-an', // no audio
-        '-y',
-        mp4OutputPath
-      ]);
-
-      if (result.status !== 0) {
-        throw new Error(`FFmpeg conversion failed: ${result.stderr?.toString()}`);
-      }
-
-      // Remove the WebM temp file after conversion
-      rmSync(webmTempPath, { force: true });
-
-      const stats = statSync(mp4OutputPath);
+      const stats = statSync(webmOutputPath);
       const sizeMB = (stats.size / 1024 / 1024).toFixed(2);
       console.log(`  ✓ ${sizeMB} MB`);
 
@@ -112,9 +88,6 @@ async function captureAsVideo(url: string, options: CaptureOptions): Promise<voi
     try {
       rmSync(tempDir, { recursive: true, force: true });
     } catch {}
-    try {
-      rmSync(webmTempPath, { force: true });
-    } catch {}
     console.error(`  ✗ Error: ${error}`);
     throw error;
   }
@@ -126,9 +99,10 @@ async function getStoryData() {
 }
 
 async function main() {
-  console.log('🎬 Instagram Story MP4 Export');
+  console.log('🎬 Instagram Story WebM Export');
   console.log(`📐 ${EXPORT_CONFIG.width}x${EXPORT_CONFIG.height} @ ${EXPORT_CONFIG.fps}fps`);
   console.log(`⏱️  ${EXPORT_CONFIG.duration / 1000}s duration per video\n`);
+  console.log('Note: Run "bun run scripts/convert-webm-to-mp4.ts" after to convert to MP4\n');
 
   const stories = await getStoryData();
   const exportHTMLPath = join(process.cwd(), 'export-real.html');
@@ -144,7 +118,7 @@ async function main() {
       await captureAsVideo(`file://${exportHTMLPath}?story=${story.id}&cover=true`, {
         storyId: story.id,
         frameIndex: null,
-        outputPath: join(storyDir, 'cover.mp4'),
+        outputPath: join(storyDir, 'cover.webm'),
       });
 
       // Export frames
@@ -153,15 +127,17 @@ async function main() {
         await captureAsVideo(`file://${exportHTMLPath}?story=${story.id}&frame=${i}`, {
           storyId: story.id,
           frameIndex: i,
-          outputPath: join(storyDir, `frame-${i + 1}.mp4`),
+          outputPath: join(storyDir, `frame-${i + 1}.webm`),
         });
       }
 
       console.log(`  ✅ Complete`);
     }
 
-    console.log('\n✅ All stories exported!');
+    console.log('\n✅ All stories exported as WebM!');
     console.log(`📁 exports/`);
+    console.log('\nTo convert to MP4:');
+    console.log('  bun run scripts/convert-webm-to-mp4.ts');
   } catch (error) {
     console.error('\n❌ Error:', error);
   }

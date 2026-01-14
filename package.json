@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "rspress build",
+    "build:export": "bun run scripts/build-export-html.ts",
     "dev": "rspress dev",
     "preview": "rspress preview",
     "export:stories": "bun run scripts/export-stories-mp4.ts",

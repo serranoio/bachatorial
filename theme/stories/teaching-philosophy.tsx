@@ -28,7 +28,7 @@ export const teachingPhilosophyStory = {
             lineHeight: '1.6',
             marginBottom: '16px'
           }}>
-            Learn the principles of your craft, connect it using the basics of your craft, and equipped with the right tools, you can now explore the lanauage of your craft.
+            Learn the principles of your craft, connect it using the basics of your craft, and equipped with the right tools, you can now explore the language of your craft.
           </p>
           <p style={{
             color: 'var(--color-gold-warm)',
@@ -58,7 +58,7 @@ export const teachingPhilosophyStory = {
             lineHeight: '1.6',
             margin: 0
           }}>
-            If you are ready, I would love to go on a journey of the principles & basics of Bachata with you. For free. I don't know everything, I will never know everything, so this is always a journey to be partaken together. DM me :)
+            If you are ready, I would love to go on a journey of the principles & basics of Bachata with you. For free. I don't know everything, I will never know everything, so this is always a journey to be partaken together.  DM me :). You are doing me a favor by keeping my basics so sharp to the point where I can teach.
           </p>
         </div>
       ),

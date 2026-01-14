@@ -12,3 +12,8 @@ doc_build/
 .vscode/*
 !.vscode/extensions.json
 .idea
+
+# Temporary video directories
+.temp-videos/
+test-video-temp-*/
+exports-temp-*/
