@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Story Viewer - Navigation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: white;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .subtitle {
+      color: rgba(255,255,255,0.9);
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 1.2rem;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .story-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .story-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    .story-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #333;
+      border-bottom: 3px solid #667eea;
+      padding-bottom: 0.5rem;
+    }
+
+    .link-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .link-section h3 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+
+    .link-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .story-link {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .story-link:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    .cover-link {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    .frame-count {
+      font-size: 0.85rem;
+      color: #999;
+      margin-top: 1rem;
+      font-style: italic;
+    }
+
+    .instructions {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      margin-bottom: 3rem;
+    }
+
+    .instructions h2 {
+      color: #667eea;
+      margin-bottom: 1rem;
+    }
+
+    .instructions p {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+
+    .instructions ul {
+      margin-left: 2rem;
+      color: #666;
+      line-height: 1.8;
+    }
+
+    .instructions code {
+      background: #f5f5f5;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📖 Story Viewer</h1>
+    <p class="subtitle">Browse and view all your Instagram Stories with animated backgrounds</p>
+
+    <div class="instructions">
+      <h2>🎯 How to Use</h2>
+      <p><strong>Cover Links:</strong> Show just the animated background (no text) - perfect for intro posts</p>
+      <p><strong>Frame Links:</strong> Show the animated background with your content overlaid</p>
+      <p><strong>Dimensions:</strong> All stories render at 540×960 (50% of Instagram Story size for easier viewing)</p>
+      <ul>
+        <li>Click any link to open that story view in a new tab</li>
+        <li>Take screenshots directly from the browser</li>
+        <li>The animations loop automatically</li>
+      </ul>
+    </div>
+
+    <div id="story-grid" class="story-grid">
+      <!-- Stories will be populated here by JavaScript -->
+    </div>
+  </div>
+
+  <script type="module">
+    // Story data - matches your actual stories
+    const stories = [
+      { id: 'dance-videos', title: 'Dance Videos', frameCount: 4 },
+      { id: 'welcome', title: 'Welcome', frameCount: 4 },
+      { id: 'about-me', title: 'About Me', frameCount: 3 },
+      { id: 'philosophy', title: 'Philosophy', frameCount: 3 },
+      { id: 'teaching-philosophy', title: 'Teaching Philosophy', frameCount: 2 },
+      { id: 'my-why', title: 'My Why', frameCount: 3 },
+      { id: 'reps', title: 'Reps', frameCount: 3 },
+    ];
+
+    const grid = document.getElementById('story-grid');
+
+    stories.forEach(story => {
+      const card = document.createElement('div');
+      card.className = 'story-card';
+
+      const title = document.createElement('div');
+      title.className = 'story-title';
+      title.textContent = story.title;
+
+      const coverSection = document.createElement('div');
+      coverSection.className = 'link-section';
+      coverSection.innerHTML = '<h3>Cover (Background Only)</h3>';
+      const coverList = document.createElement('div');
+      coverList.className = 'link-list';
+
+      const coverLink = document.createElement('a');
+      coverLink.href = `export-real.html?story=${story.id}&cover=true`;
+      coverLink.className = 'story-link cover-link';
+      coverLink.textContent = 'View Cover';
+      coverLink.target = '_blank';
+      coverList.appendChild(coverLink);
+      coverSection.appendChild(coverList);
+
+      const framesSection = document.createElement('div');
+      framesSection.className = 'link-section';
+      framesSection.innerHTML = '<h3>Frames (Background + Content)</h3>';
+      const framesList = document.createElement('div');
+      framesList.className = 'link-list';
+
+      for (let i = 0; i < story.frameCount; i++) {
+        const frameLink = document.createElement('a');
+        frameLink.href = `export-real.html?story=${story.id}&frame=${i}`;
+        frameLink.className = 'story-link';
+        frameLink.textContent = `Frame ${i + 1}`;
+        frameLink.target = '_blank';
+        framesList.appendChild(frameLink);
+      }
+      framesSection.appendChild(framesList);
+
+      const frameCount = document.createElement('div');
+      frameCount.className = 'frame-count';
+      frameCount.textContent = `${story.frameCount} frame${story.frameCount > 1 ? 's' : ''} + cover`;
+
+      card.appendChild(title);
+      card.appendChild(coverSection);
+      card.appendChild(framesSection);
+      card.appendChild(frameCount);
+
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
