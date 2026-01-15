@@ -13,7 +13,7 @@ export const welcomeStory = {
           </h2>
 
           <div style={{ maxWidth: '500px', width: '100%' }}>
-            <p style={{ color: 'var(--color-gold-warm)', fontSize: '18px', lineHeight: '1.8', marginBottom: '24px' }}>
+            <p style={{ color: 'var(--color-gold-warm)', fontSize: '18px', lineHeight: '1.8', marginBottom: '24px', textAlign: 'center' }}>
               In here you will find:
             </p>
 
@@ -34,7 +34,7 @@ export const welcomeStory = {
 
             <hr style={{ border: 'none', borderTop: '1px solid rgba(232, 212, 168, 0.3)', margin: '32px 0' }} />
 
-            <p style={{ color: 'var(--color-gold-warm)', fontSize: '18px', lineHeight: '1.8', marginBottom: '24px', fontStyle: 'italic' }}>
+            <p style={{ color: 'var(--color-gold-warm)', fontSize: '18px', lineHeight: '1.8', marginBottom: '24px', fontStyle: 'italic', textAlign: 'center' }}>
               Moreover this serves as my journey into dance
             </p>
 

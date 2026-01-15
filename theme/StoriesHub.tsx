@@ -195,9 +195,6 @@ export const StoriesHub: React.FC<StoriesHubProps> = ({ stories, hideHeader = fa
         {!hideHeader && (
           <div className="stories-hub-header">
             <h1 className="stories-hub-title">Stories</h1>
-            <p className="stories-hub-description">
-              Explore my journey, philosophy, and dance videos through these interactive stories
-            </p>
           </div>
         )}
 

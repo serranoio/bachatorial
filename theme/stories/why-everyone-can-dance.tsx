@@ -5,6 +5,7 @@ const styles = {
     lineHeight: '1.7',
     fontWeight: '300',
     letterSpacing: '0.2px',
+    textAlign: 'center' as const,
   },
   factLabel: {
     color: 'rgba(218, 112, 214, 1)',
@@ -12,6 +13,7 @@ const styles = {
     fontWeight: '700',
     marginBottom: '14px',
     textShadow: '0 0 20px rgba(186, 85, 211, 0.6)',
+    textAlign: 'center' as const,
   },
   citation: {
     color: 'rgba(200, 162, 200, 0.9)',
@@ -38,6 +40,7 @@ export const whyEveryoneCanDanceStory = {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
+          alignItems: 'center',
           minHeight: '100%',
           padding: '40px 20px'
         }}>
@@ -63,6 +66,7 @@ export const whyEveryoneCanDanceStory = {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
+          alignItems: 'center',
           minHeight: '100%',
           padding: '40px 20px'
         }}>
@@ -97,6 +101,7 @@ export const whyEveryoneCanDanceStory = {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
+          alignItems: 'center',
           minHeight: '100%',
           padding: '40px 20px'
         }}>

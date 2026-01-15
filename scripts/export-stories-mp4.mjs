@@ -46,14 +46,19 @@ async function captureAsVideo(url, options, browser) {
 
     // Wait for animations to be truly ready (GPU compositing complete)
     console.log('    ⏳ Waiting for animations to composite...');
-    await page.waitForFunction(
-      () => document.body.getAttribute('data-animations-ready') === 'true',
-      { timeout: 10000 }
-    );
+    try {
+      await page.waitForFunction(
+        () => document.body.getAttribute('data-animations-ready') === 'true',
+        { timeout: 15000 }
+      );
+      console.log('    ✓ Animations ready');
+    } catch (timeoutError) {
+      console.log('    ⚠️  Timeout waiting for animations, proceeding anyway...');
+      // Continue with export even if signal not received
+    }
 
     // Additional stabilization time for GPU to finish all compositing
-    await page.waitForTimeout(500);
-    console.log('    ✓ Animations ready');
+    await page.waitForTimeout(1000);
 
     // Now record the actual content (15 seconds)
     await page.waitForTimeout(EXPORT_CONFIG.duration);
@@ -149,29 +154,34 @@ async function main() {
 
   try {
     for (const story of stories) {
-      console.log(`\n📚 ${story.title} (${story.id})`);
+      try {
+        console.log(`\n📚 ${story.title} (${story.id})`);
 
-      const storyDir = join(process.cwd(), 'exports', story.id);
-      if (!existsSync(storyDir)) mkdirSync(storyDir, { recursive: true });
+        const storyDir = join(process.cwd(), 'exports', story.id);
+        if (!existsSync(storyDir)) mkdirSync(storyDir, { recursive: true });
 
-      // Export cover
-      await captureAsVideo(`file://${exportHTMLPath}?story=${story.id}&cover=true`, {
-        storyId: story.id,
-        frameIndex: null,
-        outputPath: join(storyDir, `${story.id}-cover.mp4`),
-      }, browser);
-
-      // Export frames
-      const frameCount = story.frames?.length || 0;
-      for (let i = 0; i < frameCount; i++) {
-        await captureAsVideo(`file://${exportHTMLPath}?story=${story.id}&frame=${i}`, {
+        // Export cover
+        await captureAsVideo(`file://${exportHTMLPath}?story=${story.id}&cover=true`, {
           storyId: story.id,
-          frameIndex: i,
-          outputPath: join(storyDir, `${story.id}-frame-${i + 1}.mp4`),
+          frameIndex: null,
+          outputPath: join(storyDir, `${story.id}-cover.mp4`),
         }, browser);
-      }
 
-      console.log(`  ✅ Complete`);
+        // Export frames
+        const frameCount = story.frames?.length || 0;
+        for (let i = 0; i < frameCount; i++) {
+          await captureAsVideo(`file://${exportHTMLPath}?story=${story.id}&frame=${i}`, {
+            storyId: story.id,
+            frameIndex: i,
+            outputPath: join(storyDir, `${story.id}-frame-${i + 1}.mp4`),
+          }, browser);
+        }
+
+        console.log(`  ✅ Complete`);
+      } catch (storyError) {
+        console.error(`  ❌ Failed to export ${story.id}: ${storyError.message}`);
+        console.log(`  ⏩ Continuing with next story...`);
+      }
     }
 
     console.log('\n✅ All stories exported!');

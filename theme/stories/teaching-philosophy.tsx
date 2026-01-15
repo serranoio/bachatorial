@@ -11,6 +11,7 @@ export const teachingPhilosophyStory = {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
+          alignItems: 'center',
           minHeight: '100%',
           padding: '40px 20px'
         }}>
@@ -18,7 +19,8 @@ export const teachingPhilosophyStory = {
             color: 'var(--color-gold-warm)',
             fontSize: '18px',
             lineHeight: '1.6',
-            marginBottom: '16px'
+            marginBottom: '16px',
+            textAlign: 'center'
           }}>
             This pertains to every aspect of life, not just dance. Through dance, I wish to sharpen my ability to distill complex topics into the basics and principles.
           </p>
@@ -26,7 +28,8 @@ export const teachingPhilosophyStory = {
             color: 'var(--color-gold-warm)',
             fontSize: '18px',
             lineHeight: '1.6',
-            marginBottom: '16px'
+            marginBottom: '16px',
+            textAlign: 'center'
           }}>
             Learn the principles of your craft, connect it using the basics of your craft, and equipped with the right tools, you can now explore the language of your craft.
           </p>
@@ -35,7 +38,8 @@ export const teachingPhilosophyStory = {
             fontSize: '18px',
             lineHeight: '1.6',
             margin: 0,
-            fontStyle: 'italic'
+            fontStyle: 'italic',
+            textAlign: 'center'
           }}>
             Learn the grammar of your craft, connect it using the vocabulary of your craft, and equipped with the right tools, you now speak the language of your craft.
           </p>
@@ -49,6 +53,7 @@ export const teachingPhilosophyStory = {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
+          alignItems: 'center',
           minHeight: '100%',
           padding: '40px 20px'
         }}>
@@ -56,7 +61,8 @@ export const teachingPhilosophyStory = {
             color: 'var(--color-gold-warm)',
             fontSize: '18px',
             lineHeight: '1.6',
-            margin: 0
+            margin: 0,
+            textAlign: 'center'
           }}>
             If you are ready, I would love to go on a journey of the principles & basics of Bachata with you. For free. There is already a basics lesson on my site. I don't know everything, I will never know everything, so this is always a journey to be partaken together.  DM me :). You are doing me a favor by keeping my basics so sharp to the point where I can teach.
           </p>

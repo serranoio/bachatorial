@@ -5,6 +5,7 @@ const styles = {
     lineHeight: '1.9',
     fontWeight: '300',
     letterSpacing: '0.2px',
+    textAlign: 'center' as const,
   },
 };
 
@@ -21,6 +22,7 @@ export const myWhyStory = {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
+          alignItems: 'center',
           minHeight: '100%',
           padding: '40px 20px'
         }}>
@@ -40,6 +42,7 @@ export const myWhyStory = {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
+          alignItems: 'center',
           minHeight: '100%',
           padding: '40px 20px'
         }}>
@@ -59,6 +62,7 @@ export const myWhyStory = {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
+          alignItems: 'center',
           minHeight: '100%',
           padding: '40px 20px'
         }}>
@@ -78,6 +82,7 @@ export const myWhyStory = {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
+          alignItems: 'center',
           minHeight: '100%',
           padding: '40px 20px'
         }}>
