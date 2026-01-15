@@ -372,3 +372,50 @@ footer a:hover {
   border-color: rgba(232, 212, 168, 0.4) !important;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
 }
+
+/* ========================================
+   MOBILE RESPONSIVE OVERRIDES
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Reset positioning for mobile menu elements */
+  .rspress-nav-menu-button,
+  .rspress-nav-hamberger,
+  [class*="hamberger"],
+  [class*="menu-button"],
+  .rspress-nav-menu,
+  .rspress-nav-screen,
+  [class*="nav-screen"],
+  [class*="mobile-menu"] {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+  }
+
+  /* Ensure hamburger icon spans are visible */
+  .rspress-nav-hamberger span,
+  [class*="hamberger"] span,
+  .rspress-nav-hamberger span::before,
+  .rspress-nav-hamberger span::after,
+  [class*="hamberger"] span::before,
+  [class*="hamberger"] span::after {
+    display: block !important;
+    width: 100% !important;
+    height: 2px !important;
+    background: var(--color-gold-light) !important;
+  }
+
+  /* Ensure mobile menu is visible when open */
+  .rspress-nav-menu,
+  .rspress-nav-screen,
+  [class*="nav-screen"],
+  [class*="mobile-menu"] {
+    display: block !important;
+    width: 100% !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+  }
+}
