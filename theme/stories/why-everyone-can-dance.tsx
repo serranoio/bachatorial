@@ -80,16 +80,7 @@ const styles = {
 
 // Helper component for frame structure
 const StoryFrame = ({ title, children }: { title: string; children: React.ReactNode }) => (
-  <div style={styles.container}>
-    <div style={styles.backgroundGradient} />
-    <div style={styles.contentWrapper}>
-      <header style={styles.headerSection}>
-        <h2 style={styles.title}>{title}</h2>
-        <div style={styles.titleUnderline} />
-      </header>
-      <div style={styles.textCard}>{children}</div>
-    </div>
-  </div>
+  children
 );
 
 export const whyEveryoneCanDanceStory = {
@@ -101,7 +92,7 @@ export const whyEveryoneCanDanceStory = {
     {
       id: 'frame-1',
       content: (
-        <StoryFrame title="The Mental Barrier">
+        <StoryFrame>
           <p style={styles.factLabel}>
             Fact: The biggest barrier to dancing is mental, not physical.
           </p>
@@ -120,7 +111,7 @@ export const whyEveryoneCanDanceStory = {
     {
       id: 'frame-2',
       content: (
-        <StoryFrame title="Life Is a Dance">
+        <StoryFrame >
           <p style={styles.factLabel}>
             Fact: Life is a dance—we've just forgotten.
           </p>
@@ -148,7 +139,7 @@ export const whyEveryoneCanDanceStory = {
     {
       id: 'frame-3',
       content: (
-        <StoryFrame title="The Universal Language">
+        <StoryFrame >
           <p style={styles.factLabel}>
             Fact: The language of dance is universal. It is within your nature.
           </p>
