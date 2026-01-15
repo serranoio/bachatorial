@@ -1,4 +1,4 @@
-export type AccentColor = 'coral' | 'gold' | 'peach' | 'bronze' | 'gold-peachy';
+export type AccentColor = 'coral' | 'gold' | 'peach' | 'bronze' | 'gold-peachy' | 'purple';
 
 export interface AnimatedBackgroundProps {
   accentColor?: AccentColor;

@@ -37,6 +37,7 @@ export const STORY_BACKGROUNDS = {
   'teaching-philosophy': OrganicGrowthBackground,
   'life-is-a-dance': FlowingSilkBackground,
   'my-why': FractalExpansionBackground,
+  'why-everyone-can-dance': OrganicGrowthBackground,
 } as const;
 
 export type StoryId = keyof typeof STORY_BACKGROUNDS;

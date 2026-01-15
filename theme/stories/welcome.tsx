@@ -25,7 +25,10 @@ export const welcomeStory = {
                 • <a href="/guide/learning/lesson.html" style={{ color: 'var(--color-gold-light)', textDecoration: 'underline' }}>Introductory Bachata Lesson</a>
               </li>
               <li style={{ marginBottom: '12px' }}>
-                • <a href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('navigate-to-story', { detail: { storyId: 'my-why' } })); }} style={{ color: 'var(--color-gold-light)', textDecoration: 'underline', cursor: 'pointer' }}>Why dance?</a>
+                • <a href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('navigate-to-story', { detail: { storyId: 'my-why' } })); }} style={{ color: 'var(--color-gold-light)', textDecoration: 'underline', cursor: 'pointer' }}>Why everyone can dance?</a>
+              </li>
+              <li style={{ marginBottom: '12px' }}>
+                • <a href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('navigate-to-story', { detail: { storyId: 'my-why' } })); }} style={{ color: 'var(--color-gold-light)', textDecoration: 'underline', cursor: 'pointer' }}>How to become the dance</a>
               </li>
             </ul>
 

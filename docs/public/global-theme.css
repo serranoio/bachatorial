@@ -52,8 +52,51 @@ nav a:hover {
 }
 
 /* Mobile menu button */
-.rspress-nav-menu-button {
+.rspress-nav-menu-button,
+.rspress-nav-hamberger,
+[class*="hamberger"],
+[class*="menu-button"] {
   color: var(--color-gold-light) !important;
+  background: transparent !important;
+}
+
+/* Mobile menu dropdown */
+.rspress-nav-menu,
+.rspress-nav-screen,
+[class*="nav-screen"],
+[class*="mobile-menu"] {
+  background: rgba(21, 21, 21, 0.98) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(232, 212, 168, 0.2) !important;
+}
+
+/* Mobile menu items */
+.rspress-nav-menu a,
+.rspress-nav-screen a,
+[class*="nav-screen"] a {
+  color: var(--color-gold-warm) !important;
+  padding: 12px 20px !important;
+  display: block !important;
+  transition: all 0.3s ease !important;
+}
+
+.rspress-nav-menu a:hover,
+.rspress-nav-screen a:hover {
+  color: var(--color-coral) !important;
+  background: rgba(255, 155, 127, 0.1) !important;
+}
+
+/* Mobile submenu items */
+.rspress-nav-menu .rspress-nav-group-items,
+[class*="nav-group-items"] {
+  background: rgba(0, 0, 0, 0.3) !important;
+  padding-left: 16px !important;
+}
+
+/* Ensure hamburger icon is visible */
+.rspress-nav-hamberger span,
+[class*="hamberger"] span {
+  background: var(--color-gold-light) !important;
 }
 
 /* ========================================

@@ -7,6 +7,8 @@ import './shared-styles.css';
 
 interface StoriesHubProps {
   stories: StoryData[];
+  hideHeader?: boolean;
+  hideCardText?: boolean;
 }
 
 const getAccentColorValue = (color: AccentColor): string => {
@@ -24,7 +26,7 @@ const getAccentColorValue = (color: AccentColor): string => {
   }
 };
 
-export const StoriesHub: React.FC<StoriesHubProps> = ({ stories }) => {
+export const StoriesHub: React.FC<StoriesHubProps> = ({ stories, hideHeader = false, hideCardText = false }) => {
   const [activeStoryIndex, setActiveStoryIndex] = useState<number | null>(null);
 
   const handleStoryClick = (index: number) => {
@@ -190,12 +192,14 @@ export const StoriesHub: React.FC<StoriesHubProps> = ({ stories }) => {
       `}</style>
 
       <div className="stories-hub-container">
-        <div className="stories-hub-header">
-          <h1 className="stories-hub-title">Stories</h1>
-          <p className="stories-hub-description">
-            Explore my journey, philosophy, and dance videos through these interactive stories
-          </p>
-        </div>
+        {!hideHeader && (
+          <div className="stories-hub-header">
+            <h1 className="stories-hub-title">Stories</h1>
+            <p className="stories-hub-description">
+              Explore my journey, philosophy, and dance videos through these interactive stories
+            </p>
+          </div>
+        )}
 
         <div className="stories-grid">
           {stories.map((story, index) => {
@@ -227,10 +231,12 @@ export const StoriesHub: React.FC<StoriesHubProps> = ({ stories }) => {
                     />
                   )}
                 </ProportionalSizingProvider>
-                <div className="story-card-content">
-                  <h3 className="story-card-title">{story.title}</h3>
-                  <p className="story-card-subtitle">{story.subtitle}</p>
-                </div>
+                {!hideCardText && (
+                  <div className="story-card-content">
+                    <h3 className="story-card-title">{story.title}</h3>
+                    <p className="story-card-subtitle">{story.subtitle}</p>
+                  </div>
+                )}
               </div>
             );
           })}

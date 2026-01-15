@@ -85,6 +85,22 @@ export const getColorPalette = (accent: AccentColor): ColorPalette => {
         small2: 'rgba(197, 168, 122, 0.25)',
         small2_40: 'rgba(197, 168, 122, 0.14)',
       };
+    case 'purple':
+      return {
+        primary: 'rgba(186, 85, 211, 0.38)',
+        primary30: 'rgba(186, 85, 211, 0.23)',
+        primary50: 'rgba(186, 85, 211, 0.13)',
+        secondary: 'rgba(218, 112, 214, 0.35)',
+        secondary30: 'rgba(218, 112, 214, 0.19)',
+        secondary50: 'rgba(218, 112, 214, 0.1)',
+        tertiary: 'rgba(147, 112, 219, 0.31)',
+        tertiary30: 'rgba(147, 112, 219, 0.18)',
+        tertiary50: 'rgba(147, 112, 219, 0.08)',
+        small1: 'rgba(200, 162, 200, 0.29)',
+        small1_40: 'rgba(200, 162, 200, 0.16)',
+        small2: 'rgba(176, 132, 200, 0.25)',
+        small2_40: 'rgba(176, 132, 200, 0.14)',
+      };
   }
 };
 

@@ -9,7 +9,8 @@
     "preview": "rspress preview",
     "preview:stories": "bun run scripts/serve-stories.ts",
     "export:stories": "node scripts/export-stories-mp4.mjs",
-    "retest": "rm -rf exports && mkdir exports && node scripts/export-stories-mp4.mjs"
+    "retest": "rm -rf exports && mkdir exports && node scripts/export-stories-mp4.mjs",
+    "move-to-photos": "bash scripts/move-exports-to-photos.sh"
   },
   "dependencies": {
     "rspress": "^1.40.2"

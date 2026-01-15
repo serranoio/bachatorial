@@ -46,5 +46,34 @@ export default defineConfig({
       { name: 'twitter:image', content: 'https://bachatorial.com/logo.png' },
     ],
   ],
-  themeConfig: {},
+  themeConfig: {
+    nav: [
+      {
+        text: 'Home',
+        link: '/',
+      },
+      {
+        text: 'Learning',
+        items: [
+          {
+            text: 'Your First Lesson',
+            link: '/guide/learning/lesson',
+          },
+        ],
+      },
+      {
+        text: 'Events',
+        items: [
+          {
+            text: 'Upcoming Events',
+            link: '/guide/events/upcoming',
+          },
+          {
+            text: 'Event Calendar',
+            link: '/guide/events/calendar',
+          },
+        ],
+      },
+    ],
+  },
 });
