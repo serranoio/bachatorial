@@ -103,6 +103,10 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
           height: 100%;
           background: ${baseGradient};
           overflow: hidden;
+          /* GPU acceleration */
+          will-change: transform;
+          transform: translateZ(0);
+          backface-visibility: hidden;
         }
 
         .branch {
@@ -113,6 +117,9 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
           transform-origin: bottom center;
           pointer-events: none;
           opacity: 0.3;
+          /* GPU acceleration */
+          will-change: transform, opacity;
+          backface-visibility: hidden;
         }
 
         .bloom {
@@ -120,6 +127,9 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
           border-radius: 50%;
           pointer-events: none;
           box-shadow: 0 0 ${scale(8)}px currentColor;
+          /* GPU acceleration */
+          will-change: transform, opacity;
+          backface-visibility: hidden;
         }
 
         .root-system {
@@ -131,6 +141,9 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
           pointer-events: none;
           opacity: 0.2;
           animation: rootPulse 8s ease-in-out infinite alternate;
+          /* GPU acceleration */
+          will-change: transform, filter, opacity;
+          backface-visibility: hidden;
         }
 
         .growth-ring {
@@ -139,6 +152,9 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
           border: 1px solid currentColor;
           pointer-events: none;
           opacity: 0.15;
+          /* GPU acceleration */
+          will-change: transform, opacity;
+          backface-visibility: hidden;
         }
 
         .organic-vein {
@@ -149,6 +165,9 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
           transform-origin: left center;
           pointer-events: none;
           animation: organicFlow 6s ease-in-out infinite alternate;
+          /* GPU acceleration */
+          will-change: transform, opacity;
+          backface-visibility: hidden;
         }
       `}</style>
 

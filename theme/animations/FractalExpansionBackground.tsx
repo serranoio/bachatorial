@@ -137,6 +137,10 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
           height: 100%;
           background: ${baseGradient};
           overflow: hidden;
+          /* GPU acceleration */
+          will-change: transform;
+          transform: translateZ(0);
+          backface-visibility: hidden;
         }
 
         .expansion-ring {
@@ -146,6 +150,9 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
           border-radius: 50%;
           border: 1px solid currentColor;
           pointer-events: none;
+          /* GPU acceleration */
+          will-change: transform, opacity;
+          backface-visibility: hidden;
         }
 
         .expansion-ring-geometric {
@@ -154,6 +161,9 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
           top: 50%;
           pointer-events: none;
           clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+          /* GPU acceleration */
+          will-change: transform, opacity;
+          backface-visibility: hidden;
         }
 
         .fractal-point {
@@ -163,6 +173,9 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
           border-radius: 50%;
           pointer-events: none;
           box-shadow: 0 0 8px currentColor;
+          /* GPU acceleration */
+          will-change: transform, opacity;
+          backface-visibility: hidden;
         }
 
         .mandala-petal {
@@ -173,6 +186,9 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
           border-radius: 50%;
           transform-origin: 0% 50%;
           pointer-events: none;
+          /* GPU acceleration */
+          will-change: transform, opacity;
+          backface-visibility: hidden;
         }
 
         .center-glow {
@@ -182,6 +198,9 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
           border-radius: 50%;
           pointer-events: none;
           animation: centerGlow 12s ease-in-out infinite alternate;
+          /* GPU acceleration */
+          will-change: transform, filter, opacity;
+          backface-visibility: hidden;
         }
 
         .geometric-layer {
@@ -189,6 +208,9 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
           left: 50%;
           top: 50%;
           pointer-events: none;
+          /* GPU acceleration */
+          will-change: transform, opacity;
+          backface-visibility: hidden;
         }
       `}</style>
 

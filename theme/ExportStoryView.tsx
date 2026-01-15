@@ -22,15 +22,26 @@ export const ExportStoryView: React.FC<ExportStoryViewProps> = ({
   const [isReady, setIsReady] = useState(false);
   const BackgroundComponent = STORY_BACKGROUNDS[story.id as StoryId];
 
-  // Signal when component is fully mounted and ready to capture
+  // Signal when component is fully mounted and animations are ready to capture
   useEffect(() => {
-    // Give the canvas animation a moment to initialize
-    const timer = setTimeout(() => {
-      setIsReady(true);
-      // Add data attribute to body so Playwright knows we're ready
-      document.body.setAttribute('data-export-ready', 'true');
-    }, 500);
-    return () => clearTimeout(timer);
+    // Wait for multiple animation frames to ensure:
+    // 1. React has rendered the DOM
+    // 2. CSS animations have started
+    // 3. GPU has composited blur filters and gradients
+    // 4. All paint cycles are complete
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          // Additional delay to ensure GPU compositing of blur filters is complete
+          setTimeout(() => {
+            setIsReady(true);
+            // Signal to Playwright that animations are ready for recording
+            document.body.setAttribute('data-animations-ready', 'true');
+            document.body.setAttribute('data-export-ready', 'true');
+          }, 1000); // 1s to allow GPU to composite heavy blur filters
+        });
+      });
+    });
   }, []);
 
   const currentFrame = story.frames[frameIndex];

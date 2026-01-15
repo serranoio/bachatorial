@@ -37,14 +37,25 @@ async function captureAsVideo(url, options, browser) {
   const page = await context.newPage();
 
   try {
-    await page.goto(url, { waitUntil: 'load', timeout: 30000 });
+    await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
 
     await page.evaluate(() => {
       const root = document.getElementById('root');
       if (root) root.style.transform = 'none';
     });
 
-    await page.waitForTimeout(1000);
+    // Wait for animations to be truly ready (GPU compositing complete)
+    console.log('    ⏳ Waiting for animations to composite...');
+    await page.waitForFunction(
+      () => document.body.getAttribute('data-animations-ready') === 'true',
+      { timeout: 10000 }
+    );
+
+    // Additional stabilization time for GPU to finish all compositing
+    await page.waitForTimeout(500);
+    console.log('    ✓ Animations ready');
+
+    // Now record the actual content (15 seconds)
     await page.waitForTimeout(EXPORT_CONFIG.duration);
 
     await page.close();
@@ -122,7 +133,19 @@ async function main() {
   const exportHTMLPath = join(process.cwd(), 'export-real.html');
 
   // Launch browser ONCE and reuse for all videos
-  const browser = await chromium.launch({ headless: true });
+  // Enable GPU hardware acceleration for better gradient rendering
+  const browser = await chromium.launch({
+    headless: true,
+    args: [
+      '--enable-gpu',
+      '--use-gl=angle',
+      '--use-angle=default',
+      '--enable-accelerated-2d-canvas',
+      '--enable-accelerated-video-decode',
+      '--disable-gpu-driver-bug-workarounds',
+      '--enable-features=VaapiVideoDecoder',
+    ],
+  });
 
   try {
     for (const story of stories) {

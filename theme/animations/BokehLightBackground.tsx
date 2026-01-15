@@ -130,6 +130,10 @@ export const BokehLightBackground: React.FC<AnimatedBackgroundProps> = ({
           height: 100%;
           background: ${baseGradient};
           overflow: hidden;
+          /* GPU acceleration */
+          will-change: transform;
+          transform: translateZ(0);
+          backface-visibility: hidden;
         }
 
         .bokeh-orb {
@@ -137,6 +141,9 @@ export const BokehLightBackground: React.FC<AnimatedBackgroundProps> = ({
           border-radius: 50%;
           pointer-events: none;
           mix-blend-mode: screen;
+          /* GPU acceleration */
+          will-change: transform, filter, opacity;
+          backface-visibility: hidden;
         }
 
         .bokeh-layer-0 {

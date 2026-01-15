@@ -378,44 +378,53 @@ footer a:hover {
    ======================================== */
 
 @media (max-width: 768px) {
-  /* Reset positioning for mobile menu elements */
-  .rspress-nav-menu-button,
+  /* Ensure hamburger icon is visible and properly sized */
   .rspress-nav-hamberger,
-  [class*="hamberger"],
-  [class*="menu-button"],
-  .rspress-nav-menu,
-  .rspress-nav-screen,
-  [class*="nav-screen"],
-  [class*="mobile-menu"] {
-    position: static !important;
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    transform: none !important;
+  [class*="hamberger"] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
   }
 
-  /* Ensure hamburger icon spans are visible */
+  /* Hamburger icon lines */
   .rspress-nav-hamberger span,
-  [class*="hamberger"] span,
+  [class*="hamberger"] span {
+    display: block !important;
+    width: 20px !important;
+    height: 2px !important;
+    background: var(--color-gold-light) !important;
+    position: relative !important;
+  }
+
   .rspress-nav-hamberger span::before,
   .rspress-nav-hamberger span::after,
   [class*="hamberger"] span::before,
   [class*="hamberger"] span::after {
+    content: '' !important;
     display: block !important;
-    width: 100% !important;
+    width: 20px !important;
     height: 2px !important;
     background: var(--color-gold-light) !important;
+    position: absolute !important;
+    left: 0 !important;
   }
 
-  /* Ensure mobile menu is visible when open */
+  .rspress-nav-hamberger span::before,
+  [class*="hamberger"] span::before {
+    top: -6px !important;
+  }
+
+  .rspress-nav-hamberger span::after,
+  [class*="hamberger"] span::after {
+    top: 6px !important;
+  }
+
+  /* Mobile menu visibility */
   .rspress-nav-menu,
   .rspress-nav-screen,
-  [class*="nav-screen"],
-  [class*="mobile-menu"] {
-    display: block !important;
-    width: 100% !important;
-    max-height: none !important;
-    overflow-y: auto !important;
+  [class*="nav-screen"] {
+    z-index: 100 !important;
   }
 }

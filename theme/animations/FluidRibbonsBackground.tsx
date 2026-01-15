@@ -101,6 +101,10 @@ export const FluidRibbonsBackground: React.FC<AnimatedBackgroundProps> = ({
           background: ${baseGradient};
           background-size: 400% 400%;
           overflow: hidden;
+          /* GPU acceleration */
+          will-change: transform;
+          transform: translateZ(0);
+          backface-visibility: hidden;
         }
 
         .ribbon {
@@ -110,6 +114,9 @@ export const FluidRibbonsBackground: React.FC<AnimatedBackgroundProps> = ({
           border-radius: 50%;
           pointer-events: none;
           mix-blend-mode: screen;
+          /* GPU acceleration */
+          will-change: transform, filter, opacity;
+          backface-visibility: hidden;
         }
 
         .ribbon-wave {

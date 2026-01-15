@@ -124,6 +124,10 @@ export const ParticleConstellationBackground: React.FC<AnimatedBackgroundProps> 
           height: 100%;
           background: ${baseGradient};
           overflow: hidden;
+          /* GPU acceleration */
+          will-change: transform;
+          transform: translateZ(0);
+          backface-visibility: hidden;
         }
 
         .particle {
@@ -131,6 +135,10 @@ export const ParticleConstellationBackground: React.FC<AnimatedBackgroundProps> 
           border-radius: 50%;
           pointer-events: none;
           box-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+          /* GPU acceleration */
+          will-change: transform, opacity;
+          transform: translateZ(0);
+          backface-visibility: hidden;
         }
 
         .constellation-line {
@@ -141,6 +149,10 @@ export const ParticleConstellationBackground: React.FC<AnimatedBackgroundProps> 
           transform-origin: left center;
           pointer-events: none;
           animation: constellationGlow 4s ease-in-out infinite alternate;
+          /* GPU acceleration */
+          will-change: opacity;
+          transform: translateZ(0);
+          backface-visibility: hidden;
         }
 
         .central-glow {
@@ -151,6 +163,9 @@ export const ParticleConstellationBackground: React.FC<AnimatedBackgroundProps> 
           border-radius: 50%;
           pointer-events: none;
           opacity: 0.3;
+          /* GPU acceleration */
+          will-change: filter, opacity;
+          backface-visibility: hidden;
         }
       `}</style>
 

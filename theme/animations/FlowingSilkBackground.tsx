@@ -129,6 +129,10 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
           height: 100%;
           background: ${baseGradient};
           overflow: hidden;
+          /* GPU acceleration */
+          will-change: transform;
+          transform: translateZ(0);
+          backface-visibility: hidden;
         }
 
         .silk-wave {
@@ -136,6 +140,9 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
           width: 100%;
           pointer-events: none;
           opacity: 0.3;
+          /* GPU acceleration */
+          will-change: transform, filter, opacity;
+          backface-visibility: hidden;
         }
 
         .silk-ribbon {
@@ -144,18 +151,27 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
           background: linear-gradient(90deg, transparent, currentColor 20%, currentColor 80%, transparent);
           transform-origin: center;
           pointer-events: none;
+          /* GPU acceleration */
+          will-change: transform, opacity;
+          backface-visibility: hidden;
         }
 
         .flow-particle {
           position: absolute;
           border-radius: 50%;
           pointer-events: none;
+          /* GPU acceleration */
+          will-change: transform, opacity;
+          backface-visibility: hidden;
         }
 
         .silk-shimmer {
           position: absolute;
           border-radius: 50%;
           pointer-events: none;
+          /* GPU acceleration */
+          will-change: filter, opacity;
+          backface-visibility: hidden;
         }
 
         .central-flow {
@@ -167,6 +183,9 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
           pointer-events: none;
           opacity: 0.25;
           animation: undulate 8s ease-in-out infinite alternate;
+          /* GPU acceleration */
+          will-change: transform, filter, opacity;
+          backface-visibility: hidden;
         }
       `}</style>
 

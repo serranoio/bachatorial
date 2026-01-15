@@ -85,55 +85,70 @@ const Layout = () => (
           </div>
 
           {/* Scattered Fact Statements */}
-          <p
-            style={{
-              position: "absolute",
-              top: "180px",
-              left: "5%",
-              fontSize: "20px",
-              color: "var(--color-gold-warm, #D4AF88)",
-              maxWidth: "400px",
-              lineHeight: "1.6",
-              fontFamily: "Georgia, 'Times New Roman', serif",
-              transform: "rotate(-2deg)",
-              opacity: 0.9,
-            }}
-          >
-            <strong style={{ color: "var(--color-gold-light, #E8D4A8)" }}>Fact:</strong> The biggest barrier to dancing is <strong>mental</strong>, not physical.
-          </p>
-          <p
-            style={{
-              position: "absolute",
-              top: "320px",
-              right: "8%",
-              fontSize: "20px",
-              color: "var(--color-gold-warm, #D4AF88)",
-              maxWidth: "380px",
-              lineHeight: "1.6",
-              fontFamily: "Georgia, 'Times New Roman', serif",
-              transform: "rotate(1deg)",
-              opacity: 0.9,
-            }}
-          >
-            <strong style={{ color: "var(--color-gold-light, #E8D4A8)" }}>Fact:</strong> Life is a dance—we've just forgotten.
-          </p>
-          <p
-            style={{
-              position: "absolute",
-              top: "460px",
-              left: "10%",
-              fontSize: "20px",
-              color: "var(--color-gold-warm, #D4AF88)",
-              maxWidth: "420px",
-              lineHeight: "1.6",
-              fontFamily: "Georgia, 'Times New Roman', serif",
-              transform: "rotate(-1deg)",
-              opacity: 0.9,
-            }}
-          >
-            <strong style={{ color: "var(--color-gold-light, #E8D4A8)" }}>Fact:</strong>             The language of dance is universal. It defies gender and age boundaries.
- 
-          </p>
+          <div className="facts-container">
+            <p className="fact fact-1">
+              <strong style={{ color: "var(--color-gold-light, #E8D4A8)" }}>Fact:</strong> The biggest barrier to dancing is <strong>mental</strong>, not physical.
+            </p>
+            <p className="fact fact-2">
+              <strong style={{ color: "var(--color-gold-light, #E8D4A8)" }}>Fact:</strong> Life is a dance—we've just forgotten.
+            </p>
+            <p className="fact fact-3">
+              <strong style={{ color: "var(--color-gold-light, #E8D4A8)" }}>Fact:</strong> The language of dance is universal. It defies gender and age boundaries.
+            </p>
+          </div>
+          <style>{`
+            .fact {
+              font-size: 20px;
+              color: var(--color-gold-warm, #D4AF88);
+              line-height: 1.6;
+              font-family: Georgia, 'Times New Roman', serif;
+              opacity: 0.9;
+              position: absolute;
+            }
+
+            /* Desktop - absolutely positioned and scattered */
+            @media (min-width: 769px) {
+              .fact-1 {
+                top: 180px;
+                left: 5%;
+                max-width: 400px;
+                transform: rotate(-2deg);
+              }
+
+              .fact-2 {
+                top: 320px;
+                right: 8%;
+                max-width: 380px;
+                transform: rotate(1deg);
+              }
+
+              .fact-3 {
+                top: 460px;
+                left: 10%;
+                max-width: 420px;
+                transform: rotate(-1deg);
+              }
+            }
+
+            /* Mobile - relatively positioned and stacked */
+            @media (max-width: 768px) {
+              .facts-container {
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+                margin-top: 40px;
+              }
+
+              .fact {
+                position: relative;
+                max-width: 100%;
+                transform: none;
+                left: auto;
+                right: auto;
+                top: auto;
+              }
+            }
+          `}</style>
         </div>
         <StoriesHub stories={storyData} />
       </div>
