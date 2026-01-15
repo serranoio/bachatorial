@@ -8,7 +8,7 @@
    ======================================== */
 
 /* Navigation container */
-.rspress-nav,
+/* .rspress-nav,
 nav.rspress-nav,
 .rspress-nav-container,
 [class*="nav"] {
@@ -17,8 +17,7 @@ nav.rspress-nav,
   -webkit-backdrop-filter: blur(20px) !important;
   border-bottom: 1px solid rgba(232, 212, 168, 0.2) !important;
 }
-
-/* Navigation links */
+/* 
 .rspress-nav a,
 .rspress-nav-menu a,
 nav a {
@@ -33,7 +32,6 @@ nav a:hover {
   text-shadow: 0 0 8px rgba(255, 155, 127, 0.3) !important;
 }
 
-/* Navigation title/logo */
 .rspress-nav-title,
 .rspress-logo-text {
   background-image: linear-gradient(90deg, var(--color-gold-light) 0%, var(--color-gold-lighter) 50%, var(--color-gold-light) 100%) !important;
@@ -44,14 +42,12 @@ nav a:hover {
   font-weight: 700 !important;
 }
 
-/* Active navigation item */
 .rspress-nav a.active,
 .rspress-nav-menu a.active {
   color: var(--color-coral) !important;
   border-bottom: 2px solid var(--color-coral) !important;
 }
 
-/* Mobile menu button */
 .rspress-nav-menu-button,
 .rspress-nav-hamberger,
 [class*="hamberger"],
@@ -62,7 +58,6 @@ nav a:hover {
   background: transparent !important;
 }
 
-/* Hamburger icon lines - target the actual div elements */
 [class*="navHamburger"] > div > div,
 [class*="top_"],
 [class*="middle_"],
@@ -70,7 +65,6 @@ nav a:hover {
   background-color: var(--color-gold-light) !important;
 }
 
-/* Mobile menu dropdown */
 .rspress-nav-menu,
 .rspress-nav-screen,
 .navScreen,
@@ -82,7 +76,6 @@ nav a:hover {
   border: 1px solid rgba(232, 212, 168, 0.2) !important;
 }
 
-/* Mobile menu items */
 .rspress-nav-menu a,
 .rspress-nav-screen a,
 .navScreen a,
@@ -104,16 +97,12 @@ nav a:hover {
   background: rgba(255, 155, 127, 0.1) !important;
 }
 
-/* Mobile submenu items */
 .rspress-nav-menu .rspress-nav-group-items,
 [class*="nav-group-items"] {
   background: rgba(0, 0, 0, 0.3) !important;
   padding-left: 16px !important;
 }
 
-/* ========================================
-   SIDEBAR STYLES
-   ======================================== */
 
 .rspress-sidebar {
   background: rgba(255, 255, 255, 0.03) !important;
@@ -135,8 +124,9 @@ nav a:hover {
   color: var(--color-gold-light) !important;
   background: rgba(232, 212, 168, 0.15) !important;
   border-left: 3px solid var(--color-coral) !important;
-}
+} 
 
+ */
 /* ========================================
    CONTENT AREA STYLES
    ======================================== */
