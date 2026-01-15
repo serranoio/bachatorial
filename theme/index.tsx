@@ -60,6 +60,18 @@ const Layout = () => (
             </h1>
             <p
               style={{
+                fontSize: "24px",
+                fontStyle: "italic",
+                color: "var(--color-gold-warm, #D4AF88)",
+                margin: "0 0 24px 0",
+                opacity: 0.8,
+                fontFamily: "Georgia, 'Times New Roman', serif",
+              }}
+            >
+              An intro for why everyone can dance, stylized in Bachata 
+            </p>
+            <p
+              style={{
                 fontSize: "14px",
                 fontStyle: "italic",
                 color: "var(--color-gold-warm, #D4AF88)",

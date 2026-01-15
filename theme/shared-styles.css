@@ -1,0 +1,39 @@
+/**
+ * Shared styles for all story views
+ * Ensures consistent styling across Story viewer, ExportStoryView, and other components
+ */
+
+/* CSS Variables */
+:root {
+  --color-gold-light: #E8D4A8;
+  --color-gold-lighter: #FFE4B8;
+  --color-gold-medium: #C19A6B;
+  --color-gold-dark: #D4A574;
+  --color-gold-muted: #C5A87A;
+  --color-gold-warm: #E5C8A0;
+  --color-gold-peachy: #DCBE8C;
+  --color-coral: #FF9B7F;
+  --color-coral-light: #FFB89D;
+  --color-peach: #FFB496;
+  --color-bronze: #D4A574;
+}
+
+/* Font Family */
+* {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+/* Reset for consistency */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Ensure all text uses serif font */
+body,
+h1, h2, h3, h4, h5, h6,
+p, span, div,
+button, input, textarea, select {
+  font-family: Georgia, "Times New Roman", serif;
+}

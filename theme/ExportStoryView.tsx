@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StoryData } from './Story';
 import { STORY_BACKGROUNDS, StoryId } from './animations';
 import { ProportionalSizingProvider } from './contexts/ProportionalSizingContext';
+import './shared-styles.css';
 
 interface ExportStoryViewProps {
   story: StoryData;

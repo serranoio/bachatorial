@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AccentColor, STORY_BACKGROUNDS, StoryId } from './animations';
 import { ProportionalSizingProvider } from './contexts/ProportionalSizingContext';
+import './shared-styles.css';
 
 export interface StoryFrame {
   id: string;

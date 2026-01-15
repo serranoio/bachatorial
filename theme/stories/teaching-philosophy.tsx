@@ -1,7 +1,7 @@
 export const teachingPhilosophyStory = {
   id: 'teaching-philosophy',
-  title: 'Teaching Philosophy',
-  subtitle: 'How I approach teaching',
+  title: 'Why Teach',
+  subtitle: 'Why I want to teach',
   accentColor: 'bronze',
   frames: [
     {
@@ -58,7 +58,7 @@ export const teachingPhilosophyStory = {
             lineHeight: '1.6',
             margin: 0
           }}>
-            If you are ready, I would love to go on a journey of the principles & basics of Bachata with you. For free. I don't know everything, I will never know everything, so this is always a journey to be partaken together.  DM me :). You are doing me a favor by keeping my basics so sharp to the point where I can teach.
+            If you are ready, I would love to go on a journey of the principles & basics of Bachata with you. For free. There is already a basics lesson on my site. I don't know everything, I will never know everything, so this is always a journey to be partaken together.  DM me :). You are doing me a favor by keeping my basics so sharp to the point where I can teach.
           </p>
         </div>
       ),

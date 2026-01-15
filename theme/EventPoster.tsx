@@ -646,7 +646,7 @@ export const EventPoster: React.FC<EventPosterProps> = ({
             gap: '12px'
           }}>
             <a
-              href={resourcesLink}
+              href={"calendar.html"}
               className="event-button-secondary"
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-2px)';

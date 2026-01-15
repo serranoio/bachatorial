@@ -6,16 +6,18 @@ import { repsStory } from './reps';
 import { teachingPhilosophyStory } from './teaching-philosophy';
 import { lifeIsADanceStory } from './life-is-a-dance';
 import { myWhyStory } from './my-why';
+import { whyEveryoneCanDanceStory } from './why-everyone-can-dance';
 
 export const storyData = [
-  danceVideosStory,
   welcomeStory,
+  whyEveryoneCanDanceStory,
   aboutMeStory,
-  philosophyStory,
   teachingPhilosophyStory,
-  // lifeIsADanceStory,
   myWhyStory,
-  repsStory,
+  philosophyStory,
+  // danceVideosStory,
+  // repsStory,
+  // lifeIsADanceStory,
 ];
 
 export {
@@ -27,4 +29,5 @@ export {
   teachingPhilosophyStory,
   lifeIsADanceStory,
   myWhyStory,
+  whyEveryoneCanDanceStory,
 };

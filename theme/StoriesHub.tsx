@@ -3,6 +3,7 @@ import { Story, StoryData } from './Story';
 import { AccentColor } from './animations';
 import { STORY_BACKGROUNDS, StoryId } from './animations';
 import { ProportionalSizingProvider } from './contexts/ProportionalSizingContext';
+import './shared-styles.css';
 
 interface StoriesHubProps {
   stories: StoryData[];
