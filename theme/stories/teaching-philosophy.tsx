@@ -17,7 +17,7 @@ export const teachingPhilosophyStory = {
         }}>
           <p style={{
             color: 'var(--color-gold-warm)',
-            fontSize: '18px',
+            fontSize: '24px',
             lineHeight: '1.6',
             marginBottom: '16px',
             textAlign: 'center'
@@ -26,7 +26,7 @@ export const teachingPhilosophyStory = {
           </p>
           <p style={{
             color: 'var(--color-gold-warm)',
-            fontSize: '18px',
+            fontSize: '24px',
             lineHeight: '1.6',
             marginBottom: '16px',
             textAlign: 'center'
@@ -35,7 +35,7 @@ export const teachingPhilosophyStory = {
           </p>
           <p style={{
             color: 'var(--color-gold-warm)',
-            fontSize: '18px',
+            fontSize: '24px',
             lineHeight: '1.6',
             margin: 0,
             fontStyle: 'italic',
@@ -59,7 +59,7 @@ export const teachingPhilosophyStory = {
         }}>
           <p style={{
             color: 'var(--color-gold-warm)',
-            fontSize: '18px',
+            fontSize: '24px',
             lineHeight: '1.6',
             margin: 0,
             textAlign: 'center'

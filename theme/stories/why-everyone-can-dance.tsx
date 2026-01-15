@@ -1,7 +1,7 @@
 const styles = {
   paragraph: {
     color: 'var(--color-gold-warm)',
-    fontSize: '17px',
+    fontSize: '24px',
     lineHeight: '1.7',
     fontWeight: '300',
     letterSpacing: '0.2px',
@@ -9,7 +9,7 @@ const styles = {
   },
   factLabel: {
     color: 'rgba(218, 112, 214, 1)',
-    fontSize: '18px',
+    fontSize: '28px',
     fontWeight: '700',
     marginBottom: '14px',
     textShadow: '0 0 20px rgba(186, 85, 211, 0.6)',
@@ -17,7 +17,7 @@ const styles = {
   },
   citation: {
     color: 'rgba(200, 162, 200, 0.9)',
-    fontSize: '14px',
+    fontSize: '20px',
     lineHeight: '1.6',
     fontStyle: 'italic',
     marginTop: '20px',

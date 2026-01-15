@@ -36,7 +36,7 @@ export const lifeIsADanceStory = {
             }} />
             <h2 style={{
               color: 'var(--color-gold-lighter)',
-              fontSize: '48px',
+              fontSize: '64px',
               marginBottom: '32px',
               textShadow: '0 4px 20px rgba(232, 212, 168, 0.6), 0 0 40px rgba(232, 212, 168, 0.3)',
               fontWeight: '300',
@@ -55,7 +55,7 @@ export const lifeIsADanceStory = {
             }}>
               <p style={{
                 color: 'var(--color-gold-warm)',
-                fontSize: '20px',
+                fontSize: '26px',
                 lineHeight: '1.8',
                 margin: 0,
                 fontWeight: '300'

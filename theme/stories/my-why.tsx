@@ -1,7 +1,7 @@
 const styles = {
   paragraph: {
     color: 'var(--color-gold-warm)',
-    fontSize: '19px',
+    fontSize: '26px',
     lineHeight: '1.9',
     fontWeight: '300',
     letterSpacing: '0.2px',

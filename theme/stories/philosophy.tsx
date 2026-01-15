@@ -19,7 +19,7 @@ export const philosophyStory = {
         }}>
           <p style={{
             color: 'var(--color-gold-warm)',
-            fontSize: '24px',
+            fontSize: '28px',
             lineHeight: '1.8',
             marginBottom: '32px'
           }}>
@@ -27,7 +27,7 @@ export const philosophyStory = {
           </p>
           <p style={{
             color: 'var(--color-gold-warm)',
-            fontSize: '24px',
+            fontSize: '28px',
             lineHeight: '1.8',
             marginBottom: '32px'
           }}>
@@ -35,7 +35,7 @@ export const philosophyStory = {
           </p>
           <p style={{
             color: 'var(--color-gold-warm)',
-            fontSize: '24px',
+            fontSize: '28px',
             lineHeight: '1.8',
             marginBottom: '32px'
           }}>
@@ -43,7 +43,7 @@ export const philosophyStory = {
           </p>
           <p style={{
             color: 'var(--color-gold-warm)',
-            fontSize: '24px',
+            fontSize: '28px',
             lineHeight: '1.8'
           }}>
             Because only by becoming aware of my flaws can become a better version of myself.

@@ -6,6 +6,9 @@ import { StoriesHub } from "./StoriesHub";
 import { storyData } from "./storyData";
 import { GlobalAnimatedBackground } from "./GlobalAnimatedBackground";
 
+// Import all CSS styles - ensures consistent styling in both dev and production builds
+import "./styles";
+
 // Show all props below
 const Layout = () => (
   <Theme.Layout

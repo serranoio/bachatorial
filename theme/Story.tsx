@@ -24,6 +24,8 @@ interface StoryProps {
 export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
   const [currentFrameIndex, setCurrentFrameIndex] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
+  const touchStartY = useRef<number>(0);
+  const touchStartTime = useRef<number>(0);
 
   // Get the appropriate background component for this story
   const BackgroundComponent = STORY_BACKGROUNDS[story.id as StoryId];
@@ -64,7 +66,36 @@ export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
     }
   };
 
-  const handleTapZone = (zone: 'left' | 'right') => {
+  const handleTapZone = (zone: 'left' | 'right', event: React.MouseEvent | React.TouchEvent) => {
+    // Check if this is a touch event
+    if ('touches' in event) {
+      return; // Let touch events be handled by touch handlers
+    }
+
+    if (zone === 'left') {
+      handlePreviousFrame();
+    } else {
+      handleNextFrame();
+    }
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartY.current = e.touches[0].clientY;
+    touchStartTime.current = Date.now();
+  };
+
+  const handleTouchEnd = (zone: 'left' | 'right', e: React.TouchEvent) => {
+    const touchEndY = e.changedTouches[0].clientY;
+    const touchEndTime = Date.now();
+    const deltaY = Math.abs(touchEndY - touchStartY.current);
+    const deltaTime = touchEndTime - touchStartTime.current;
+
+    // If the touch moved more than 10px vertically or took longer than 200ms, it's likely a scroll
+    if (deltaY > 10 || deltaTime > 200) {
+      return; // Don't navigate, user was scrolling
+    }
+
+    // Otherwise, treat it as a tap
     if (zone === 'left') {
       handlePreviousFrame();
     } else {
@@ -263,7 +294,7 @@ export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
           position: absolute;
           top: 80px;
           bottom: 0;
-          width: 33.333%;
+          width: 25%;
           z-index: 5;
           cursor: pointer;
           -webkit-tap-highlight-color: transparent;
@@ -274,7 +305,7 @@ export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
         }
 
         .story-tap-zone-right {
-          right: 0;
+          right: 10px;
         }
 
         @media (min-width: 768px) {
@@ -325,8 +356,18 @@ export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
           </div>
 
           {/* Tap Zones */}
-          <div className="story-tap-zone story-tap-zone-left" onClick={() => handleTapZone('left')} />
-          <div className="story-tap-zone story-tap-zone-right" onClick={() => handleTapZone('right')} />
+          <div
+            className="story-tap-zone story-tap-zone-left"
+            onClick={(e) => handleTapZone('left', e)}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={(e) => handleTouchEnd('left', e)}
+          />
+          <div
+            className="story-tap-zone story-tap-zone-right"
+            onClick={(e) => handleTapZone('right', e)}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={(e) => handleTouchEnd('right', e)}
+          />
         </div>
       </div>
     </>

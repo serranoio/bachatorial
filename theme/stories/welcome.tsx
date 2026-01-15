@@ -8,16 +8,16 @@ export const welcomeStory = {
       id: 'intro',
       content: (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', padding: '40px' }}>
-          <h2 style={{ color: 'var(--color-gold-light)', fontSize: '48px', marginBottom: '30px', textShadow: '0 2px 8px rgba(0,0,0,0.8)', textAlign: 'center' }}>
+          <h2 style={{ color: 'var(--color-gold-light)', fontSize: '64px', marginBottom: '30px', textShadow: '0 2px 8px rgba(0,0,0,0.8)', textAlign: 'center' }}>
             Welcome to my dance portfolio
           </h2>
 
           <div style={{ maxWidth: '500px', width: '100%' }}>
-            <p style={{ color: 'var(--color-gold-warm)', fontSize: '18px', lineHeight: '1.8', marginBottom: '24px', textAlign: 'center' }}>
+            <p style={{ color: 'var(--color-gold-warm)', fontSize: '24px', lineHeight: '1.8', marginBottom: '24px', textAlign: 'center' }}>
               In here you will find:
             </p>
 
-            <ul style={{ color: 'var(--color-gold-warm)', fontSize: '18px', lineHeight: '2', listStyle: 'none', padding: 0, marginBottom: '40px' }}>
+            <ul style={{ color: 'var(--color-gold-warm)', fontSize: '24px', lineHeight: '2', listStyle: 'none', padding: 0, marginBottom: '40px', textAlign: 'center' }}>
               <li style={{ marginBottom: '12px' }}>
                 • <a href="/guide/learning/what-is-bachata.html" style={{ color: 'var(--color-gold-light)', textDecoration: 'underline' }}>What is Bachata?</a>
               </li>
@@ -34,11 +34,11 @@ export const welcomeStory = {
 
             <hr style={{ border: 'none', borderTop: '1px solid rgba(232, 212, 168, 0.3)', margin: '32px 0' }} />
 
-            <p style={{ color: 'var(--color-gold-warm)', fontSize: '18px', lineHeight: '1.8', marginBottom: '24px', fontStyle: 'italic', textAlign: 'center' }}>
+            <p style={{ color: 'var(--color-gold-warm)', fontSize: '24px', lineHeight: '1.8', marginBottom: '24px', fontStyle: 'italic', textAlign: 'center' }}>
               Moreover this serves as my journey into dance
             </p>
 
-            <ul style={{ color: 'var(--color-gold-warm)', fontSize: '18px', lineHeight: '2', listStyle: 'none', padding: 0 }}>
+            <ul style={{ color: 'var(--color-gold-warm)', fontSize: '24px', lineHeight: '2', listStyle: 'none', padding: 0, textAlign: 'center' }}>
               <li style={{ marginBottom: '12px' }}>
                 • My dance videos
               </li>

@@ -120,12 +120,11 @@ async function getStoryData() {
   // Load story metadata directly (TypeScript files can't be imported by Node.js)
   return [
     { id: 'welcome', title: 'Welcome', frames: [{}] },
+    { id: 'why-everyone-can-dance', title: 'Why Everyone Can Dance', frames: [{}, {}, {}] },
     { id: 'about-me', title: 'About Me', frames: [{}, {}] },
-    { id: 'my-why', title: 'My Why', frames: [{}, {}] },
     { id: 'teaching-philosophy', title: 'Teaching Philosophy', frames: [{}, {}, {}] },
+    { id: 'my-why', title: 'My Why', frames: [{}, {}] },
     { id: 'philosophy', title: 'Philosophy', frames: [{}] },
-    { id: 'dance-videos', title: 'Dance Videos', frames: [{}] },
-    { id: 'life-is-a-dance', title: 'Life is a Dance', frames: [{}] },
   ];
 }
 
