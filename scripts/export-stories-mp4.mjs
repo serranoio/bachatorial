@@ -135,7 +135,7 @@ async function main() {
       await captureAsVideo(`file://${exportHTMLPath}?story=${story.id}&cover=true`, {
         storyId: story.id,
         frameIndex: null,
-        outputPath: join(storyDir, 'cover.mp4'),
+        outputPath: join(storyDir, `${story.id}-cover.mp4`),
       }, browser);
 
       // Export frames
@@ -144,7 +144,7 @@ async function main() {
         await captureAsVideo(`file://${exportHTMLPath}?story=${story.id}&frame=${i}`, {
           storyId: story.id,
           frameIndex: i,
-          outputPath: join(storyDir, `frame-${i + 1}.mp4`),
+          outputPath: join(storyDir, `${story.id}-frame-${i + 1}.mp4`),
         }, browser);
       }
 
