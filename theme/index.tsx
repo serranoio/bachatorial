@@ -119,7 +119,7 @@ const Layout = () => (
               }
 
               .fact-2 {
-                top: 320px;
+                top: 280px;
                 right: 8%;
                 max-width: 380px;
                 transform: rotate(1deg);

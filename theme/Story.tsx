@@ -95,6 +95,9 @@ export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
       return; // Don't navigate, user was scrolling
     }
 
+    // Prevent the synthetic click event from firing
+    e.preventDefault();
+
     // Otherwise, treat it as a tap
     if (zone === 'left') {
       handlePreviousFrame();

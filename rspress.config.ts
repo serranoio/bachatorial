@@ -43,6 +43,7 @@ export default defineConfig({
     ],
   ],
   themeConfig: {
+    search: false,
     nav: [
       {
         text: 'Home',

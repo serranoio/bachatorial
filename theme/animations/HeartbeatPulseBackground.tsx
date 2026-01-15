@@ -15,10 +15,10 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
   const colors = getColorPalette(accentColor);
   const { scale } = useProportionalSizing();
 
-  // Create multiple wave rings with staggered delays
+  // Create multiple wave rings with staggered delays - ENHANCED
   const waveRings = Array.from({ length: 6 }, (_, i) => ({
     id: i,
-    delay: i * 0.6, // Staggered delays for wave effect
+    delay: i * 0.3, // ENHANCED: was 0.6 - faster delays
   }));
 
   return (
@@ -26,15 +26,15 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
       <style>{`
         @keyframes heartbeatPulse {
           0% {
-            transform: translate(-50%, -50%) scale(0.3);
-            opacity: 0.8;
+            transform: translate(-50%, -50%) scale(0.5);
+            opacity: 1; /* ENHANCED: was 0.8 */
           }
           50% {
-            transform: translate(-50%, -50%) scale(1.5);
-            opacity: 0.4;
+            transform: translate(-50%, -50%) scale(2.0); /* ENHANCED: was 1.5 */
+            opacity: 0.7; /* ENHANCED: was 0.4 */
           }
           100% {
-            transform: translate(-50%, -50%) scale(2.5);
+            transform: translate(-50%, -50%) scale(3.5); /* ENHANCED: was 2.5 */
             opacity: 0;
           }
         }
@@ -42,35 +42,35 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
         @keyframes rhythmBeat {
           0%, 100% {
             transform: scale(1);
-            opacity: 0.3;
+            opacity: 0.7; /* ENHANCED: was 0.3 */
           }
           12.5% {
-            transform: scale(1.05);
-            opacity: 0.5;
+            transform: scale(1.15); /* ENHANCED: was 1.05 */
+            opacity: 0.9; /* ENHANCED: was 0.5 */
           }
           25% {
             transform: scale(1);
-            opacity: 0.3;
+            opacity: 0.7;
           }
           37.5% {
-            transform: scale(1.05);
-            opacity: 0.5;
+            transform: scale(1.15);
+            opacity: 0.9;
           }
           50% {
             transform: scale(1);
-            opacity: 0.3;
+            opacity: 0.7;
           }
           62.5% {
-            transform: scale(1.05);
-            opacity: 0.5;
+            transform: scale(1.15);
+            opacity: 0.9;
           }
           75% {
-            transform: scale(1.1);
-            opacity: 0.6;
+            transform: scale(1.3); /* ENHANCED: was 1.1 */
+            opacity: 1; /* ENHANCED: was 0.6 */
           }
           87.5% {
             transform: scale(1);
-            opacity: 0.3;
+            opacity: 0.7;
           }
         }
 
@@ -80,10 +80,10 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
             opacity: 0;
           }
           10% {
-            opacity: 0.6;
+            opacity: 0.85; /* ENHANCED: was 0.6 */
           }
           100% {
-            transform: translate(-50%, -50%) scale(2.2);
+            transform: translate(-50%, -50%) scale(3.0); /* ENHANCED: was 2.2 */
             opacity: 0;
           }
         }
@@ -91,11 +91,11 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
         @keyframes energyFlow {
           0%, 100% {
             transform: translate(-50%, -50%) rotate(0deg);
-            opacity: 0.2;
+            opacity: 0.6; /* ENHANCED: was 0.2 */
           }
           50% {
             transform: translate(-50%, -50%) rotate(180deg);
-            opacity: 0.4;
+            opacity: 0.85; /* ENHANCED: was 0.4 */
           }
         }
 
@@ -157,19 +157,19 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
         }
       `}</style>
 
-      {/* Central pulsing core */}
+      {/* Central pulsing core - ENHANCED */}
       <div
         className="pulse-center"
         style={{
-          width: `${scale(100)}px`,
-          height: `${scale(100)}px`,
+          width: `${scale(150)}px`, /* ENHANCED: was 100px */
+          height: `${scale(150)}px`,
           background: `radial-gradient(circle, ${colors.primary} 0%, ${colors.primary30} 50%, transparent 70%)`,
-          filter: `blur(${scale(30)}px)`,
+          filter: `blur(${scale(20)}px)`, /* ENHANCED: was 30px */
           animation: 'rhythmBeat 4s ease-in-out infinite alternate',
         }}
       />
 
-      {/* Heartbeat pulse rings - emanating outward */}
+      {/* Heartbeat pulse rings - emanating outward - ENHANCED */}
       {waveRings.map((ring) => (
         <div
           key={ring.id}
@@ -177,21 +177,22 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
           style={{
             width: `${scale(100)}px`,
             height: `${scale(100)}px`,
-            border: `${scale(3)}px solid currentColor`,
+            border: `${scale(5)}px solid currentColor`, /* ENHANCED: was 3px */
             color: ring.id % 2 === 0 ? colors.primary : colors.secondary,
-            animation: `heartbeatPulse 3.6s ease-out ${ring.delay}s infinite`,
+            animation: `heartbeatPulse 1.8s ease-out ${ring.delay}s infinite`, /* ENHANCED: was 3.6s */
+            boxShadow: `0 0 20px currentColor, 0 0 40px currentColor`,
           }}
         />
       ))}
 
-      {/* Wave ripples - softer, larger rings */}
+      {/* Wave ripples - softer, larger rings - ENHANCED */}
       <div
         className="wave-ring"
         style={{
           width: `${scale(200)}px`,
           height: `${scale(200)}px`,
           background: `radial-gradient(circle, transparent 40%, ${colors.tertiary} 50%, transparent 60%)`,
-          animation: 'waveRipple 4s ease-out infinite',
+          animation: 'waveRipple 2s ease-out infinite', /* ENHANCED: was 4s */
         }}
       />
 
@@ -201,7 +202,7 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
           width: `${scale(200)}px`,
           height: `${scale(200)}px`,
           background: `radial-gradient(circle, transparent 40%, ${colors.small1} 50%, transparent 60%)`,
-          animation: 'waveRipple 4s ease-out 1s infinite',
+          animation: 'waveRipple 2s ease-out 0.5s infinite', /* ENHANCED: was 4s 1s */
         }}
       />
 
@@ -211,11 +212,11 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
           width: `${scale(200)}px`,
           height: `${scale(200)}px`,
           background: `radial-gradient(circle, transparent 40%, ${colors.small2} 50%, transparent 60%)`,
-          animation: 'waveRipple 4s ease-out 2s infinite',
+          animation: 'waveRipple 2s ease-out 1s infinite', /* ENHANCED: was 4s 2s */
         }}
       />
 
-      {/* Energy orbs rotating around center */}
+      {/* Energy orbs rotating around center - ENHANCED */}
       <div
         className="energy-orb"
         style={{
@@ -223,9 +224,9 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
           left: '50%',
           width: `${scale(300)}px`,
           height: `${scale(300)}px`,
-          filter: `blur(${scale(40)}px)`,
+          filter: `blur(${scale(25)}px)`, /* ENHANCED: was 40px */
           background: `radial-gradient(circle, ${colors.primary50} 0%, transparent 60%)`,
-          animation: 'energyFlow 20s linear infinite',
+          animation: 'energyFlow 10s linear infinite', /* ENHANCED: was 20s */
         }}
       />
 
@@ -236,9 +237,9 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
           left: '50%',
           width: `${scale(350)}px`,
           height: `${scale(350)}px`,
-          filter: `blur(${scale(40)}px)`,
+          filter: `blur(${scale(25)}px)`, /* ENHANCED: was 40px */
           background: `radial-gradient(circle, ${colors.secondary50} 0%, transparent 60%)`,
-          animation: 'energyFlow 16s linear infinite reverse',
+          animation: 'energyFlow 8s linear infinite reverse', /* ENHANCED: was 16s */
         }}
       />
 
@@ -249,13 +250,13 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
           left: '50%',
           width: `${scale(280)}px`,
           height: `${scale(280)}px`,
-          filter: `blur(${scale(40)}px)`,
+          filter: `blur(${scale(25)}px)`, /* ENHANCED: was 40px */
           background: `radial-gradient(circle, ${colors.tertiary50} 0%, transparent 60%)`,
-          animation: 'energyFlow 18s linear 2s infinite',
+          animation: 'energyFlow 9s linear 1s infinite', /* ENHANCED: was 18s 2s */
         }}
       />
 
-      {/* Accent glow spots */}
+      {/* Accent glow spots - ENHANCED */}
       <div
         style={{
           position: 'absolute',
@@ -265,8 +266,8 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
           height: `${scale(150)}px`,
           borderRadius: '50%',
           background: `radial-gradient(circle, ${colors.primary30} 0%, transparent 70%)`,
-          filter: `blur(${scale(50)}px)`,
-          opacity: 0.4,
+          filter: `blur(${scale(30)}px)`, /* ENHANCED: was 50px */
+          opacity: 0.7, /* ENHANCED: was 0.4 */
           animation: 'rhythmBeat 4s ease-in-out 0.5s infinite',
           pointerEvents: 'none',
         }}
@@ -281,8 +282,8 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
           height: `${scale(180)}px`,
           borderRadius: '50%',
           background: `radial-gradient(circle, ${colors.secondary30} 0%, transparent 70%)`,
-          filter: `blur(${scale(60)}px)`,
-          opacity: 0.4,
+          filter: `blur(${scale(35)}px)`, /* ENHANCED: was 60px */
+          opacity: 0.7, /* ENHANCED: was 0.4 */
           animation: 'rhythmBeat 4s ease-in-out 1.5s infinite',
           pointerEvents: 'none',
         }}

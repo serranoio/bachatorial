@@ -24,7 +24,7 @@ export const EventPoster: React.FC<EventPosterProps> = ({
   learnTheBasics = true,
   casualAttire = true,
   logoSrc = "/logo.png",
-  learnNowLink = "/guide/lesson",
+  learnNowLink = "http://localhost:3001/guide/learning/lesson.html",
   resourcesLink = "/guide/resources"
 }) => {
   return (
@@ -146,9 +146,10 @@ export const EventPoster: React.FC<EventPosterProps> = ({
         .event-poster-container {
           position: relative;
           width: 100%;
-          max-width: 800px;
+          max-width: 700px;
+          max-height: 1200px;
           margin: 0 auto;
-          padding: 60px 40px;
+          padding: 40px 30px;
           background: linear-gradient(135deg, #151515 0%, #1A1A1A 25%, #181818 50%, #1A1A1A 75%, #151515 100%);
           background-size: 400% 400%;
           animation: gradientShift 15s ease infinite;
@@ -158,26 +159,23 @@ export const EventPoster: React.FC<EventPosterProps> = ({
         }
 
         .event-logo-container {
-          padding: 30px;
+          padding: 20px;
           background: rgba(255, 255, 255, 0.05);
           backdrop-filter: blur(20px);
           border: 1px solid rgba(232, 212, 168, 0.2);
           border-radius: 20px;
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-          animation: floatDance 6s ease-in-out infinite;
-          position: relative;
-          left: 50%;
         }
 
         .event-logo {
-          width: 180px;
-          height: 180px;
+          width: 140px;
+          height: 140px;
           object-fit: contain;
           filter: drop-shadow(0 4px 12px rgba(255, 155, 127, 0.3));
         }
 
         .event-title {
-          font-size: 56px;
+          font-size: 44px;
           font-weight: 700;
           margin: 0;
           text-align: center;
@@ -197,7 +195,7 @@ export const EventPoster: React.FC<EventPosterProps> = ({
         }
 
         .event-tagline {
-          font-size: 24px;
+          font-size: 20px;
           font-weight: 500;
           color: #E8D4A8;
           text-align: center;
@@ -208,35 +206,35 @@ export const EventPoster: React.FC<EventPosterProps> = ({
         }
 
         .event-qr-code {
-          width: 180px;
-          height: 180px;
+          width: 140px;
+          height: 140px;
           object-fit: contain;
           border-radius: 12px;
           box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
           background: white;
-          padding: 12px;
+          padding: 10px;
         }
 
         .event-button-primary {
-          padding: 18px 48px;
-          font-size: 20px;
+          padding: 14px 36px;
+          font-size: 17px;
           font-weight: 700;
-          color: #1F1F1F;
-          background: linear-gradient(135deg, #E8D4A8 0%, #C19A6B 100%);
+          color: #FFFFFF;
+          background: linear-gradient(135deg, #8B6914 0%, #6B4E0F 100%);
           border: 2px solid rgba(232, 212, 168, 0.5);
           border-radius: 50px;
           text-decoration: none;
           text-transform: uppercase;
           letter-spacing: 1.5px;
-          box-shadow: 0 8px 24px rgba(232, 212, 168, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+          box-shadow: 0 8px 24px rgba(232, 212, 168, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
           transition: all 0.3s ease;
           cursor: pointer;
           display: inline-block;
         }
 
         .event-button-secondary {
-          padding: 18px 48px;
-          font-size: 20px;
+          padding: 14px 36px;
+          font-size: 17px;
           font-weight: 700;
           color: #E8D4A8;
           background: rgba(255, 255, 255, 0.05);
@@ -281,11 +279,11 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 40px;
+          gap: 28px;
         }
 
         .event-details-panel {
-          padding: 50px 40px;
+          padding: 35px 30px;
           background: rgba(255, 255, 255, 0.03);
           backdrop-filter: blur(20px);
           border: 1px solid rgba(232, 212, 168, 0.15);
@@ -297,7 +295,7 @@ export const EventPoster: React.FC<EventPosterProps> = ({
         }
 
         .event-button-subtitle {
-          font-size: 14px;
+          font-size: 13px;
           color: #E5C8A0;
           text-align: center;
           max-width: 280px;
@@ -316,8 +314,8 @@ export const EventPoster: React.FC<EventPosterProps> = ({
 
         .event-buttons-container {
           display: flex;
-          gap: 32px;
-          margin-top: 20px;
+          gap: 24px;
+          margin-top: 16px;
           flex-wrap: wrap;
           justify-content: center;
         }
@@ -535,19 +533,39 @@ export const EventPoster: React.FC<EventPosterProps> = ({
       {/* Content container */}
       <div className="event-content-container">
 
-        {/* Logo with glass morphism and floating animation */}
-        <div className="event-logo-container">
-          <img
-            src={logoSrc}
-            alt="Bachatorial Logo"
-            className="event-logo"
-          />
-        </div>
+        {/* Title and Logo - Horizontal Layout */}
+        <div style={{
+          display: 'flex',
+          gap: '24px',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '100%'
+        }}>
+          {/* Title - Left Side */}
+          <div style={{
+            flex: '1'
+          }}>
+            <h1 className="event-title" style={{
+              textAlign: 'left',
+              margin: 0
+            }}>
+              {title}
+            </h1>
+          </div>
 
-        {/* Title - Outlined Luxury Style with Shimmer */}
-        <h1 className="event-title">
-          {title}
-        </h1>
+          {/* Logo - Right Side */}
+          <div className="event-logo-container" style={{
+            animation: 'floatDance 6s ease-in-out infinite',
+            flexShrink: 0,
+            marginLeft: '16px'
+          }}>
+            <img
+              src={logoSrc}
+              alt="Bachatorial Logo"
+              className="event-logo"
+            />
+          </div>
+        </div>
 
         {/* Event Details Glass Panel */}
         <div style={{
@@ -599,91 +617,105 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           opacity: 0.8
         }}>
           <div style={{
-            fontSize: '16px',
+            fontSize: '15px',
             fontWeight: '500',
             color: '#C5A87A',
             textAlign: 'center',
             letterSpacing: '0.5px',
-            margin: "20px 0 0 0"
+            margin: "16px 0 0 0"
           }}>
             {date} • {time} • {location} • The 4th Floor Kitchen
           </div>
         </div>
 
-        {/* Buttons */}
-        <div className="event-buttons-container">
-          {/* Learn Now Button with Subtitle */}
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '12px'
-          }}>
-            <a
-              href={learnNowLink}
-              className="event-button-primary"
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 12px 32px rgba(232, 212, 168, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 8px 24px rgba(232, 212, 168, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
-              }}
-            >
-              Learn Now
-            </a>
-            <div className="event-button-subtitle">
-              The lesson is fully posted here if you'd like a head start
-            </div>
-          </div>
-
-          {/* Bachata Resources Button with Subtitle */}
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '12px'
-          }}>
-            <a
-              href={"calendar.html"}
-              className="event-button-secondary"
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
-                e.currentTarget.style.borderColor = 'rgba(232, 212, 168, 0.6)';
-                e.currentTarget.style.boxShadow = '0 12px 32px rgba(232, 212, 168, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                e.currentTarget.style.borderColor = 'rgba(232, 212, 168, 0.4)';
-                e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05)';
-              }}
-            >
-              Public Bachata Events
-            </a>
-            <div className="event-button-subtitle">
-              Start social dancing today with this list of bachata events in the Bay Area!!
-            </div>
-          </div>
-        </div>
-
-        
-        {/* QR Code with Caption */}
+        {/* QR Code and Buttons - Horizontal Layout */}
         <div style={{
           display: 'flex',
-          flexDirection: 'column',
+          gap: '32px',
           alignItems: 'center',
-          gap: '12px',
+          justifyContent: 'center',
+          width: '100%',
+          flexWrap: 'wrap'
         }}>
-          <img
-            src="/events-qr-code.png"
-            alt="Event QR Code"
-            className="event-qr-code"
-          />
-          <div className="event-qr-caption">
-            Share with others!
+          {/* QR Code with Caption - Left Side */}
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '10px',
+          }}>
+            <img
+              src="/events-qr-code.png"
+              alt="Event QR Code"
+              className="event-qr-code"
+            />
+            <div className="event-qr-caption">
+              Share with others!
+            </div>
+          </div>
+
+          {/* Buttons - Right Side */}
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '20px',
+            alignItems: 'flex-start'
+          }}>
+            {/* Learn Now Button with Subtitle */}
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              gap: '8px'
+            }}>
+              <a
+                href={learnNowLink}
+                className="event-button-primary"
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(232, 212, 168, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(232, 212, 168, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+                }}
+              >
+                Learn Now
+              </a>
+              <div className="event-button-subtitle" style={{ textAlign: 'left' }}>
+                The lesson is fully posted here if you'd like a head start
+              </div>
+            </div>
+
+            {/* Bachata Resources Button with Subtitle */}
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              gap: '8px'
+            }}>
+              <a
+                href={"calendar.html"}
+                className="event-button-secondary"
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                  e.currentTarget.style.borderColor = 'rgba(232, 212, 168, 0.6)';
+                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(232, 212, 168, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                  e.currentTarget.style.borderColor = 'rgba(232, 212, 168, 0.4)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05)';
+                }}
+              >
+                Public Bachata Events
+              </a>
+              <div className="event-button-subtitle" style={{ textAlign: 'left' }}>
+                Start social dancing today with this list of bachata events in the Bay Area!!
+              </div>
+            </div>
           </div>
         </div>
       </div>
