@@ -32,16 +32,16 @@ export const EventPoster: React.FC<EventPosterProps> = ({
       <style>{`
         @keyframes floatDance {
           0%, 100% {
-            transform: translate(-50%, 0) rotate(0deg);
+            transform: translate(-20%, 0) rotate(0deg);
           }
           25% {
-            transform: translate(-45%, -20px) rotate(5deg);
+            transform: translate(-35%, -20px) rotate(5deg);
           }
           50% {
-            transform: translate(-55%, -10px) rotate(-5deg);
+            transform: translate(-25%, -10px) rotate(-5deg);
           }
           75% {
-            transform: translate(-50%, -25px) rotate(3deg);
+            transform: translate(-20%, -25px) rotate(3deg);
           }
         }
 
@@ -555,9 +555,9 @@ export const EventPoster: React.FC<EventPosterProps> = ({
 
           {/* Logo - Right Side */}
           <div className="event-logo-container" style={{
-            animation: 'floatDance 6s ease-in-out infinite',
             flexShrink: 0,
-            marginLeft: '16px'
+            transform: 'translateX(60px)',
+            animation: 'floatDance 6s ease-in-out infinite'
           }}>
             <img
               src={logoSrc}
