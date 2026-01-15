@@ -55,14 +55,26 @@ nav a:hover {
 .rspress-nav-menu-button,
 .rspress-nav-hamberger,
 [class*="hamberger"],
+[class*="hamburger"],
+[class*="navHamburger"],
 [class*="menu-button"] {
   color: var(--color-gold-light) !important;
   background: transparent !important;
 }
 
+/* Hamburger icon lines - target the actual div elements */
+[class*="navHamburger"] > div > div,
+[class*="top_"],
+[class*="middle_"],
+[class*="bottom_"] {
+  background-color: var(--color-gold-light) !important;
+}
+
 /* Mobile menu dropdown */
 .rspress-nav-menu,
 .rspress-nav-screen,
+.navScreen,
+[class*="navScreen"],
 [class*="nav-screen"],
 [class*="mobile-menu"] {
   background: rgba(21, 21, 21, 0.98) !important;
@@ -73,7 +85,10 @@ nav a:hover {
 /* Mobile menu items */
 .rspress-nav-menu a,
 .rspress-nav-screen a,
-[class*="nav-screen"] a {
+.navScreen a,
+[class*="navScreen"] a,
+[class*="nav-screen"] a,
+[class*="navMenuItem"] {
   color: var(--color-gold-warm) !important;
   padding: 12px 20px !important;
   display: block !important;
@@ -81,7 +96,10 @@ nav a:hover {
 }
 
 .rspress-nav-menu a:hover,
-.rspress-nav-screen a:hover {
+.rspress-nav-screen a:hover,
+.navScreen a:hover,
+[class*="navScreen"] a:hover,
+[class*="navMenuItem"]:hover {
   color: var(--color-coral) !important;
   background: rgba(255, 155, 127, 0.1) !important;
 }
@@ -91,12 +109,6 @@ nav a:hover {
 [class*="nav-group-items"] {
   background: rgba(0, 0, 0, 0.3) !important;
   padding-left: 16px !important;
-}
-
-/* Ensure hamburger icon is visible */
-.rspress-nav-hamberger span,
-[class*="hamberger"] span {
-  background: var(--color-gold-light) !important;
 }
 
 /* ========================================
@@ -373,58 +385,3 @@ footer a:hover {
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
 }
 
-/* ========================================
-   MOBILE RESPONSIVE OVERRIDES
-   ======================================== */
-
-@media (max-width: 768px) {
-  /* Ensure hamburger icon is visible and properly sized */
-  .rspress-nav-hamberger,
-  [class*="hamberger"] {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 40px !important;
-    height: 40px !important;
-  }
-
-  /* Hamburger icon lines */
-  .rspress-nav-hamberger span,
-  [class*="hamberger"] span {
-    display: block !important;
-    width: 20px !important;
-    height: 2px !important;
-    background: var(--color-gold-light) !important;
-    position: relative !important;
-  }
-
-  .rspress-nav-hamberger span::before,
-  .rspress-nav-hamberger span::after,
-  [class*="hamberger"] span::before,
-  [class*="hamberger"] span::after {
-    content: '' !important;
-    display: block !important;
-    width: 20px !important;
-    height: 2px !important;
-    background: var(--color-gold-light) !important;
-    position: absolute !important;
-    left: 0 !important;
-  }
-
-  .rspress-nav-hamberger span::before,
-  [class*="hamberger"] span::before {
-    top: -6px !important;
-  }
-
-  .rspress-nav-hamberger span::after,
-  [class*="hamberger"] span::after {
-    top: 6px !important;
-  }
-
-  /* Mobile menu visibility */
-  .rspress-nav-menu,
-  .rspress-nav-screen,
-  [class*="nav-screen"] {
-    z-index: 100 !important;
-  }
-}
