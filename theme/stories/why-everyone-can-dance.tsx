@@ -111,7 +111,7 @@ export const whyEveryoneCanDanceStory = {
           <p style={{ ...styles.paragraph, marginBottom: '24px' }}>
             It defies gender and age boundaries, all boundaries. It is the natural expression of the universe.
           </p>
-          <div style={styles.citation}>
+          <div style={styles.paragraph}>
             <p style={{ margin: 0, marginBottom: '12px' }}>
               In <em>The Tao of Physics</em> (pp. 240–241), physicist Fritjof Capra explores the parallels between modern physics and Eastern mysticism, noting that many physicists independently arrive at the same metaphor when describing the nature of elementary particles: <strong>dance</strong>.
             </p>
