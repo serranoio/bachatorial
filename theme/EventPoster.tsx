@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 interface EventPosterProps {
   title?: string;
@@ -12,6 +12,8 @@ interface EventPosterProps {
   logoSrc?: string;
   learnNowLink?: string;
   resourcesLink?: string;
+  musicSrc?: string;
+  autoPlayMusic?: boolean;
 }
 
 export const EventPoster: React.FC<EventPosterProps> = ({
@@ -25,8 +27,25 @@ export const EventPoster: React.FC<EventPosterProps> = ({
   casualAttire = true,
   logoSrc = "/logo.png",
   learnNowLink = "http://localhost:3001/guide/learning/lesson.html",
-  resourcesLink = "/guide/resources"
+  resourcesLink = "/guide/resources",
+  musicSrc = "https://www.youtube.com/watch?v=ucZ6J-fXQeI",
+  autoPlayMusic = true
 }) => {
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    if (autoPlayMusic && audioRef.current) {
+      // Attempt to autoplay with user interaction fallback
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay was prevented, user will need to click play
+          console.log('Autoplay prevented. User interaction required.');
+        });
+      }
+    }
+  }, [autoPlayMusic]);
+
   return (
     <>
       <style>{`
@@ -720,6 +739,43 @@ export const EventPoster: React.FC<EventPosterProps> = ({
             </div>
           </div>
         </div>
+
+        {/* Background Music Player - YouTube Embed */}
+        {musicSrc && (
+          <div style={{
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            zIndex: 1000,
+            background: 'rgba(255, 255, 255, 0.1)',
+            backdropFilter: 'blur(20px)',
+            border: '1px solid rgba(232, 212, 168, 0.3)',
+            borderRadius: '12px',
+            padding: '12px 16px',
+            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)'
+          }}>
+            <iframe
+              width="250"
+              height="80"
+              src={`https://www.youtube.com/embed/${musicSrc.split('v=')[1]?.split('&')[0]}?autoplay=1&loop=1&playlist=${musicSrc.split('v=')[1]?.split('&')[0]}&controls=1`}
+              title="Bachata Background Music"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              style={{
+                borderRadius: '8px'
+              }}
+            />
+            <div style={{
+              fontSize: '11px',
+              color: '#E8D4A8',
+              textAlign: 'center',
+              marginTop: '4px',
+              fontStyle: 'italic'
+            }}>
+              🎵 Bachata vibes
+            </div>
+          </div>
+        )}
       </div>
     </div>
     </>

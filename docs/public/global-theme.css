@@ -140,9 +140,16 @@ nav a:hover {
 [class*="nav-menu-group-button"] {
   min-height: 64px !important;
   height: auto !important;
-  padding: 20px 24px !important;
+  padding: 8px !important;
   line-height: 1.6 !important;
   overflow: visible !important;
+}
+[class*="navMenuItem"] {
+  /* height: 80px !important; */
+}
+
+[class*="navScreenMenuGroup"] {
+  overflow: visible;
 }
 
 
@@ -275,13 +282,14 @@ button {
   color: var(--color-dark-primary) !important;
   border: 2px solid rgba(232, 212, 168, 0.5) !important;
   border-radius: 50px !important;
-  padding: 12px 32px !important;
+  padding: 6px 32px !important;
   font-weight: 600 !important;
   text-transform: uppercase !important;
   letter-spacing: 1px !important;
   box-shadow: 0 8px 24px rgba(232, 212, 168, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
   transition: all 0.3s ease !important;
   cursor: pointer !important;
+  
 }
 
 button:hover,
