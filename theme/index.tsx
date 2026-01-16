@@ -166,7 +166,7 @@ const Layout = () => (
             marginBottom: "40px",
           }}
         >
-          Just made a dance account too ->
+          I have a dance account too ->
           <a
             href="https://www.instagram.com/serranoio.dance/"
             target="_blank"

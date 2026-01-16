@@ -42,9 +42,19 @@ export default defineConfig({
       { name: 'twitter:image', content: 'https://bachatorial.com/logo.png' },
     ],
   ],
+  builderConfig: {
+    html: {
+      tags: [
+        {
+          tag: 'script',
+          children: "window.RSPRESS_THEME = 'dark';",
+        },
+      ],
+    },
+  },
   themeConfig: {
     search: false,
-    darkMode: true,
+    darkMode: false,
     nav: [
       {
         text: 'Home',
