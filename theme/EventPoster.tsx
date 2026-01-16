@@ -31,20 +31,55 @@ export const EventPoster: React.FC<EventPosterProps> = ({
   musicSrc = "https://www.youtube.com/watch?v=ucZ6J-fXQeI",
   autoPlayMusic = true
 }) => {
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const playerRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
-    if (autoPlayMusic && audioRef.current) {
-      // Attempt to autoplay with user interaction fallback
-      const playPromise = audioRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // Autoplay was prevented, user will need to click play
-          console.log('Autoplay prevented. User interaction required.');
-        });
-      }
+    if (!autoPlayMusic || !musicSrc) return;
+
+    // Load YouTube IFrame API script
+    if (!(window as any).YT) {
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
     }
-  }, [autoPlayMusic]);
+
+    // Wait for API to load and create player
+    const initPlayer = () => {
+      if ((window as any).YT && (window as any).YT.Player) {
+        const videoId = musicSrc.split('v=')[1]?.split('&')[0];
+        const player = new (window as any).YT.Player('youtube-player', {
+          height: '0',
+          width: '0',
+          videoId: videoId,
+          playerVars: {
+            autoplay: 1,
+            loop: 1,
+            playlist: videoId,
+            controls: 0,
+            enablejsapi: 1,
+          },
+          events: {
+            onReady: (event: any) => {
+              event.target.playVideo();
+            },
+          },
+        });
+        (playerRef as any).current = player;
+      } else {
+        setTimeout(initPlayer, 100);
+      }
+    };
+
+    const timeout = setTimeout(initPlayer, 100);
+
+    return () => {
+      clearTimeout(timeout);
+      if ((playerRef as any).current && (playerRef as any).current.destroy) {
+        (playerRef as any).current.destroy();
+      }
+    };
+  }, [autoPlayMusic, musicSrc]);
 
   return (
     <>
@@ -740,41 +775,20 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           </div>
         </div>
 
-        {/* Background Music Player - YouTube Embed */}
+        {/* Background Music Player - YouTube (Hidden) */}
         {musicSrc && (
-          <div style={{
-            position: 'fixed',
-            bottom: '20px',
-            right: '20px',
-            zIndex: 1000,
-            background: 'rgba(255, 255, 255, 0.1)',
-            backdropFilter: 'blur(20px)',
-            border: '1px solid rgba(232, 212, 168, 0.3)',
-            borderRadius: '12px',
-            padding: '12px 16px',
-            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)'
-          }}>
-            <iframe
-              width="250"
-              height="80"
-              src={`https://www.youtube.com/embed/${musicSrc.split('v=')[1]?.split('&')[0]}?autoplay=1&loop=1&playlist=${musicSrc.split('v=')[1]?.split('&')[0]}&controls=1`}
-              title="Bachata Background Music"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              style={{
-                borderRadius: '8px'
-              }}
-            />
-            <div style={{
-              fontSize: '11px',
-              color: '#E8D4A8',
-              textAlign: 'center',
-              marginTop: '4px',
-              fontStyle: 'italic'
-            }}>
-              🎵 Bachata vibes
-            </div>
-          </div>
+          <div
+            id="youtube-player"
+            style={{
+              position: 'fixed',
+              bottom: '0',
+              right: '0',
+              width: '0',
+              height: '0',
+              visibility: 'hidden',
+              pointerEvents: 'none'
+            }}
+          />
         )}
       </div>
     </div>
