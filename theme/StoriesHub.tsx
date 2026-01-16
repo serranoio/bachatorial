@@ -185,8 +185,35 @@ export const StoriesHub: React.FC<StoriesHubProps> = ({ stories, hideHeader = fa
           }
 
           .stories-grid {
-            grid-template-columns: 1fr;
+            display: flex;
+            overflow-x: auto;
             gap: 16px;
+            grid-template-columns: none;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding-bottom: 8px;
+          }
+
+          .stories-grid::-webkit-scrollbar {
+            display: none;
+          }
+
+          .story-card {
+            flex: 0 0 140px;
+            width: 140px;
+            min-width: 140px;
+          }
+
+          .story-card-content {
+            padding: 16px;
+          }
+
+          .story-card-title {
+            font-size: 16px;
+          }
+
+          .story-card-subtitle {
+            font-size: 11px;
           }
         }
       `}</style>

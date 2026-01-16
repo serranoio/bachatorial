@@ -19,16 +19,16 @@ export const welcomeStory = {
 
             <ul style={{ color: 'var(--color-gold-warm)', fontSize: '20px', lineHeight: '1.8', listStyle: 'none', padding: 0, marginBottom: '28px', textAlign: 'center' }}>
               <li style={{ marginBottom: '10px' }}>
-                • <a href="/guide/learning/what-is-bachata.html" style={{ color: 'var(--color-gold-light)', textDecoration: 'underline' }}>What is Bachata?</a>
-              </li>
-              <li style={{ marginBottom: '10px' }}>
-                • <a href="/guide/learning/lesson.html" style={{ color: 'var(--color-gold-light)', textDecoration: 'underline' }}>Introductory Bachata Lesson</a>
-              </li>
-              <li style={{ marginBottom: '10px' }}>
                 • <a href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('navigate-to-story', { detail: { storyId: 'my-why' } })); }} style={{ color: 'var(--color-gold-light)', textDecoration: 'underline', cursor: 'pointer' }}>Why everyone can dance?</a>
               </li>
               <li style={{ marginBottom: '10px' }}>
                 • <a href="#" onClick={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('navigate-to-story', { detail: { storyId: 'my-why' } })); }} style={{ color: 'var(--color-gold-light)', textDecoration: 'underline', cursor: 'pointer' }}>How to become the dance</a>
+              </li>
+              <li style={{ marginBottom: '10px' }}>
+                • <a href="/guide/learning/what-is-bachata.html" style={{ color: 'var(--color-gold-light)', textDecoration: 'underline' }}>What is Bachata?</a>
+              </li>
+              <li style={{ marginBottom: '10px' }}>
+                • <a href="/guide/learning/lesson.html" style={{ color: 'var(--color-gold-light)', textDecoration: 'underline' }}>Introductory Bachata Lesson</a>
               </li>
             </ul>
 
