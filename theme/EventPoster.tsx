@@ -739,7 +739,7 @@ export const EventPoster: React.FC<EventPosterProps> = ({
               gap: '8px'
             }}>
               <a
-                href={learnNowLink}
+                href={"/guide/learning/lesson"}
                 className="event-button-primary"
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-2px)';
