@@ -4,6 +4,20 @@
  */
 
 /* ========================================
+   CSS VARIABLES OVERRIDE
+   ======================================== */
+
+:root {
+  --rp-nav-height: 80px;  /* Desktop nav height */
+}
+
+@media (max-width: 768px) {
+  :root {
+    --rp-nav-height: 80px;  /* Mobile nav height (increased from default 56px) */
+  }
+}
+
+/* ========================================
    NAVIGATION STYLES
    ======================================== */
 
@@ -87,11 +101,11 @@ nav a:hover {
 [class*="nav-screen"] a,
 [class*="navMenuItem"] {
   color: var(--color-gold-warm) !important;
-  padding: 16px 24px !important;
+  padding: 20px 24px !important;
   display: block !important;
   transition: all 0.3s ease !important;
-  min-height: 48px !important;
-  line-height: 1.5 !important;
+  min-height: 64px !important;
+  line-height: 1.6 !important;
   white-space: normal !important;
   word-wrap: break-word !important;
 }
@@ -109,6 +123,26 @@ nav a:hover {
 [class*="nav-group-items"] {
   background: rgba(0, 0, 0, 0.3) !important;
   padding-left: 16px !important;
+}
+
+/* Mobile nav menu items (container for Learning, Events, etc.) */
+.rspress-nav-menu-item,
+[class*="navMenuItem"],
+[class*="nav-menu-item"] {
+  min-height: 64px !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* Mobile nav menu group buttons (Learning, Events dropdowns) */
+.rspress-nav-menu-group-button,
+[class*="navScreenMenuGroup"] button,
+[class*="nav-menu-group-button"] {
+  min-height: 64px !important;
+  height: auto !important;
+  padding: 20px 24px !important;
+  line-height: 1.6 !important;
+  overflow: visible !important;
 }
 
 
@@ -139,9 +173,6 @@ nav a:hover {
    CONTENT AREA STYLES
    ======================================== */
 
-.navMenuItem {
-
-  }
 
 /* Main content container */
 .rspress-doc-container,
