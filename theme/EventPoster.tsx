@@ -31,7 +31,8 @@ export const EventPoster: React.FC<EventPosterProps> = ({
   musicSrc = "https://www.youtube.com/watch?v=ucZ6J-fXQeI",
   autoPlayMusic = true
 }) => {
-  const playerRef = useRef<HTMLIFrameElement>(null);
+  const playerRef = useRef<any>(null);
+  const hasClickedRef = useRef(false);
 
   useEffect(() => {
     if (!autoPlayMusic || !musicSrc) return;
@@ -53,7 +54,7 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           width: '0',
           videoId: videoId,
           playerVars: {
-            autoplay: 1,
+            autoplay: 0, // Don't autoplay immediately
             loop: 1,
             playlist: videoId,
             controls: 0,
@@ -61,22 +62,32 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           },
           events: {
             onReady: (event: any) => {
-              event.target.playVideo();
+              playerRef.current = event.target;
             },
           },
         });
-        (playerRef as any).current = player;
       } else {
         setTimeout(initPlayer, 100);
       }
     };
 
+    // Start playing on first click
+    const handleFirstClick = () => {
+      if (!hasClickedRef.current && playerRef.current) {
+        hasClickedRef.current = true;
+        playerRef.current.playVideo();
+        document.removeEventListener('click', handleFirstClick);
+      }
+    };
+
+    document.addEventListener('click', handleFirstClick);
     const timeout = setTimeout(initPlayer, 100);
 
     return () => {
       clearTimeout(timeout);
-      if ((playerRef as any).current && (playerRef as any).current.destroy) {
-        (playerRef as any).current.destroy();
+      document.removeEventListener('click', handleFirstClick);
+      if (playerRef.current && playerRef.current.destroy) {
+        playerRef.current.destroy();
       }
     };
   }, [autoPlayMusic, musicSrc]);
