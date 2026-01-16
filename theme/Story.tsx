@@ -246,6 +246,12 @@ export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
           overflow: hidden;
         }
 
+        @media (min-width: 769px) {
+          .story-viewer {
+            max-width: 50%;
+          }
+        }
+
         .story-progress-bar {
           position: absolute;
           top: 0;
@@ -363,6 +369,36 @@ export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
           line-height: 1.3 !important;
         }
 
+        @media (min-width: 769px) {
+          .story-content {
+            font-size: 18px;
+            padding: 30px;
+          }
+
+          .story-content * {
+            font-size: 18px !important;
+            line-height: 1.6 !important;
+          }
+
+          .story-content h1 {
+            font-size: 32px !important;
+            line-height: 1.3 !important;
+          }
+
+          .story-content h2 {
+            font-size: 28px !important;
+            line-height: 1.3 !important;
+          }
+
+          .story-content p {
+            font-size: 18px !important;
+          }
+
+          .story-content ul, .story-content li {
+            font-size: 18px !important;
+          }
+        }
+
         .story-content::-webkit-scrollbar {
           width: 4px;
         }
@@ -387,7 +423,7 @@ export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
           -webkit-tap-highlight-color: transparent;
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 769px) {
           .story-viewer {
             border-radius: 24px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
