@@ -71,21 +71,24 @@ export const EventPoster: React.FC<EventPosterProps> = ({
       }
     };
 
-    // Start playing on first click
-    const handleFirstClick = () => {
+    // Start playing on first click or scroll
+    const handleUserInteraction = () => {
       if (!hasClickedRef.current && playerRef.current) {
         hasClickedRef.current = true;
         playerRef.current.playVideo();
-        document.removeEventListener('click', handleFirstClick);
+        document.removeEventListener('click', handleUserInteraction);
+        document.removeEventListener('scroll', handleUserInteraction);
       }
     };
 
-    document.addEventListener('click', handleFirstClick);
+    document.addEventListener('click', handleUserInteraction);
+    document.addEventListener('scroll', handleUserInteraction);
     const timeout = setTimeout(initPlayer, 100);
 
     return () => {
       clearTimeout(timeout);
-      document.removeEventListener('click', handleFirstClick);
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('scroll', handleUserInteraction);
       if (playerRef.current && playerRef.current.destroy) {
         playerRef.current.destroy();
       }
