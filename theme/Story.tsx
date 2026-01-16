@@ -33,6 +33,29 @@ export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
   // Get the appropriate background component for this story
   const BackgroundComponent = STORY_BACKGROUNDS[story.id as StoryId];
 
+  // Lock body scroll when story is open
+  useEffect(() => {
+    // Save the current scroll position
+    const scrollY = window.scrollY;
+
+    // Lock body scroll
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
+
+    return () => {
+      // Restore body scroll
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+
+      // Restore scroll position
+      window.scrollTo(0, scrollY);
+    };
+  }, []);
+
   // Reset frame index when story changes
   useEffect(() => {
     setCurrentFrameIndex(0);
