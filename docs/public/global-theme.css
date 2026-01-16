@@ -74,6 +74,10 @@ nav a:hover {
   background: rgba(21, 21, 21, 0.98) !important;
   backdrop-filter: blur(20px) !important;
   border: 1px solid rgba(232, 212, 168, 0.2) !important;
+  min-height: 100vh !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  overflow-y: auto !important;
 }
 
 .rspress-nav-menu a,
@@ -83,9 +87,13 @@ nav a:hover {
 [class*="nav-screen"] a,
 [class*="navMenuItem"] {
   color: var(--color-gold-warm) !important;
-  padding: 12px 20px !important;
+  padding: 16px 24px !important;
   display: block !important;
   transition: all 0.3s ease !important;
+  min-height: 48px !important;
+  line-height: 1.5 !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
 }
 
 .rspress-nav-menu a:hover,
@@ -130,6 +138,10 @@ nav a:hover {
 /* ========================================
    CONTENT AREA STYLES
    ======================================== */
+
+.navMenuItem {
+
+  }
 
 /* Main content container */
 .rspress-doc-container,
@@ -227,8 +239,7 @@ tr:hover {
    BUTTONS & INTERACTIVE ELEMENTS
    ======================================== */
 
-button,
-.rspress-button {
+button {
   background: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold-medium) 100%) !important;
   color: var(--color-dark-primary) !important;
   border: 2px solid rgba(232, 212, 168, 0.5) !important;
