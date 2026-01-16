@@ -25,7 +25,10 @@ export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
   const [currentFrameIndex, setCurrentFrameIndex] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
   const touchStartY = useRef<number>(0);
+  const touchStartX = useRef<number>(0);
   const touchStartTime = useRef<number>(0);
+  const isScrolling = useRef<boolean>(false);
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
   // Get the appropriate background component for this story
   const BackgroundComponent = STORY_BACKGROUNDS[story.id as StoryId];
@@ -66,40 +69,84 @@ export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
     }
   };
 
-  const handleTapZone = (zone: 'left' | 'right', event: React.MouseEvent | React.TouchEvent) => {
-    // Check if this is a touch event
-    if ('touches' in event) {
-      return; // Let touch events be handled by touch handlers
+  // Track scroll events to detect momentum
+  const handleScroll = () => {
+    isScrolling.current = true;
+
+    // Clear any existing timeout
+    if (scrollTimeout.current) {
+      clearTimeout(scrollTimeout.current);
     }
 
-    if (zone === 'left') {
+    // Set a timeout to reset scrolling state after scroll stops
+    scrollTimeout.current = setTimeout(() => {
+      isScrolling.current = false;
+    }, 50);
+  };
+
+  // Add scroll listener
+  useEffect(() => {
+    const contentElement = contentRef.current;
+    if (contentElement) {
+      contentElement.addEventListener('scroll', handleScroll);
+      return () => {
+        contentElement.removeEventListener('scroll', handleScroll);
+        if (scrollTimeout.current) {
+          clearTimeout(scrollTimeout.current);
+        }
+      };
+    }
+  }, []);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartY.current = e.touches[0].clientY;
+    touchStartX.current = e.touches[0].clientX;
+    touchStartTime.current = Date.now();
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const touchEndY = e.changedTouches[0].clientY;
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndTime = Date.now();
+    const deltaY = Math.abs(touchEndY - touchStartY.current);
+    const deltaTime = touchEndTime - touchStartTime.current;
+
+    // If scrolling is active (momentum), ignore tap
+    if (isScrolling.current) {
+      return;
+    }
+
+    // Stricter thresholds: both duration AND movement must be within limits
+    // Duration must be < 200ms AND vertical movement must be < 8px
+    if (deltaY > 8 || deltaTime > 200) {
+      return; // User was scrolling or holding, not tapping
+    }
+
+    // Prevent the synthetic click event from firing
+    e.preventDefault();
+
+    // Determine navigation direction based on horizontal position
+    // Use the ENDING position to determine which side was tapped
+    const tapX = touchEndX;
+    const viewerWidth = e.currentTarget.clientWidth;
+    const isLeftHalf = tapX < viewerWidth / 2;
+
+    if (isLeftHalf) {
       handlePreviousFrame();
     } else {
       handleNextFrame();
     }
   };
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartY.current = e.touches[0].clientY;
-    touchStartTime.current = Date.now();
-  };
+  // Mouse click handler for desktop
+  const handleClick = (e: React.MouseEvent) => {
+    // Determine navigation direction based on horizontal position
+    const clickX = e.clientX;
+    const viewerRect = e.currentTarget.getBoundingClientRect();
+    const relativeX = clickX - viewerRect.left;
+    const isLeftHalf = relativeX < viewerRect.width / 2;
 
-  const handleTouchEnd = (zone: 'left' | 'right', e: React.TouchEvent) => {
-    const touchEndY = e.changedTouches[0].clientY;
-    const touchEndTime = Date.now();
-    const deltaY = Math.abs(touchEndY - touchStartY.current);
-    const deltaTime = touchEndTime - touchStartTime.current;
-
-    // If the touch moved more than 10px vertically or took longer than 200ms, it's likely a scroll
-    if (deltaY > 10 || deltaTime > 200) {
-      return; // Don't navigate, user was scrolling
-    }
-
-    // Prevent the synthetic click event from firing
-    e.preventDefault();
-
-    // Otherwise, treat it as a tap
-    if (zone === 'left') {
+    if (isLeftHalf) {
       handlePreviousFrame();
     } else {
       handleNextFrame();
@@ -293,22 +340,15 @@ export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
           border-radius: 2px;
         }
 
-        .story-tap-zone {
+        .story-interaction-layer {
           position: absolute;
           top: 80px;
+          left: 0;
+          right: 0;
           bottom: 0;
-          width: 25%;
           z-index: 5;
           cursor: pointer;
           -webkit-tap-highlight-color: transparent;
-        }
-
-        .story-tap-zone-left {
-          left: 0;
-        }
-
-        .story-tap-zone-right {
-          right: 10px;
         }
 
         @media (min-width: 768px) {
@@ -358,18 +398,12 @@ export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
             {currentFrame.content}
           </div>
 
-          {/* Tap Zones */}
+          {/* Unified Interaction Layer */}
           <div
-            className="story-tap-zone story-tap-zone-left"
-            onClick={(e) => handleTapZone('left', e)}
+            className="story-interaction-layer"
+            onClick={handleClick}
             onTouchStart={handleTouchStart}
-            onTouchEnd={(e) => handleTouchEnd('left', e)}
-          />
-          <div
-            className="story-tap-zone story-tap-zone-right"
-            onClick={(e) => handleTapZone('right', e)}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={(e) => handleTouchEnd('right', e)}
+            onTouchEnd={handleTouchEnd}
           />
         </div>
       </div>
