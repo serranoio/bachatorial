@@ -623,7 +623,7 @@ export const EventPoster: React.FC<EventPosterProps> = ({
               transform: 'rotate(-2deg)',
               textTransform: 'none'
             }}>
-              Wear shoes that slide. Socks work too!
+              Wear shoes that slide.
             </div>
           )}
         </div>
