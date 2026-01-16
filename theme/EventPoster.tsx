@@ -219,7 +219,7 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           padding: 14px 36px;
           font-size: 17px;
           font-weight: 700;
-          color: #FFFFFF;
+          color: var(--color-gold-warm) !important;
           background: linear-gradient(135deg, #8B6914 0%, #6B4E0F 100%);
           border: 2px solid rgba(232, 212, 168, 0.5);
           border-radius: 50px;
@@ -236,7 +236,7 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           padding: 14px 36px;
           font-size: 17px;
           font-weight: 700;
-          color: #E8D4A8;
+          color: var(--color-gold-warm) !important;
           background: rgba(255, 255, 255, 0.05);
           backdrop-filter: blur(20px);
           border: 2px solid rgba(232, 212, 168, 0.4);
@@ -667,6 +667,7 @@ export const EventPoster: React.FC<EventPosterProps> = ({
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'flex-start',
+              color: "var(--color-gold-warm)",
               gap: '8px'
             }}>
               <a

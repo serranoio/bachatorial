@@ -46,7 +46,7 @@ export const philosophyStory = {
             fontSize: '28px',
             lineHeight: '1.8'
           }}>
-            Because only by becoming aware of my flaws can become a better version of myself.
+            Because only by becoming aware of my flaws can I become a better version of myself.
           </p>
         </div>
       ),

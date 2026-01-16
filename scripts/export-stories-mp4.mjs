@@ -128,6 +128,13 @@ async function getStoryData() {
   ];
 }
 
+function sanitizeTitle(title) {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
 async function main() {
   console.log('🎬 Instagram Story MP4 Export (Node.js)');
   console.log(`📐 ${EXPORT_CONFIG.width}x${EXPORT_CONFIG.height} @ ${EXPORT_CONFIG.fps}fps`);
@@ -154,16 +161,17 @@ async function main() {
   try {
     for (const story of stories) {
       try {
-        console.log(`\n📚 ${story.title} (${story.id})`);
+        const sanitizedName = sanitizeTitle(story.title);
+        console.log(`\n📚 ${story.title} (${sanitizedName})`);
 
-        const storyDir = join(process.cwd(), 'exports', story.id);
+        const storyDir = join(process.cwd(), 'exports', sanitizedName);
         if (!existsSync(storyDir)) mkdirSync(storyDir, { recursive: true });
 
         // Export cover
         await captureAsVideo(`file://${exportHTMLPath}?story=${story.id}&cover=true`, {
           storyId: story.id,
           frameIndex: null,
-          outputPath: join(storyDir, `${story.id}-cover.mp4`),
+          outputPath: join(storyDir, `${sanitizedName}-cover.mp4`),
         }, browser);
 
         // Export frames
@@ -172,7 +180,7 @@ async function main() {
           await captureAsVideo(`file://${exportHTMLPath}?story=${story.id}&frame=${i}`, {
             storyId: story.id,
             frameIndex: i,
-            outputPath: join(storyDir, `${story.id}-frame-${i + 1}.mp4`),
+            outputPath: join(storyDir, `${sanitizedName}-frame-${i + 1}.mp4`),
           }, browser);
         }
 
