@@ -20,7 +20,7 @@ export const aboutMeStory = {
       content: (
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%', padding: '40px 20px' }}>
           <p style={{ color: 'var(--color-gold-warm)', fontSize: '24px', lineHeight: '1.8', marginBottom: '0', textAlign: 'center' }}>
-          I took my first dance private lesson on December 10th, 2023 in Bachata. That day changed everything. (I made this site as a way to celebrate my 2 year anniversary of learning this beautiful art). I have danced almost every single weekend since then.
+          I took my first dance private lesson on December 10th, 2023 in Bachata. That day changed everything. (I made this site as a way to celebrate my 2 year anniversary of learning this beautiful art). I have danced almost every single weekend since then. 
           </p>
 
 </div>
