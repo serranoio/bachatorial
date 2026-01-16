@@ -343,7 +343,8 @@ export const EventPoster: React.FC<EventPosterProps> = ({
 
           .event-title {
             font-size: 32px;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            line-height: 1.4;
           }
 
           .event-details-panel {
@@ -635,7 +636,7 @@ export const EventPoster: React.FC<EventPosterProps> = ({
           alignItems: 'center',
           justifyContent: 'center',
           width: '100%',
-          flexWrap: 'wrap'
+          flexWrap: 'wrap-reverse'
         }}>
           {/* QR Code with Caption - Left Side */}
           <div style={{

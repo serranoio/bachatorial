@@ -11,10 +11,10 @@ import { whyEveryoneCanDanceStory } from './why-everyone-can-dance';
 export const storyData = [
   welcomeStory,
   whyEveryoneCanDanceStory,
-  aboutMeStory,
-  teachingPhilosophyStory,
   myWhyStory,
+  aboutMeStory,
   philosophyStory,
+  teachingPhilosophyStory,
   // danceVideosStory,
   // repsStory,
   // lifeIsADanceStory,
