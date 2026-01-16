@@ -116,7 +116,7 @@ export const whyEveryoneCanDanceStory = {
               In <em>The Tao of Physics</em> (pp. 240–241), physicist Fritjof Capra explores the parallels between modern physics and Eastern mysticism, noting that many physicists independently arrive at the same metaphor when describing the nature of elementary particles: <strong>dance</strong>.
             </p>
             <p style={{ margin: 0 }}>
-              He refers to a "dance of creation and destruction" and an "energy dance," explaining that "ideas of rhythm and dance naturally arise when one attempts to imagine the flow of energy through the patterns that make up the particle world."
+              He refers to partical movement as a "dance of creation and destruction" and an "energy dance", explaining that "ideas of rhythm and dance naturally arise when one attempts to imagine the flow of energy through the patterns that make up the particle world."
             </p>
           </div>
         </div>
