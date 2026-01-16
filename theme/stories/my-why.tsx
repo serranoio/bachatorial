@@ -90,7 +90,7 @@ export const myWhyStory = {
             Can you tell I am spiritual? If you like this, please read The Tao of Physics & The New Earth & please have a conversation with me.
           </p>
           <p style={{ ...styles.paragraph, margin: 0 }}>
-            I am looking for like minded individuals who can push me to the next level.
+            I am looking for like minded individuals.
           </p>
         </div>
       ),

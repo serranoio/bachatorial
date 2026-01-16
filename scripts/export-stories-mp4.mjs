@@ -119,7 +119,6 @@ async function captureAsVideo(url, options, browser) {
 async function getStoryData() {
   // Load story metadata directly (TypeScript files can't be imported by Node.js)
   return [
-    { id: 'welcome', title: 'Welcome', frames: [{}] },
     { id: 'why-everyone-can-dance', title: 'Why Everyone Can Dance', frames: [{}, {}, {}] },
     { id: 'about-me', title: 'About Me', frames: [{}, {}] },
     { id: 'teaching-philosophy', title: 'Teaching Philosophy', frames: [{}, {}, {}] },
