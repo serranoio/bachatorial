@@ -44,6 +44,7 @@ export default defineConfig({
   ],
   themeConfig: {
     search: false,
+    darkMode: true,
     nav: [
       {
         text: 'Home',

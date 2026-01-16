@@ -37,3 +37,12 @@ p, span, div,
 button, input, textarea, select {
   font-family: Georgia, "Times New Roman", serif;
 }
+
+/* Hide dark mode toggle button */
+.rspress-nav-appearance,
+[class*="appearance"],
+button[aria-label*="theme"],
+button[aria-label*="Theme"],
+.rspress-switch-appearance {
+  display: none !important;
+}

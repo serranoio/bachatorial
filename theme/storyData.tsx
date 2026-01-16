@@ -1,1 +1,1 @@
-export { storyData, danceVideosStory, welcomeStory, aboutMeStory, philosophyStory, repsStory } from './stories';
+export { storyData, danceVideosStory,  aboutMeStory, philosophyStory, repsStory } from './stories';

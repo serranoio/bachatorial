@@ -9,7 +9,6 @@ import { myWhyStory } from './my-why';
 import { whyEveryoneCanDanceStory } from './why-everyone-can-dance';
 
 export const storyData = [
-  welcomeStory,
   whyEveryoneCanDanceStory,
   myWhyStory,
   aboutMeStory,
@@ -22,7 +21,6 @@ export const storyData = [
 
 export {
   danceVideosStory,
-  welcomeStory,
   aboutMeStory,
   philosophyStory,
   repsStory,
