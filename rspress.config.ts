@@ -5,7 +5,7 @@ export default defineConfig({
   root: path.join(__dirname, 'docs'),
   title: 'Bachatorial',
   description: 'Embrace',
-  icon: '/rspress-icon.png',
+  icon: '/logo.png',
   logoText: 'Bachatorial',
   // logo: {
   //   light: '/rspress-light-logo.png',
