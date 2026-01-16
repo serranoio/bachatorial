@@ -344,10 +344,23 @@ export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
           z-index: 1;
           -webkit-overflow-scrolling: touch;
           font-family: Georgia, "Times New Roman", serif;
+          font-size: 12px;
         }
 
         .story-content * {
           font-family: inherit;
+          font-size: 12px !important;
+          line-height: 1.5 !important;
+        }
+
+        .story-content h1 {
+          font-size: 16px !important;
+          line-height: 1.3 !important;
+        }
+
+        .story-content h2 {
+          font-size: 14px !important;
+          line-height: 1.3 !important;
         }
 
         .story-content::-webkit-scrollbar {
