@@ -24,6 +24,8 @@ const getAccentColorValue = (color: AccentColor): string => {
       return '#D4A574';
     case 'gold-peachy':
       return '#DCBE8C';
+    default:
+      return '#E8D4A8'; // Default to gold
   }
 };
 
@@ -202,6 +204,47 @@ export const StoriesHub: React.FC<StoriesHubProps> = ({ stories, hideHeader = fa
           z-index: 2;
         }
 
+        .story-card-click-indicator {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 3;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 8px;
+          padding: 16px 24px;
+          background: rgba(0, 0, 0, 0.7);
+          backdrop-filter: blur(8px);
+          border-radius: 12px;
+          border: 1px solid rgba(232, 212, 168, 0.3);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          pointer-events: none;
+        }
+
+        .story-card:hover .story-card-click-indicator {
+          opacity: 1;
+        }
+
+        .story-card-click-icon {
+          width: 32px;
+          height: 32px;
+          color: var(--color-gold-warm);
+          filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+        }
+
+        .story-card-click-text {
+          font-size: 14px;
+          font-weight: 600;
+          color: white;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+          white-space: nowrap;
+          font-family: Georgia, "Times New Roman", serif;
+          letter-spacing: 0.5px;
+        }
+
         @media (max-width: 768px) {
           .stories-hub-title {
             font-size: 36px;
@@ -262,6 +305,19 @@ export const StoriesHub: React.FC<StoriesHubProps> = ({ stories, hideHeader = fa
           .story-card-subtitle {
             font-size: 11px;
           }
+
+          .story-card-click-indicator {
+            padding: 12px 16px;
+          }
+
+          .story-card-click-icon {
+            width: 24px;
+            height: 24px;
+          }
+
+          .story-card-click-text {
+            font-size: 12px;
+          }
         }
       `}</style>
 
@@ -302,6 +358,12 @@ export const StoriesHub: React.FC<StoriesHubProps> = ({ stories, hideHeader = fa
                     />
                   )}
                 </ProportionalSizingProvider>
+                <div className="story-card-click-indicator">
+                  <svg className="story-card-click-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 18l6-6-6-6"/>
+                  </svg>
+                  <span className="story-card-click-text">Click to View</span>
+                </div>
                 {!hideCardText && (
                   <div className="story-card-content">
                     <h3 className="story-card-title">{story.title}</h3>
