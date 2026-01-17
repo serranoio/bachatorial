@@ -87,6 +87,48 @@ export const myWhyStory = {
           padding: '40px 20px'
         }}>
           <p style={{ ...styles.paragraph, marginBottom: '24px' }}>
+            Come dance with me!! Let's become art by committing to uncovering layers of beauty.
+          </p>
+          <p style={{ ...styles.paragraph, marginBottom: '24px' }}>
+            What is your process of creating a choreo?
+          </p>
+          <p style={{ ...styles.paragraph, marginBottom: '12px' }}>
+            To me, it makes most sense in these two ways:
+          </p>
+          <ul style={{ ...styles.paragraph, textAlign: 'left', maxWidth: '800px', margin: '0 auto 24px' }}>
+            <li style={{ marginBottom: '16px' }}>
+              <strong>Song first:</strong> Song → Theme → Dance
+              <br />
+              <span style={{ fontSize: '24px', fontWeight: '300' }}>
+                We choose a song and from the song we derive the theme. With the theme, we can stylize the dance by the theme
+              </span>
+            </li>
+            <li>
+              <strong>Theme first:</strong> Theme → Song → Dance
+              <br />
+              <span style={{ fontSize: '24px', fontWeight: '300' }}>
+                We choose a theme and find a song / create a song to match the theme. With the theme, we can stylize the dance by the theme
+              </span>
+            </li>
+          </ul>
+          <p style={{ ...styles.paragraph, margin: 0 }}>
+            What do you think?
+          </p>
+        </div>
+      ),
+    },
+    {
+      id: 'frame-5',
+      content: (
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '100%',
+          padding: '40px 20px'
+        }}>
+          <p style={{ ...styles.paragraph, marginBottom: '24px' }}>
             Can you tell I am spiritual? If you like this, please read The Tao of Physics & The New Earth & please have a conversation with me.
           </p>
           <p style={{ ...styles.paragraph, margin: 0 }}>
