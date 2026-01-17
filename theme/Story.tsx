@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AccentColor, STORY_BACKGROUNDS, StoryId } from './animations';
 import { ProportionalSizingProvider } from './contexts/ProportionalSizingContext';
+import { updateStoryHash, parseStoryHash } from './storyRouter';
 import './shared-styles.css';
 
 export interface StoryFrame {
@@ -19,16 +20,18 @@ export interface StoryData {
 interface StoryProps {
   story: StoryData;
   onClose: () => void;
+  initialFrameIndex?: number;
 }
 
-export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
-  const [currentFrameIndex, setCurrentFrameIndex] = useState(0);
+export const Story: React.FC<StoryProps> = ({ story, onClose, initialFrameIndex = 0 }) => {
+  const [currentFrameIndex, setCurrentFrameIndex] = useState(initialFrameIndex);
   const contentRef = useRef<HTMLDivElement>(null);
   const touchStartY = useRef<number>(0);
   const touchStartX = useRef<number>(0);
   const touchStartTime = useRef<number>(0);
   const isScrolling = useRef<boolean>(false);
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+  const isUpdatingFromHash = useRef<boolean>(false);
 
   // Get the appropriate background component for this story
   const BackgroundComponent = STORY_BACKGROUNDS[story.id as StoryId];
@@ -58,11 +61,40 @@ export const Story: React.FC<StoryProps> = ({ story, onClose }) => {
 
   // Reset frame index when story changes
   useEffect(() => {
-    setCurrentFrameIndex(0);
+    // Validate initialFrameIndex is within bounds
+    const validFrameIndex = Math.max(0, Math.min(initialFrameIndex, story.frames.length - 1));
+    setCurrentFrameIndex(validFrameIndex);
     if (contentRef.current) {
       contentRef.current.scrollTop = 0;
     }
-  }, [story.id]);
+  }, [story.id, initialFrameIndex, story.frames.length]);
+
+  // Sync frame changes with URL
+  useEffect(() => {
+    if (!isUpdatingFromHash.current) {
+      updateStoryHash(story.id, currentFrameIndex, true);
+    }
+    isUpdatingFromHash.current = false;
+  }, [currentFrameIndex, story.id]);
+
+  // Listen for hash changes to update frame
+  useEffect(() => {
+    const handleHashChange = () => {
+      const route = parseStoryHash();
+      if (route && route.storyId === story.id && route.frameIndex !== undefined) {
+        if (route.frameIndex !== currentFrameIndex && route.frameIndex < story.frames.length) {
+          isUpdatingFromHash.current = true;
+          setCurrentFrameIndex(route.frameIndex);
+          if (contentRef.current) {
+            contentRef.current.scrollTop = 0;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [story.id, story.frames.length, currentFrameIndex]);
 
   const currentFrame = story.frames[currentFrameIndex];
   const isLastFrame = currentFrameIndex === story.frames.length - 1;

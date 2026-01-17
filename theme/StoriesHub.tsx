@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Story, StoryData } from './Story';
 import { AccentColor } from './animations';
 import { STORY_BACKGROUNDS, StoryId } from './animations';
 import { ProportionalSizingProvider } from './contexts/ProportionalSizingContext';
+import { parseStoryHash, clearStoryHash, updateStoryHash } from './storyRouter';
 import './shared-styles.css';
 
 interface StoriesHubProps {
@@ -28,13 +29,59 @@ const getAccentColorValue = (color: AccentColor): string => {
 
 export const StoriesHub: React.FC<StoriesHubProps> = ({ stories, hideHeader = false, hideCardText = false }) => {
   const [activeStoryIndex, setActiveStoryIndex] = useState<number | null>(null);
+  const [initialFrameIndex, setInitialFrameIndex] = useState<number>(0);
+
+  // Handle initial URL hash on mount
+  useEffect(() => {
+    const route = parseStoryHash();
+    if (route) {
+      const storyIndex = stories.findIndex(s => s.id === route.storyId);
+      if (storyIndex !== -1) {
+        setActiveStoryIndex(storyIndex);
+        setInitialFrameIndex(route.frameIndex ?? 0);
+      } else {
+        // Invalid story ID, clear hash
+        clearStoryHash();
+      }
+    }
+  }, [stories]);
+
+  // Listen for hash changes (browser back/forward)
+  useEffect(() => {
+    const handleHashChange = () => {
+      const route = parseStoryHash();
+
+      if (!route) {
+        // No story in URL, close any open story
+        setActiveStoryIndex(null);
+        return;
+      }
+
+      const storyIndex = stories.findIndex(s => s.id === route.storyId);
+      if (storyIndex !== -1) {
+        setActiveStoryIndex(storyIndex);
+        setInitialFrameIndex(route.frameIndex ?? 0);
+      } else {
+        // Invalid story ID, close story and clear hash
+        setActiveStoryIndex(null);
+        clearStoryHash();
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [stories]);
 
   const handleStoryClick = (index: number) => {
+    const story = stories[index];
     setActiveStoryIndex(index);
+    setInitialFrameIndex(0);
+    updateStoryHash(story.id, 0, false); // Push to history
   };
 
   const handleCloseStory = () => {
     setActiveStoryIndex(null);
+    clearStoryHash();
   };
 
   return (
@@ -271,6 +318,7 @@ export const StoriesHub: React.FC<StoriesHubProps> = ({ stories, hideHeader = fa
         <Story
           story={stories[activeStoryIndex]}
           onClose={handleCloseStory}
+          initialFrameIndex={initialFrameIndex}
         />
       )}
     </>
