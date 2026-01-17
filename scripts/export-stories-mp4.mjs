@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 import { chromium } from 'playwright';
 import { mkdirSync, existsSync, renameSync, statSync, readdirSync, rmSync } from 'fs';
@@ -57,8 +57,9 @@ async function captureAsVideo(url, options, browser) {
       // Continue with export even if signal not received
     }
 
-    // Additional stabilization time for GPU to finish all compositing
-    await page.waitForTimeout(1000);
+    // Extended stabilization time for GPU to finish all compositing (especially blur filters)
+    // This ensures radial gradients with blur effects are fully rendered before recording starts
+    await page.waitForTimeout(3000);
 
     // Now record the actual content (15 seconds)
     await page.waitForTimeout(EXPORT_CONFIG.duration);
@@ -79,14 +80,15 @@ async function captureAsVideo(url, options, browser) {
     const sourcePath = join(tempDir, webmFile);
     renameSync(sourcePath, webmTempPath);
 
-    // Convert WebM to MP4 using ffmpeg
-    console.log('  🎞️  Converting to MP4...');
+    // Convert WebM to MP4 using ffmpeg with high quality 10-bit encoding
+    console.log('  🎞️  Converting to MP4 (10-bit high quality)...');
     const result = spawnSync('ffmpeg', [
       '-i', webmTempPath,
       '-c:v', 'libx264',
-      '-preset', 'fast',
-      '-crf', '23',
-      '-pix_fmt', 'yuv420p',
+      '-preset', 'slow',           // Better quality encoding (vs 'fast')
+      '-crf', '18',                // Near-lossless quality (vs '23')
+      '-pix_fmt', 'yuv420p10le',   // 10-bit color depth for smooth gradients
+      '-profile:v', 'high10',      // H.264 High 10 profile for 10-bit support
       '-movflags', '+faststart',
       '-an',
       '-y',
@@ -117,14 +119,29 @@ async function captureAsVideo(url, options, browser) {
 }
 
 async function getStoryData() {
-  // Load story metadata directly (TypeScript files can't be imported by Node.js)
-  return [
-    { id: 'why-everyone-can-dance', title: 'Why Everyone Can Dance', frames: [{}, {}, {}] },
-    { id: 'about-me', title: 'About Me', frames: [{}, {}] },
-    { id: 'teaching-philosophy', title: 'Teaching Philosophy', frames: [{}, {}, {}] },
-    { id: 'my-why', title: 'My Why', frames: [{}, {}] },
-    { id: 'philosophy', title: 'Philosophy', frames: [{}] },
-  ];
+  // Build and load the actual story data from TypeScript source
+  console.log('📖 Loading story metadata from source files...');
+
+  // Use Bun to dynamically import the story data
+  const { storyData } = await import('../theme/stories/index.ts');
+
+  // Map to the format needed for export (just need id, title, and frame count)
+  const stories = storyData.map(story => ({
+    id: story.id,
+    title: story.title,
+    frames: story.frames || [],
+  }));
+
+  console.log('\n📊 Loaded Stories:');
+  console.log('═'.repeat(50));
+  stories.forEach(story => {
+    const frameCount = story.frames.length;
+    console.log(`  ${story.id.padEnd(30)} → ${frameCount} frame${frameCount !== 1 ? 's' : ''}`);
+  });
+  console.log('═'.repeat(50));
+  console.log(`  Total: ${stories.length} stories\n`);
+
+  return stories;
 }
 
 function sanitizeTitle(title) {

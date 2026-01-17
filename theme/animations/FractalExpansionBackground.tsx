@@ -151,9 +151,11 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
           border: 3px solid currentColor; /* ENHANCED: was 1px */
           box-shadow: 0 0 15px currentColor; /* ENHANCED: added glow */
           pointer-events: none;
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .expansion-ring-geometric {
@@ -162,9 +164,11 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
           top: 50%;
           pointer-events: none;
           clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .fractal-point {
@@ -174,9 +178,11 @@ export const FractalExpansionBackground: React.FC<AnimatedBackgroundProps> = ({
           border-radius: 50%;
           pointer-events: none;
           box-shadow: 0 0 20px currentColor, 0 0 40px currentColor; /* ENHANCED: was 8px - stronger glow */
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .mandala-petal {

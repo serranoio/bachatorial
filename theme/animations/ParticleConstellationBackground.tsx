@@ -159,13 +159,15 @@ export const ParticleConstellationBackground: React.FC<AnimatedBackgroundProps> 
           position: absolute;
           top: 50%;
           left: 50%;
-          transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%) translateZ(0);
           border-radius: 50%;
           pointer-events: none;
           opacity: 0.7; /* ENHANCED: was 0.3 */
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: filter, opacity;
           backface-visibility: hidden;
+          /* Force GPU layer for better gradient rendering */
+          isolation: isolate;
         }
       `}</style>
 

@@ -24491,9 +24491,11 @@ Check the top-level render call using <` + parentName + ">.";
           border-radius: 50%;
           pointer-events: none;
           mix-blend-mode: screen;
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, filter, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .ribbon-wave {
@@ -24706,13 +24708,15 @@ Check the top-level render call using <` + parentName + ">.";
           position: absolute;
           top: 50%;
           left: 50%;
-          transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%) translateZ(0);
           border-radius: 50%;
           pointer-events: none;
           opacity: 0.7; /* ENHANCED: was 0.3 */
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: filter, opacity;
           backface-visibility: hidden;
+          /* Force GPU layer for better gradient rendering */
+          isolation: isolate;
         }
       `
         }, undefined, false, undefined, this),
@@ -24926,9 +24930,11 @@ Check the top-level render call using <` + parentName + ">.";
           border-radius: 50%;
           pointer-events: none;
           mix-blend-mode: screen;
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, filter, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .bokeh-layer-0 {
@@ -25119,9 +25125,11 @@ Check the top-level render call using <` + parentName + ">.";
           pointer-events: none;
           border: 4px solid currentColor; /* ENHANCED: was 2px */
           box-shadow: 0 0 20px currentColor, 0 0 40px currentColor; /* ENHANCED: added glow */
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .geometric-circle {
@@ -25399,11 +25407,12 @@ Check the top-level render call using <` + parentName + ">.";
           top: 50%;
           left: 50%;
           border-radius: 50%;
-          transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%) translateZ(0);
           pointer-events: none;
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, filter, opacity;
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .pulse-ring {
@@ -25412,9 +25421,11 @@ Check the top-level render call using <` + parentName + ">.";
           left: 50%;
           border-radius: 50%;
           pointer-events: none;
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .wave-ring {
@@ -25423,6 +25434,8 @@ Check the top-level render call using <` + parentName + ">.";
           left: 50%;
           border-radius: 50%;
           pointer-events: none;
+          transform: translateZ(0);
+          isolation: isolate;
           /* GPU acceleration */
           will-change: transform, opacity;
           backface-visibility: hidden;
@@ -25665,9 +25678,11 @@ Check the top-level render call using <` + parentName + ">.";
           pointer-events: none;
           opacity: 0.65; /* ENHANCED: was 0.3 */
           box-shadow: 0 0 ${scale(10)}px currentColor; /* ENHANCED: added moderate glow */
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .bloom {
@@ -25675,9 +25690,11 @@ Check the top-level render call using <` + parentName + ">.";
           border-radius: 50%;
           pointer-events: none;
           box-shadow: 0 0 ${scale(15)}px currentColor, 0 0 ${scale(30)}px currentColor; /* ENHANCED: was 8px - better glow */
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .root-system {
@@ -25979,9 +25996,11 @@ Check the top-level render call using <` + parentName + ">.";
           width: 100%;
           pointer-events: none;
           opacity: 0.6; /* ENHANCED: was 0.3 */
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, filter, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .silk-ribbon {
@@ -25991,14 +26010,18 @@ Check the top-level render call using <` + parentName + ">.";
           transform-origin: center;
           pointer-events: none;
           box-shadow: 0 0 15px currentColor; /* ENHANCED: added glow */
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .flow-particle {
           position: absolute;
           border-radius: 50%;
+          transform: translateZ(0);
+          isolation: isolate;
           pointer-events: none;
           /* GPU acceleration */
           will-change: transform, opacity;
@@ -26291,9 +26314,11 @@ Check the top-level render call using <` + parentName + ">.";
           border: 3px solid currentColor; /* ENHANCED: was 1px */
           box-shadow: 0 0 15px currentColor; /* ENHANCED: added glow */
           pointer-events: none;
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .expansion-ring-geometric {
@@ -26302,9 +26327,11 @@ Check the top-level render call using <` + parentName + ">.";
           top: 50%;
           pointer-events: none;
           clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .fractal-point {
@@ -26314,9 +26341,11 @@ Check the top-level render call using <` + parentName + ">.";
           border-radius: 50%;
           pointer-events: none;
           box-shadow: 0 0 20px currentColor, 0 0 40px currentColor; /* ENHANCED: was 8px - stronger glow */
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .mandala-petal {

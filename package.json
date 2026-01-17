@@ -8,8 +8,8 @@
     "dev": "rspress dev",
     "preview": "rspress preview",
     "preview:stories": "bun run scripts/serve-stories.ts",
-    "export:stories": "node scripts/export-stories-mp4.mjs",
-    "retest": "bun run build:export && rm -rf exports && mkdir exports && node scripts/export-stories-mp4.mjs",
+    "export:stories": "bun scripts/export-stories-mp4.mjs",
+    "retest": "bun run build:export && rm -rf exports && mkdir exports && bun scripts/export-stories-mp4.mjs",
     "move-to-photos": "bash scripts/move-exports-to-photos.sh"
   },
   "dependencies": {

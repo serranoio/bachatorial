@@ -141,9 +141,11 @@ export const BokehLightBackground: React.FC<AnimatedBackgroundProps> = ({
           border-radius: 50%;
           pointer-events: none;
           mix-blend-mode: screen;
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, filter, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .bokeh-layer-0 {

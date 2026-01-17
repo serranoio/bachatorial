@@ -118,11 +118,12 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
           top: 50%;
           left: 50%;
           border-radius: 50%;
-          transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%) translateZ(0);
           pointer-events: none;
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, filter, opacity;
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .pulse-ring {
@@ -131,9 +132,11 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
           left: 50%;
           border-radius: 50%;
           pointer-events: none;
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .wave-ring {
@@ -142,6 +145,8 @@ export const HeartbeatPulseBackground: React.FC<AnimatedBackgroundProps> = ({
           left: 50%;
           border-radius: 50%;
           pointer-events: none;
+          transform: translateZ(0);
+          isolation: isolate;
           /* GPU acceleration */
           will-change: transform, opacity;
           backface-visibility: hidden;

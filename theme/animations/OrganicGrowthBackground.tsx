@@ -118,9 +118,11 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
           pointer-events: none;
           opacity: 0.65; /* ENHANCED: was 0.3 */
           box-shadow: 0 0 ${scale(10)}px currentColor; /* ENHANCED: added moderate glow */
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .bloom {
@@ -128,9 +130,11 @@ export const OrganicGrowthBackground: React.FC<AnimatedBackgroundProps> = ({
           border-radius: 50%;
           pointer-events: none;
           box-shadow: 0 0 ${scale(15)}px currentColor, 0 0 ${scale(30)}px currentColor; /* ENHANCED: was 8px - better glow */
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .root-system {

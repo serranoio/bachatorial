@@ -48,14 +48,20 @@ async function captureAsVideo(url, options, browser) {
 
     // Wait for animations to be truly ready (GPU compositing complete)
     console.log('    ⏳ Waiting for animations to composite...');
-    await page.waitForFunction(
-      () => document.body.getAttribute('data-animations-ready') === 'true',
-      { timeout: 10000 }
-    );
+    try {
+      await page.waitForFunction(
+        () => document.body.getAttribute('data-animations-ready') === 'true',
+        { timeout: 15000 }
+      );
+      console.log('    ✓ Animations ready');
+    } catch (timeoutError) {
+      console.log('    ⚠️  Timeout waiting for animations, proceeding anyway...');
+      // Continue with export even if signal not received
+    }
 
-    // Additional stabilization time for GPU to finish all compositing
-    await page.waitForTimeout(500);
-    console.log('    ✓ Animations ready');
+    // Extended stabilization time for GPU to finish all compositing (especially blur filters)
+    // This ensures radial gradients with blur effects are fully rendered before recording starts
+    await page.waitForTimeout(3000);
 
     // Now record the actual content (15 seconds)
     await page.waitForTimeout(EXPORT_CONFIG.duration);
@@ -76,14 +82,15 @@ async function captureAsVideo(url, options, browser) {
     const sourcePath = join(tempDir, webmFile);
     renameSync(sourcePath, webmTempPath);
 
-    // Convert WebM to MP4 using ffmpeg
-    console.log('  🎞️  Converting to MP4...');
+    // Convert WebM to MP4 using ffmpeg with high quality 10-bit encoding
+    console.log('  🎞️  Converting to MP4 (10-bit high quality)...');
     const result = spawnSync('ffmpeg', [
       '-i', webmTempPath,
       '-c:v', 'libx264',
-      '-preset', 'fast',
-      '-crf', '23',
-      '-pix_fmt', 'yuv420p',
+      '-preset', 'slow',           // Better quality encoding (vs 'fast')
+      '-crf', '18',                // Near-lossless quality (vs '23')
+      '-pix_fmt', 'yuv420p10le',   // 10-bit color depth for smooth gradients
+      '-profile:v', 'high10',      // H.264 High 10 profile for 10-bit support
       '-movflags', '+faststart',
       '-an',
       '-y',

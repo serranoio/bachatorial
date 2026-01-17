@@ -140,9 +140,11 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
           width: 100%;
           pointer-events: none;
           opacity: 0.6; /* ENHANCED: was 0.3 */
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, filter, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .silk-ribbon {
@@ -152,14 +154,18 @@ export const FlowingSilkBackground: React.FC<AnimatedBackgroundProps> = ({
           transform-origin: center;
           pointer-events: none;
           box-shadow: 0 0 15px currentColor; /* ENHANCED: added glow */
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .flow-particle {
           position: absolute;
           border-radius: 50%;
+          transform: translateZ(0);
+          isolation: isolate;
           pointer-events: none;
           /* GPU acceleration */
           will-change: transform, opacity;

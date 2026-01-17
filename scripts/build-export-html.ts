@@ -15,6 +15,17 @@ import { join } from 'path';
 async function buildExportHTML() {
   console.log('🔨 Building export bundle...');
 
+  // First, load and display story metadata for debugging
+  const { storyData } = await import('../theme/stories/index');
+  console.log('\n📊 Story IDs and Frame Counts:');
+  console.log('═'.repeat(50));
+  storyData.forEach((story: any) => {
+    const frameCount = story.frames?.length || 0;
+    console.log(`  ${story.id.padEnd(30)} → ${frameCount} frame${frameCount !== 1 ? 's' : ''}`);
+  });
+  console.log('═'.repeat(50));
+  console.log(`  Total stories: ${storyData.length}\n`);
+
   // Bundle the stories with React
   const result = await Bun.build({
     entrypoints: ['./scripts/export-entry.tsx'],

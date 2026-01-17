@@ -122,9 +122,11 @@ export const GeometricDanceBackground: React.FC<AnimatedBackgroundProps> = ({
           pointer-events: none;
           border: 4px solid currentColor; /* ENHANCED: was 2px */
           box-shadow: 0 0 20px currentColor, 0 0 40px currentColor; /* ENHANCED: added glow */
-          /* GPU acceleration */
+          /* GPU acceleration and gradient smoothing */
           will-change: transform, opacity;
+          transform: translateZ(0);
           backface-visibility: hidden;
+          isolation: isolate;
         }
 
         .geometric-circle {
